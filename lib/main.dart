@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:my_app/Customer/customer_view.dart';
 import 'package:my_app/Pages/testing.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: RegisterPage(),
+        home: ChooseLocation(),
       ),
     );
   }
