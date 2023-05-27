@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
   String? _verificationId;
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   // sign in anonymously
   Future<User?> signInAnonymously() async {
@@ -95,6 +97,38 @@ class AuthService {
     }
   }
 
+  // Sign in with Google
+  Future<User?> signInWithGoogle() async {
+    print("Trying to login with Google...");
+    try {
+      // Trigger the Google Sign-In flow
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+
+      if (googleUser == null) {
+        // User canceled the sign-in process
+        return null;
+      }
+
+      // Obtain the Google authentication details
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+
+      // Create the credentials for Firebase
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      // Sign in to Firebase with the Google credentials
+      final UserCredential userCredential =
+          await _auth.signInWithCredential(credential);
+
+      return userCredential.user;
+    } catch (e) {
+      print("There was an exception in Google Sign-In: $e");
+      return null;
+    }
+  }
   // sign out
 
   Future<void> signOut() async {
