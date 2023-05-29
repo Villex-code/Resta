@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/Business/store_view.dart';
+import 'package:my_app/Customer/restaurant_list_customer.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class Categories extends StatefulWidget {
@@ -56,14 +58,13 @@ class _CategoriesState extends State<Categories> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: Image.network(
-                                'https://picsum.photos/seed/916/600',
-                                width: 212,
-                                height: 59,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
+                                borderRadius: BorderRadius.circular(8),
+                                child: Image.network(
+                                  'https://picsum.photos/seed/916/600',
+                                  width: 212,
+                                  height: 59,
+                                  fit: BoxFit.cover,
+                                )),
                             Text(
                               'Restaurants',
                             ),
@@ -82,13 +83,23 @@ class _CategoriesState extends State<Categories> {
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: Image.network(
-                                'https://picsum.photos/seed/289/600',
-                                width: 249,
-                                height: 58,
-                                fit: BoxFit.cover,
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          RestaurantListCustomer()),
+                                );
+                              },
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Image.network(
+                                  'https://picsum.photos/seed/289/600',
+                                  width: 249,
+                                  height: 58,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                             Text(
