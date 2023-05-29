@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/Customer/categories_customers.dart';
+import 'package:my_app/Profile/MainProfile.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class SeeCustomer_View extends StatefulWidget {
@@ -47,9 +48,19 @@ class _CustomerViewState extends State<SeeCustomer_View> {
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                   ),
-                                  child: Image.network(
-                                    'https://picsum.photos/seed/936/600',
-                                    fit: BoxFit.cover,
+                                  child: InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const UberProfile()),
+                                      );
+                                    },
+                                    child: Image.network(
+                                      'https://picsum.photos/seed/936/600',
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
                                 Padding(
