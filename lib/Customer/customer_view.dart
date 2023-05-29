@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class SeeCustomer_View extends StatefulWidget {
   @override
@@ -261,7 +262,7 @@ class _CustomerViewState extends State<SeeCustomer_View> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Container(
-                                width: 420,
+                                width: context.screenWidth,
                                 height: 100,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
