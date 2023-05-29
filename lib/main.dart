@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+import 'package:my_app/Business/store_view.dart';
+import 'package:my_app/Customer/customer_view.dart';
+
 import 'package:my_app/PagesAuth/Login/login_method.dart';
+
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 import 'package:my_app/Authentication/user.dart';
