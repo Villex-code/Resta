@@ -21,7 +21,12 @@ class Notifications extends StatelessWidget {
           centerTitle: true,
           backgroundColor: Colors.black54,
           leading: IconButton(
-            onPressed: (){},
+            onPressed: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SeeStoreView()),
+              );
+            },
             icon: Icon(Icons.arrow_back),
           ),
           title: Row(
