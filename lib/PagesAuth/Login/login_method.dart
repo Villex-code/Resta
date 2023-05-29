@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/Business/store_view.dart';
+import 'package:my_app/Customer/customer_view.dart';
 import 'package:my_app/MainPages/Homepage.dart';
 
 import 'package:my_app/PagesAuth/Login/login_email.dart';
@@ -105,7 +107,8 @@ class _LoginMethodState extends State<LoginMethod> {
 
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => Homepage()),
+                          MaterialPageRoute(
+                              builder: (context) => SeeCustomer_View()),
                         );
                       } else {
                         print("User not found or sign in was cancelled");
