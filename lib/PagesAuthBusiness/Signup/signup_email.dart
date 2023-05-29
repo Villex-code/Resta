@@ -7,14 +7,14 @@ import 'package:provider/provider.dart';
 import 'package:my_app/Authentication/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class SignupEmailPage extends StatefulWidget {
-  const SignupEmailPage({super.key});
+class BusinessSignupEmail extends StatefulWidget {
+  const BusinessSignupEmail({super.key});
 
   @override
-  State<SignupEmailPage> createState() => _SignupEmailPageState();
+  State<BusinessSignupEmail> createState() => _BusinessSignupEmailState();
 }
 
-class _SignupEmailPageState extends State<SignupEmailPage> {
+class _BusinessSignupEmailState extends State<BusinessSignupEmail> {
   final AuthService _auth = AuthService();
 
   // Initialize the text controllers

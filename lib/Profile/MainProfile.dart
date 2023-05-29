@@ -17,9 +17,6 @@ import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
-import 'dart:io' if (dart.library.html) 'dart:html';
 
 List<Map<String, dynamic>> profileItems = [
   {
@@ -53,7 +50,7 @@ List<Map<String, dynamic>> profileItems = [
     'icon': Icons.support_agent,
     'destination': SupportPage(),
   },
-  {'name': 'About OnSpot', 'icon': Icons.info, 'destination': const About()},
+  {'name': 'About Resta', 'icon': Icons.info, 'destination': const About()},
 ];
 
 class UberProfile extends StatefulWidget {

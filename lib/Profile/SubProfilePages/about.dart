@@ -12,36 +12,29 @@ class About extends StatelessWidget {
     final List<Map<String, String>> aboutData = [
       {
         'heading': 'Our Company',
-        'description':
-            'We make it easier for people to order in any restaurant. Our app allows customers to scan the QR code on the table, view the menu, place orders, and make payments - all from their phone. With our app, ordering food has never been so convenient!',
+        'description': 'Vale ti kanei to app mas',
       },
       {
         'heading': 'How It Works',
-        'description': '1. Scan the QR code on the table using our app.\n\n'
-            '2. Browse the menu and select your desired items.\n\n'
-            '3. Place your order and make payment seamlessly within the app.\n\n'
-            '4. Sit back and relax while your order is prepared and delivered to your table.\n\n'
+        'description': '1. Vale step 1.\n\n'
+            '2. Vale step 2.\n\n'
+            '3. Vale step 3.\n\n'
+            '4. Vale step 4.\n\n'
             'Enjoy a hassle-free dining experience with our app!',
       },
       {
         'heading': 'Features',
         'description': '- Quick and easy ordering process\n'
-            '- Secure payment options\n'
-            '- Real-time menu updates\n'
-            '- Personalized recommendations\n'
-            '- Tableside food delivery\n'
-            '- Order history and tracking\n'
-            '- Seamless integration with restaurants',
+            'Vale feature 1\n'
+            'feature 2\n'
+            'h kai osas alla einai\n',
       },
       {
         'heading': 'Benefits',
         'description': '- Save time and skip the queue\n'
-            '- Hassle-free payment process\n'
-            '- Explore diverse menu options\n'
-            '- Enjoy personalized recommendations\n'
-            '- Convenient tableside food delivery\n'
-            '- Keep track of your order history\n'
-            '- Seamless dining experience',
+            '- Benefit 1\n'
+            '- Benefit 2\n'
+            '- Benefit 3 ....\n',
       },
       {
         'heading': 'Customer Reviews',

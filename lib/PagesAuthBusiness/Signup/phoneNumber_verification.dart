@@ -10,21 +10,21 @@ import 'package:my_app/Authentication/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 
-class PhoneNumberVerification extends StatefulWidget {
+class BusinessPhoneVerification extends StatefulWidget {
   final AuthService auth;
   String submittedPhone;
-  PhoneNumberVerification(
+  BusinessPhoneVerification(
       {super.key, required this.submittedPhone, required this.auth});
 
   @override
-  State<PhoneNumberVerification> createState() =>
-      _PhoneNumberVerificationState();
+  State<BusinessPhoneVerification> createState() =>
+      _BusinessPhoneVerificationState();
 }
 
 // final TextEditingController verificationsCodeController =
 //     TextEditingController();
 
-class _PhoneNumberVerificationState extends State<PhoneNumberVerification> {
+class _BusinessPhoneVerificationState extends State<BusinessPhoneVerification> {
   String verificationCode = '';
 
   FocusNode? focusNode1,

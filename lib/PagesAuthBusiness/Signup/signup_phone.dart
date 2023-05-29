@@ -9,14 +9,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
-class SignupPhonePage extends StatefulWidget {
-  const SignupPhonePage({super.key});
+class BusinessSignupPhone extends StatefulWidget {
+  const BusinessSignupPhone({super.key});
 
   @override
-  State<SignupPhonePage> createState() => _SignupPhonePageState();
+  State<BusinessSignupPhone> createState() => _BusinessSignupPhoneState();
 }
 
-class _SignupPhonePageState extends State<SignupPhonePage> {
+class _BusinessSignupPhoneState extends State<BusinessSignupPhone> {
   final AuthService _auth = AuthService();
 
   final TextEditingController phoneController = TextEditingController();

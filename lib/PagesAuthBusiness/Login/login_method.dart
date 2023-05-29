@@ -19,14 +19,14 @@ import 'package:my_app/Authentication/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class LoginMethod extends StatefulWidget {
-  const LoginMethod({super.key});
+class BusinessLoginMethod extends StatefulWidget {
+  const BusinessLoginMethod({super.key});
 
   @override
-  State<LoginMethod> createState() => _LoginMethodState();
+  State<BusinessLoginMethod> createState() => _BusinessLoginMethodState();
 }
 
-class _LoginMethodState extends State<LoginMethod> {
+class _BusinessLoginMethodState extends State<BusinessLoginMethod> {
   final AuthService _auth = AuthService();
 
   @override

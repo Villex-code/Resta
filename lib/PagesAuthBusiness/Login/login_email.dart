@@ -10,14 +10,14 @@ import 'package:velocity_x/velocity_x.dart';
 
 import 'package:flutter/services.dart';
 
-class LoginEmailPage extends StatefulWidget {
-  const LoginEmailPage({super.key});
+class BusinessLoginEmail extends StatefulWidget {
+  const BusinessLoginEmail({super.key});
 
   @override
-  State<LoginEmailPage> createState() => _LoginEmailPageState();
+  State<BusinessLoginEmail> createState() => _BusinessLoginEmailState();
 }
 
-class _LoginEmailPageState extends State<LoginEmailPage> {
+class _BusinessLoginEmailState extends State<BusinessLoginEmail> {
   final AuthService _auth = AuthService();
   String email = '';
   String password = '';
