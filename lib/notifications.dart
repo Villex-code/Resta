@@ -1,5 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+
+import 'package:test_app/menu.dart';
+import 'package:test_app/main.dart';
+import 'package:test_app/addtable.dart';
+//import 'package:test_app/home_page.dart';
+
 import 'package:my_app/addtable.dart';
 
 class Notifications extends StatelessWidget {
@@ -18,6 +24,12 @@ class Notifications extends StatelessWidget {
           centerTitle: true,
           backgroundColor: Colors.black54,
           leading: IconButton(
+            onPressed: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SeeStoreView()),
+              );
+            },
             onPressed: () {},
             icon: Icon(Icons.arrow_back),
           ),
