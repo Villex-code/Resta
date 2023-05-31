@@ -454,8 +454,8 @@ class _BusinessView extends State<BusinessView> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Icon(Icons.settings),
-                            Text('Settings'),// icon// text
+                            Icon(Icons.upload),
+                            Text('Upload'),// icon// text
                           ],
                         ),
                       ),

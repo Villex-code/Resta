@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/Business/business_add_table.dart';
-import 'package:my_app/Business/business_menu.dart';
-import 'package:my_app/Business/business_home_page.dart';
+import 'package:test_app/business_add_table.dart';
+import 'package:test_app/business_menu.dart';
+import 'package:test_app/main.dart';
 //import 'package:test_app/home_page.dart';
 
 
@@ -57,7 +57,10 @@ class Business_TableView extends StatelessWidget {
         ),
         floatingActionButtonLocation:
         FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: Container(
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
           height: 50,
           margin: const EdgeInsets.all(10),
           child: ElevatedButton.icon(
@@ -77,6 +80,27 @@ class Business_TableView extends StatelessWidget {
             label: Text('Upload Table View'),
           ),
         ),
+            Container(
+              height: 50,
+              margin: const EdgeInsets.all(10),
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Business_AddTable()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.grey, // Background color
+                ),
+                icon: Icon(
+                  Icons.edit,
+                  size: 24.0,
+                ),
+                label: Text('Edit Table View'),
+              ),
+            ),
+      ]),
       ),
     );
   }
