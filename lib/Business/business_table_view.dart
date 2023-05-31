@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:test_app/business_add_table.dart';
-import 'package:test_app/business_menu.dart';
-import 'package:test_app/main.dart';
-//import 'package:test_app/home_page.dart';
+import 'package:my_app/Business/business_add_table.dart';
+import 'package:my_app/Business/business_menu.dart';
+import 'package:my_app/Business/main.dart';
+
 
 
 class Business_TableView extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:test_app/main.dart';
-import 'package:test_app/business_reservations.dart';
-//import 'package:test_app/home_page.dart';
+import 'package:my_app/Business/main.dart';
+import 'package:my_app/Business/business_reservations.dart';
+
 
 class Business_MenuView extends StatelessWidget {
    const Business_MenuView({super.key});
