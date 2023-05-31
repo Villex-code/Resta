@@ -5,12 +5,12 @@ import 'package:my_app/Business/business_home_page.dart';
 import 'package:my_app/Business/business_table_view.dart';
 //import 'package:test_app/home_page.dart';
 
-class AddTable extends StatefulWidget{
-  const AddTable({super.key});
+class Business_AddTable extends StatefulWidget{
+  const Business_AddTable({super.key});
   @override
-  _AddTable createState() => _AddTable();
+  _Business_AddTable createState() => _Business_AddTable();
 }
-class _AddTable extends State<AddTable>{
+class _Business_AddTable extends State<Business_AddTable>{
   final TextEditingController tableNumber = TextEditingController();
   final TextEditingController tableSeats = TextEditingController();
   bool? smokeArea = false;
@@ -32,7 +32,7 @@ class _AddTable extends State<AddTable>{
             onPressed: (){
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const TableView()),
+                MaterialPageRoute(builder: (context) => const Business_TableView()),
               );
             },
             icon: Icon(Icons.arrow_back),

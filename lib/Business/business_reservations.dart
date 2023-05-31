@@ -7,14 +7,14 @@ import 'package:my_app/Business/business_notifications.dart';
 //import 'package:test_app/home_page.dart';
 
 
-class Reservations extends StatefulWidget {
-  const Reservations({super.key});
+class Business_Reservations extends StatefulWidget {
+  const Business_Reservations({super.key});
 
   @override
-  _ReservationState  createState() => _ReservationState();
+  _Business_Reservations  createState() => _Business_Reservations();
   }
 
-  class _ReservationState extends State<Reservations> {
+  class _Business_Reservations extends State<Business_Reservations> {
     DateTime? datetime = DateTime.now();
 
     // This widget is the root of your application.
@@ -89,7 +89,7 @@ class Reservations extends StatefulWidget {
                               onPressed: () {
                                 Navigator.pushReplacement(
                                   context,
-                                  MaterialPageRoute(builder: (context) => const Notifications()),
+                                  MaterialPageRoute(builder: (context) => const Business_Notifications()),
                                 );
                               },
                               style: ElevatedButton.styleFrom(
@@ -105,7 +105,7 @@ class Reservations extends StatefulWidget {
                               onPressed: () {
                                 Navigator.pushReplacement(
                                   context,
-                                  MaterialPageRoute(builder: (context) => const Notifications()),
+                                  MaterialPageRoute(builder: (context) => const Business_Notifications()),
                                 );
                               },
                               style: ElevatedButton.styleFrom(

@@ -3,8 +3,8 @@ import 'package:my_app/Business/business_home_page.dart';
 import 'package:my_app/Business/business_reservations.dart';
 //import 'package:test_app/home_page.dart';
 
-class MenuView extends StatelessWidget {
-   const MenuView({super.key});
+class Business_MenuView extends StatelessWidget {
+   const Business_MenuView({super.key});
 
   // This widget is the root of your application.
   @override
@@ -69,7 +69,7 @@ class MenuView extends StatelessWidget {
           onPressed: () {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => const Reservations()),
+              MaterialPageRoute(builder: (context) => const Business_Reservations()),
             );
           },
           style: ElevatedButton.styleFrom(

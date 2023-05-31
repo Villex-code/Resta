@@ -262,7 +262,7 @@ class _BusinessView extends State<BusinessView> {
                                     onTap:(){
                                       Navigator.pushReplacement(
                                         context,
-                                        MaterialPageRoute(builder: (context) => const MenuView()),
+                                        MaterialPageRoute(builder: (context) => const Business_MenuView()),
                                       );
                                     },
                                     child:Image.network(
@@ -320,7 +320,7 @@ class _BusinessView extends State<BusinessView> {
                                             onTap:(){
                                               Navigator.pushReplacement(
                                                 context,
-                                                MaterialPageRoute(builder: (context) =>  TableView()),
+                                                MaterialPageRoute(builder: (context) =>  Business_TableView()),
                                               );
                                             },
                                             child: ClipRRect(
@@ -338,7 +338,7 @@ class _BusinessView extends State<BusinessView> {
                                             onTap:(){
                                               Navigator.pushReplacement(
                                                 context,
-                                                MaterialPageRoute(builder: (context) =>  TableView()),
+                                                MaterialPageRoute(builder: (context) =>  Business_TableView()),
                                               );
                                             },
                                             child: ClipRRect(
@@ -356,7 +356,7 @@ class _BusinessView extends State<BusinessView> {
                                             onTap:(){
                                               Navigator.pushReplacement(
                                                 context,
-                                                MaterialPageRoute(builder: (context) =>  TableView()),
+                                                MaterialPageRoute(builder: (context) =>  Business_TableView()),
                                               );
                                             },
                                             child: ClipRRect(
@@ -405,7 +405,7 @@ class _BusinessView extends State<BusinessView> {
                         onTap: () {
                           Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(builder: (context) => const Reservations()),
+                            MaterialPageRoute(builder: (context) => const Business_Reservations()),
                           );
                         }, // button pressed
                         child: Column(
@@ -429,7 +429,7 @@ class _BusinessView extends State<BusinessView> {
                         onTap: () {
                           Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(builder: (context) => const Notifications()),
+                            MaterialPageRoute(builder: (context) => const Business_Notifications()),
                           );
                         }, // button pressed
                         child: Column(

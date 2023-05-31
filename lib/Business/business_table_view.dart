@@ -5,8 +5,8 @@ import 'package:my_app/Business/business_home_page.dart';
 //import 'package:test_app/home_page.dart';
 
 
-class TableView extends StatelessWidget {
-  const TableView({super.key});
+class Business_TableView extends StatelessWidget {
+  const Business_TableView({super.key});
 
 
   // This widget is the root of your application.
@@ -64,7 +64,7 @@ class TableView extends StatelessWidget {
             onPressed: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const AddTable()),
+                MaterialPageRoute(builder: (context) => const Business_AddTable()),
               );
             },
             style: ElevatedButton.styleFrom(

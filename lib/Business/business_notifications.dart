@@ -6,8 +6,8 @@ import 'package:my_app/Business/business_home_page.dart';
 import 'package:my_app/Business/business_add_table.dart';
 //import 'package:test_app/home_page.dart';
 
-class Notifications extends StatelessWidget {
-  const Notifications({super.key});
+class Business_Notifications extends StatelessWidget {
+  const Business_Notifications({super.key});
 
   // This widget is the root of your application.
   @override
@@ -60,7 +60,7 @@ class Notifications extends StatelessWidget {
                                 onPressed: () {
                                   Navigator.pushReplacement(
                                     context,
-                                    MaterialPageRoute(builder: (context) => const AddTable()),
+                                    MaterialPageRoute(builder: (context) => const Business_AddTable()),
                                   );
                                 },
                                 style: ElevatedButton.styleFrom(
