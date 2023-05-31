@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/Business/store_view.dart';
-import 'package:my_app/Customer/restaurant_list_customer.dart';
+import 'package:my_app/Customer/store_view_from_customer.dart';
+import 'package:my_app/Customer/listOfStores_customer.dart';
+import 'package:my_app/MainPages/TeamConnected.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class Categories extends StatefulWidget {
@@ -56,15 +57,37 @@ class _CategoriesState extends State<Categories> {
                         ),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
+                          // children: [
+                          //   ClipRRect(
+                          //       borderRadius: BorderRadius.circular(8),
+                          //       child: Image.network(
+                          //         'https://picsum.photos/seed/916/600',
+                          //         width: 212,
+                          //         height: 59,
+                          //         fit: BoxFit.cover,
+                          //       )),
                           children: [
-                            ClipRRect(
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        //ListOfStoresCustomer(category: 'Restaurants')
+                                        TeamConnected(),
+                                  ),
+                                );
+                              },
+                              child: ClipRRect(
                                 borderRadius: BorderRadius.circular(8),
                                 child: Image.network(
                                   'https://picsum.photos/seed/916/600',
                                   width: 212,
                                   height: 59,
                                   fit: BoxFit.cover,
-                                )),
+                                ),
+                              ),
+                            ),
                             Text(
                               'Restaurants',
                             ),
@@ -89,7 +112,8 @@ class _CategoriesState extends State<Categories> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          RestaurantListCustomer()),
+                                          ListOfStoresCustomer(
+                                              category: 'Bars')),
                                 );
                               },
                               child: ClipRRect(
@@ -120,13 +144,24 @@ class _CategoriesState extends State<Categories> {
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: Image.network(
-                                'https://picsum.photos/seed/840/600',
-                                width: 300,
-                                height: 60,
-                                fit: BoxFit.cover,
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          ListOfStoresCustomer(
+                                              category: 'Brunch')),
+                                );
+                              },
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Image.network(
+                                  'https://picsum.photos/seed/840/600',
+                                  width: 300,
+                                  height: 60,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                             Text('Brunch'),
@@ -145,13 +180,24 @@ class _CategoriesState extends State<Categories> {
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: Image.network(
-                                'https://picsum.photos/seed/634/600',
-                                width: 300,
-                                height: 59,
-                                fit: BoxFit.cover,
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          ListOfStoresCustomer(
+                                              category: 'Cafe')),
+                                );
+                              },
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Image.network(
+                                  'https://picsum.photos/seed/634/600',
+                                  width: 300,
+                                  height: 59,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                             Text(
