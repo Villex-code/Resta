@@ -14,14 +14,14 @@ class SupportPage extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> mockFAQs = [
       {
-        'question': 'How do businesses receive orders?',
+        'question': 'How do businesses receive requests for bookings?',
         'answer':
-            'Businesses will receive orders directly in their integrated systems.',
+            'Businesses will receive requests directly in their integrated systems.',
       },
       {
-        'question': 'Can I cancel my order?',
+        'question': 'Can I cancel my booking?',
         'answer':
-            'Yes, you can cancel your order by contacting our support team.',
+            'Yes, you can cancel your booking by contacting our support team.',
       },
       {
         'question': 'What payment methods are accepted?',
@@ -115,7 +115,7 @@ class SupportPage extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      'Send a ticket',
+                      'Send a message',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: MediaQuery.of(context).size.height * 0.02,
@@ -193,7 +193,7 @@ void showTicketModal(BuildContext context) {
                     padding: EdgeInsets.only(
                         left: MediaQuery.of(context).size.height * 0.01),
                     child: Text(
-                      'Create a ticket',
+                      'Create a message',
                       style: TextStyle(
                           fontSize: MediaQuery.of(context).size.height * 0.02),
                     ),

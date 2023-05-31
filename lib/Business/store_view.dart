@@ -7,6 +7,9 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 class SeeStoreView extends StatefulWidget {
   @override
   _SeeStoreViewState createState() => _SeeStoreViewState();
+
+  String name;
+  SeeStoreView({required this.name}) {}
 }
 
 class _SeeStoreViewState extends State<SeeStoreView> {
@@ -117,7 +120,7 @@ class _SeeStoreViewState extends State<SeeStoreView> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(14, 0, 0, 0),
                               child: Text(
-                                '[store name]',
+                                widget.name,
                                 style: TextStyle(
                                   fontFamily: 'Readex Pro',
                                   fontSize: 32,

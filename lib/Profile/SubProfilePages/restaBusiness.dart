@@ -104,7 +104,7 @@ class OnSpotBusiness extends StatelessWidget {
                     ),
                     Align(
                       alignment: Alignment.center,
-                      child: "OnSpot for Business"
+                      child: "Resta for Business"
                           .text
                           .bold
                           .size(context.screenWidth * 0.044)
