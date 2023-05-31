@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:test_app/addtable.dart';
 import 'package:test_app/menu.dart';
 import 'package:test_app/main.dart';
+//import 'package:test_app/home_page.dart';
 
 
 class TableView extends StatelessWidget {
   const TableView({super.key});
+
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,7 @@ class TableView extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const SeeStoreView()),
+                MaterialPageRoute(builder: (context) =>  SeeStoreView()),
               );
             },
             icon: Icon(Icons.arrow_back),
