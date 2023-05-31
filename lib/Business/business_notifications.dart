@@ -1,9 +1,9 @@
 
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:test_app/menu.dart';
-import 'package:test_app/main.dart';
-import 'package:test_app/addtable.dart';
+import 'package:my_app/Business/business_menu.dart';
+import 'package:my_app/Business/business_home_page.dart';
+import 'package:my_app/Business/business_add_table.dart';
 //import 'package:test_app/home_page.dart';
 
 class Notifications extends StatelessWidget {
@@ -23,9 +23,9 @@ class Notifications extends StatelessWidget {
           backgroundColor: Colors.black54,
           leading: IconButton(
             onPressed: (){
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const SeeStoreView()),
+                MaterialPageRoute(builder: (context) => const BusinessView()),
               );
             },
             icon: Icon(Icons.arrow_back),
@@ -58,7 +58,7 @@ class Notifications extends StatelessWidget {
                               Text('Rserve Info'),
                               ElevatedButton.icon(
                                 onPressed: () {
-                                  Navigator.push(
+                                  Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(builder: (context) => const AddTable()),
                                   );

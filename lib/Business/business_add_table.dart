@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:test_app/menu.dart';
-import 'package:test_app/main.dart';
-import 'package:test_app/table_view.dart';
+import 'package:my_app/Business/business_menu.dart';
+import 'package:my_app/Business/business_home_page.dart';
+import 'package:my_app/Business/business_table_view.dart';
 //import 'package:test_app/home_page.dart';
 
 class AddTable extends StatefulWidget{
@@ -11,11 +11,16 @@ class AddTable extends StatefulWidget{
   _AddTable createState() => _AddTable();
 }
 class _AddTable extends State<AddTable>{
+  final TextEditingController tableNumber = TextEditingController();
+  final TextEditingController tableSeats = TextEditingController();
   bool? smokeArea = false;
   bool? noSmokeArea = false;
   bool? specialNeeds = false;
   bool? food = false;
   bool? drink = false;
+  String? table;
+  String? seats;
+
 
 
   @override
@@ -25,7 +30,7 @@ class _AddTable extends State<AddTable>{
           centerTitle: true,
           leading: IconButton(
             onPressed: (){
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => const TableView()),
               );
@@ -51,6 +56,12 @@ class _AddTable extends State<AddTable>{
          Padding(
           padding: const EdgeInsets.all(20.0),
           child: TextFormField(
+            controller: tableNumber,
+            keyboardType: TextInputType.name,
+            onSaved: (value) {
+              tableNumber.text = value!;
+            },
+            textInputAction: TextInputAction.done,
             decoration: const InputDecoration(
               border: UnderlineInputBorder(),
               labelText: 'Enter table',
@@ -60,6 +71,12 @@ class _AddTable extends State<AddTable>{
        Padding(
           padding: const EdgeInsets.all(20.0),
           child: TextFormField(
+          controller: tableSeats,
+          keyboardType: TextInputType.name,
+          onSaved: (value) {
+            tableSeats.text = value!;
+          },
+          textInputAction: TextInputAction.done,
             decoration: const InputDecoration(
               border: UnderlineInputBorder(),
               labelText: 'Enter seats',
@@ -192,11 +209,17 @@ class _AddTable extends State<AddTable>{
                     child:ElevatedButton.icon(
                       onPressed: () {
                         setState(() {
+                          table = tableNumber.text;
+                          seats = tableSeats.text;
+                          tableNumber.text = ' ';
+                          tableSeats.text = ' ';
                           smokeArea = false;
                           noSmokeArea = false;
                           specialNeeds = false;
                           food = false;
                           drink = false;
+                          print(tableNumber);
+                          print(tableSeats);
                         });
                       },
                       style: ElevatedButton.styleFrom(

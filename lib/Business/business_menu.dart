@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:test_app/main.dart';
-import 'package:test_app/reservations.dart';
+import 'package:my_app/Business/business_home_page.dart';
+import 'package:my_app/Business/business_reservations.dart';
 //import 'package:test_app/home_page.dart';
 
 class MenuView extends StatelessWidget {
-  const MenuView({super.key});
+   const MenuView({super.key});
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -20,9 +21,9 @@ class MenuView extends StatelessWidget {
         backgroundColor: Colors.black54,
         leading: IconButton(
           onPressed: () {
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => const SeeStoreView()),
+              MaterialPageRoute(builder: (context) => const BusinessView()),
             );
           },
           icon: Icon(Icons.arrow_back),
@@ -66,7 +67,7 @@ class MenuView extends StatelessWidget {
         margin: const EdgeInsets.all(10),
         child: ElevatedButton.icon(
           onPressed: () {
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => const Reservations()),
             );
@@ -85,4 +86,5 @@ class MenuView extends StatelessWidget {
     );
   }
 }
+
 

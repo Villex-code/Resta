@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:test_app/addtable.dart';
-import 'package:test_app/menu.dart';
-import 'package:test_app/main.dart';
+import 'package:my_app/Business/business_add_table.dart';
+import 'package:my_app/Business/business_menu.dart';
+import 'package:my_app/Business/business_home_page.dart';
 //import 'package:test_app/home_page.dart';
 
 
@@ -23,9 +23,9 @@ class TableView extends StatelessWidget {
           backgroundColor: Colors.black54,
           leading: IconButton(
             onPressed: () {
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) =>  SeeStoreView()),
+                MaterialPageRoute(builder: (context) =>  BusinessView()),
               );
             },
             icon: Icon(Icons.arrow_back),
@@ -62,7 +62,7 @@ class TableView extends StatelessWidget {
           margin: const EdgeInsets.all(10),
           child: ElevatedButton.icon(
             onPressed: () {
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => const AddTable()),
               );

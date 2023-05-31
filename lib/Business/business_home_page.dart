@@ -4,25 +4,21 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart'
 as smooth_page_indicator;
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:test_app/reservations.dart';
-import 'package:test_app/table_view.dart';
-import 'package:test_app/menu.dart';
-import 'package:test_app/notifications.dart';
+import 'package:my_app/Business/business_reservations.dart';
+import 'package:my_app/Business/business_add_table.dart';
+import 'package:my_app/Business/business_menu.dart';
+import 'package:my_app/Business/business_notifications.dart';
+import 'package:my_app/Business/business_table_view.dart';
 
 
-void main() {
-  runApp(MaterialApp(
-    home: SeeStoreView(),
-  ));
-}
-class SeeStoreView extends StatefulWidget {
-  const SeeStoreView({super.key});
+class BusinessView extends StatefulWidget {
+  const BusinessView({super.key});
 
   @override
-  _SeeStoreViewState createState() => _SeeStoreViewState();
+  _BusinessView createState() => _BusinessView();
 }
 
-class _SeeStoreViewState extends State<SeeStoreView> {
+class _BusinessView extends State<BusinessView> {
   /*@override
   void initState() {
     super.initState();
@@ -264,7 +260,7 @@ class _SeeStoreViewState extends State<SeeStoreView> {
                                   ),
                                   child:InkWell(
                                     onTap:(){
-                                      Navigator.push(
+                                      Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(builder: (context) => const MenuView()),
                                       );
@@ -322,7 +318,7 @@ class _SeeStoreViewState extends State<SeeStoreView> {
                                         children: [
                                           InkWell(
                                             onTap:(){
-                                              Navigator.push(
+                                              Navigator.pushReplacement(
                                                 context,
                                                 MaterialPageRoute(builder: (context) =>  TableView()),
                                               );
@@ -340,7 +336,7 @@ class _SeeStoreViewState extends State<SeeStoreView> {
                                           ),
                                           InkWell(
                                             onTap:(){
-                                              Navigator.push(
+                                              Navigator.pushReplacement(
                                                 context,
                                                 MaterialPageRoute(builder: (context) =>  TableView()),
                                               );
@@ -358,7 +354,7 @@ class _SeeStoreViewState extends State<SeeStoreView> {
                                           ),
                                           InkWell(
                                             onTap:(){
-                                              Navigator.push(
+                                              Navigator.pushReplacement(
                                                 context,
                                                 MaterialPageRoute(builder: (context) =>  TableView()),
                                               );
@@ -407,7 +403,7 @@ class _SeeStoreViewState extends State<SeeStoreView> {
                       child: InkWell(
                         splashColor: Colors.pinkAccent, // splash color
                         onTap: () {
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(builder: (context) => const Reservations()),
                           );
@@ -431,7 +427,7 @@ class _SeeStoreViewState extends State<SeeStoreView> {
                       child: InkWell(
                         splashColor: Colors.pinkAccent, // splash color
                         onTap: () {
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(builder: (context) => const Notifications()),
                           );
