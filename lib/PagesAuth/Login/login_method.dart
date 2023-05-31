@@ -149,7 +149,8 @@ class _LoginMethodState extends State<LoginMethod> {
 
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => Homepage()),
+                          MaterialPageRoute(
+                              builder: (context) => SeeCustomer_View()),
                         );
                       } else {
                         print("User not found or sign in was cancelled");

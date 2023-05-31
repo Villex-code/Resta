@@ -12,28 +12,38 @@ class About extends StatelessWidget {
     final List<Map<String, String>> aboutData = [
       {
         'heading': 'Our Company',
-        'description': 'Vale ti kanei to app mas',
+        'description':
+            'If you are a business owner, through our app you can have your own business profile where you can receive requests for table reservation and accept/decline them.\nIf you are a customer, you can choose a business through the app and then see the table plan in order to book a specific table for your needs.',
       },
       {
         'heading': 'How It Works',
-        'description': '1. Vale step 1.\n\n'
-            '2. Vale step 2.\n\n'
-            '3. Vale step 3.\n\n'
-            '4. Vale step 4.\n\n'
-            'Enjoy a hassle-free dining experience with our app!',
+        'description': 'For Businesses \n1. Create your account, filling all the fields needed.\n\n'
+            '2. Build your profile adding info, such as profile pic etc.\n\n'
+            '3. In the "Notifications" field, you will receive requests for booking.\n\n'
+            '4. If you have a request, select "Accept" or "Decline".\n\n'
+            '5. If you press Accept, the booking is made.\n\n'
+            'For Customers \n1. Create your account, filling all the fields needed.\n\n'
+            '2. Select a business from the lists or the map plan.\n\n'
+            '3. After checking the table plan, choose a specific table to book.\n\n'
+            '4. Select "Book" an fill the fields asked.\n\n'
+            '5. Select "Confirm" and your request is made.\n\n'
+            '6. In your "Notifications", you can see if it is accepted.\n\n'
+            'Enjoy a hassle-free experience with our app!',
       },
       {
         'heading': 'Features',
-        'description': '- Quick and easy ordering process\n'
-            'Vale feature 1\n'
-            'feature 2\n'
-            'h kai osas alla einai\n',
+        'description': '\n- Quick and easy booking process\n'
+            '- Availability to accept or decline a request.\n'
+            '- List of past bookings.\n'
+            '- Customized Profile.\n'
+            '- Map view of businesses.\n'
+            '- List of past bookings.\n',
       },
       {
         'heading': 'Benefits',
         'description': '- Save time and skip the queue\n'
-            '- Benefit 1\n'
-            '- Benefit 2\n'
+            '- Check the position of your table.\n'
+            '- Avoidance of queue management.\n'
             '- Benefit 3 ....\n',
       },
       {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/Business/store_view.dart';
-import 'package:my_app/Customer/restaurant_list_customer.dart';
+import 'package:my_app/Customer/business_list_customer.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class Categories extends StatefulWidget {
