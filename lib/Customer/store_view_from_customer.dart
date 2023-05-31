@@ -4,15 +4,21 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class SeeStoreView extends StatefulWidget {
+class SeeStoreViewfromCustomer extends StatefulWidget {
   @override
-  _SeeStoreViewState createState() => _SeeStoreViewState();
+  SeeStoreViewfromCustomerState createState() =>
+      SeeStoreViewfromCustomerState();
 
-  String name;
-  SeeStoreView({required this.name}) {}
+  String name, address, ratings, reviews, description;
+  SeeStoreViewfromCustomer(
+      {required this.name,
+      required this.address,
+      required this.ratings,
+      required this.reviews,
+      required this.description}) {}
 }
 
-class _SeeStoreViewState extends State<SeeStoreView> {
+class SeeStoreViewfromCustomerState extends State<SeeStoreViewfromCustomer> {
   @override
   void initState() {
     super.initState();
@@ -137,7 +143,7 @@ class _SeeStoreViewState extends State<SeeStoreView> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(18, 0, 0, 0),
                               child: Text(
-                                '[address]',
+                                widget.address,
                                 style: TextStyle(
                                   fontFamily: 'Readex Pro',
                                   fontSize: 17,
@@ -154,7 +160,7 @@ class _SeeStoreViewState extends State<SeeStoreView> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(18, 6, 6, 6),
                               child: Text(
-                                '4.6',
+                                widget.ratings,
                                 style: TextStyle(
                                   fontFamily: 'Readex Pro',
                                   fontSize: 20,
@@ -180,7 +186,7 @@ class _SeeStoreViewState extends State<SeeStoreView> {
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   10, 10, 10, 10),
                               child: Text(
-                                '(1,876 reviews)',
+                                '(' + widget.reviews + ' reviews)',
                                 //style: FlutterFlowTheme.of(context).bodyMedium, //bodyMedium
                               ),
                             ),
@@ -213,7 +219,7 @@ class _SeeStoreViewState extends State<SeeStoreView> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(18, 0, 0, 0),
                               child: Text(
-                                'Here is the description of the place.',
+                                widget.description,
                                 //style: FlutterFlowTheme.of(context).bodyMedium,
                               ),
                             ),

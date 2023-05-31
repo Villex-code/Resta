@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-import 'package:my_app/Business/store_view.dart';
-import 'package:my_app/Customer/customer_view.dart';
+import 'package:my_app/Customer/store_view_from_customer.dart';
+import 'package:my_app/Customer/customer_homepage.dart';
+import 'package:my_app/MainPages/TeamConnected.dart';
 
 import 'package:my_app/PagesAuth/Login/login_method.dart';
 
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: LoginMethod(),
+        home: TeamConnected(),
       ),
     );
   }
