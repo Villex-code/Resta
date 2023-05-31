@@ -50,7 +50,7 @@ class Privacy extends StatelessWidget {
                   PolicyDetail(
                     title: 'Privacy Policy',
                     description:
-                        'We respect your privacy and are committed to protecting your personal data. We may collect your personal information such as name, email address, and payment details for the purpose of providing services. We use this data to process your orders, personalize your experience, and for marketing communications if you have opted in. We may share this information with trusted third parties that assist us in operating our app and conducting our business, as long as these parties agree to keep this information confidential. We also implement a variety of security measures to maintain the safety of your personal information.',
+                        'We respect your privacy and are committed to protecting your personal data. We may collect your personal information such as name, email address, and payment details for the purpose of providing services. We use this data to process your bookings, personalize your experience, and for marketing communications if you have opted in. We may share this information with trusted third parties that assist us in operating our app and conducting our business, as long as these parties agree to keep this information confidential. We also implement a variety of security measures to maintain the safety of your personal information.',
                   ),
                   SizedBox(height: 30),
                   PolicyDetail(
@@ -58,12 +58,12 @@ class Privacy extends StatelessWidget {
                     description:
                         'By using our app, you agree to these terms of service. You are responsible for keeping your account secure and you agree to notify us immediately of any unauthorized use of your account. You agree not to violate any laws in your use of our app. We own the intellectual property rights to the content and design of the app. We reserve the right to suspend or terminate your account if you violate these terms.',
                   ),
-                  SizedBox(height: 30),
-                  PolicyDetail(
-                    title: 'Refund Policy',
-                    description:
-                        'We stand behind the services we provide. If you are not satisfied with a service you ordered, please contact our customer support within 24 hours of the order. After reviewing your request, we may issue a refund at our discretion. However, please note that some services may be non-refundable and non-exchangeable.',
-                  ),
+                  // SizedBox(height: 30),
+                  // PolicyDetail(
+                  //   title: 'Refund Policy',
+                  //   description:
+                  //       'We stand behind the services we provide. If you are not satisfied with a service you ordered, please contact our customer support within 24 hours of the order. After reviewing your request, we may issue a refund at our discretion. However, please note that some services may be non-refundable and non-exchangeable.',
+                  // ),
                   (context.screenHeight * 0.03).heightBox,
                   InkWell(
                       child: "Open Browser"

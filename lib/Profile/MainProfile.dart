@@ -10,7 +10,7 @@ import 'package:my_app/Profile/SubProfilePages/notifications.dart';
 import 'package:my_app/Profile/SubProfilePages/privacy.dart';
 import 'package:my_app/Profile/SubProfilePages/restaBusiness.dart';
 import 'package:my_app/Profile/SubProfilePages/support.dart';
-import 'package:my_app/notifications.dart';
+import 'package:my_app/Profile/SubProfilePages/notifications.dart';
 
 import 'package:provider/provider.dart';
 

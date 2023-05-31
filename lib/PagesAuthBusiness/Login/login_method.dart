@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:my_app/Business/store_view.dart';
+import 'package:my_app/Customer/store_view_from_customer.dart';
 
-import 'package:my_app/Customer/customer_view.dart';
+import 'package:my_app/Customer/customer_homepage.dart';
 import 'package:my_app/MainPages/Homepage.dart';
 
 import 'package:my_app/PagesAuth/Login/login_email.dart';
@@ -114,7 +114,8 @@ class _BusinessLoginMethodState extends State<BusinessLoginMethod> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => SeeCustomer_View()),
+                              builder: (context) =>
+                                  Homepage()), //ayto thelei allagi sto homepage tou business
                         );
                       } else {
                         print("User not found or sign in was cancelled");
@@ -149,7 +150,9 @@ class _BusinessLoginMethodState extends State<BusinessLoginMethod> {
 
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => Homepage()),
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  Homepage()), //auto thelei allagi sto homepage tou business
                         );
                       } else {
                         print("User not found or sign in was cancelled");
