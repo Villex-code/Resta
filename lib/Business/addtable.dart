@@ -78,7 +78,7 @@ class _AddTable extends State<AddTable>{
                   Text(
                     'Choose for each table,several categories',
                     style: TextStyle(
-                        color: Colors.redAccent,
+                        color: Colors.black38,
                         fontSize: 20), //TextStyle
                   ), //Text
                   SizedBox(height: 10),
@@ -152,7 +152,7 @@ class _AddTable extends State<AddTable>{
                       ), //SizedBox
                       Text(
                         'For food: ',
-                        style: TextStyle(fontSize: 17.0),
+                        style: TextStyle(fontSize: 17.0,),
                       ), //Text
                       SizedBox(width: 10), //SizedBox
                       /** Checkbox Widget **/
@@ -213,28 +213,28 @@ class _AddTable extends State<AddTable>{
                     padding: const EdgeInsets.fromLTRB(15.0,40.0,0,0),
                     child:Text(
                       'To upload your table view, please follow these guidelines:',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black45,),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(15.0,10.0,0,0),
                     child:Text(
                       '– Image type: jpg or png',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black45,),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(15.0,10.0,0,0),
                     child:Text(
                       '– Image width: 700 pixels',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black45,),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(15.0,10.0,0,0),
                     child:Text(
                       '– Image height: 990 pixels ',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black45,),
                     ),
                   ),
                   Padding(
