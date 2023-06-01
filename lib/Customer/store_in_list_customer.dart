@@ -15,8 +15,8 @@ class _StoreInListState extends State<StoreInList> {
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
       child: Container(
-        width: 100,
-        height: 100,
+        // width: 100,
+        // height: 100,
         decoration: BoxDecoration(color: Colors.white),
         child: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
@@ -27,7 +27,8 @@ class _StoreInListState extends State<StoreInList> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
                 child: Container(
-                  width: 273,
+                  //context.screenWidth
+                  // width: 273,
                   height: 100,
                   decoration: BoxDecoration(
                     color: Colors.white,
