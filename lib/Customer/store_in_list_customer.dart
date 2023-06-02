@@ -3,7 +3,12 @@ import 'package:my_app/Customer/store_image_customer.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class StoreInList extends StatefulWidget {
-  const StoreInList({super.key});
+  final String id;
+  final String? name;
+  final String? address;
+
+  const StoreInList(
+      {super.key, required this.id, required this.name, required this.address});
 
   @override
   State<StoreInList> createState() => _StoreInListState();
@@ -23,7 +28,7 @@ class _StoreInListState extends State<StoreInList> {
           child: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
-              StoreImage(),
+              StoreImage(id: widget.id),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
                 child: Container(
@@ -43,7 +48,7 @@ class _StoreInListState extends State<StoreInList> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Text(
-                                '[Store name]',
+                                widget.name!,
                                 // style:
                                 //     FlutterFlowTheme.of(context)
                                 //         .bodyMedium,

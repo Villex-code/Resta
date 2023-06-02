@@ -106,9 +106,10 @@ class _LoginMethodState extends State<LoginMethod> {
 
                       if (user != null) {
                         await currentUser.setUser(user);
+                        currentUser.setUser(user);
                         currentUser.setData({
-                          "name": user.displayName ?? "No name found",
-                          "id": user.uid,
+                          'name': user.displayName,
+                          'email': user.email,
                         });
 
                         Navigator.pushReplacement(
