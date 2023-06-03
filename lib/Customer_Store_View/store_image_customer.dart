@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/Customer/listOfStores_customer.dart';
-import 'package:my_app/Customer/store_view_from_customer.dart';
+import 'package:my_app/Customer_Store_View/store_view_from_customer.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class StoreImage extends StatefulWidget {

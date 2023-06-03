@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:my_app/Customer/store_view_from_customer.dart';
+import 'package:my_app/Customer_Store_View/store_view_from_customer.dart';
 
 import 'package:my_app/Customer/customer_homepage.dart';
 import 'package:my_app/MainPages/Homepage.dart';
