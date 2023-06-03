@@ -18,12 +18,19 @@ class BusinessView extends StatefulWidget {
   _BusinessView createState() => _BusinessView();
 }
 
+class BusinessView extends StatefulWidget {
+  // Default or unnamed constructor
+  BusinessView({super.key});
+  List<Table_List> tableList = [];
+  BusinessView.withList({required this.tableList});
+  @override
+  _BusinessView createState() => _BusinessView();
+}
+
 class _BusinessView extends State<BusinessView> {
-  /*@override
-  void initState() {
-    super.initState();
-  }*/
   Color color = Colors.red;
+  final String text = 'Store' ;
+  final String url = 'https://picsum.photos/seed/314/600' ;
 
   @override
   Widget build(BuildContext context) {
@@ -33,361 +40,228 @@ class _BusinessView extends State<BusinessView> {
         top: true,
         child: SingleChildScrollView(
           child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Container(
-                width: 396,
-                height: 290,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Expanded(
-                              child: Container(
-                                width: double.infinity,
-                                height: 290,
-                                child: Stack(
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 0, 15),
-                                      child: PageView(
-                                        controller:
-                                        PageController(initialPage: 0),
-                                        scrollDirection: Axis.horizontal,
-                                        children: [
-                                          ClipRRect(
-                                            borderRadius:
-                                            BorderRadius.circular(8),
-                                            child: Image.network(
-                                              'https://picsum.photos/seed/202/600',
-                                              width: 300,
-                                              height: 0,
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                          ClipRRect(
-                                            borderRadius:
-                                            BorderRadius.circular(8),
-                                            child: Image.network(
-                                              'https://picsum.photos/seed/126/600',
-                                              width: 300,
-                                              height: 200,
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                          ClipRRect(
-                                            borderRadius:
-                                            BorderRadius.circular(8),
-                                            child: Image.network(
-                                              'https://picsum.photos/seed/958/600',
-                                              width: 300,
-                                              height: 200,
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                const BusinessImage(),
+                Container(
+                  width: 431,
+                  height: 160,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding:
+                                EdgeInsetsDirectional.fromSTEB(14, 0, 0, 0),
+                                child: Text(
+                                  text,
+                                  style: TextStyle(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: 32,
+                                    fontWeight: FontWeight.w300,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                width: 431,
-                height: 160,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding:
-                              EdgeInsetsDirectional.fromSTEB(14, 0, 0, 0),
-                              child: Text(
-                                '[store name]',
-                                style: TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 32,
-                                  fontWeight: FontWeight.w300,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding:
-                              EdgeInsetsDirectional.fromSTEB(18, 0, 0, 0),
-                              child: Text(
-                                '[address]',
-                                style: TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w200,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding:
-                              EdgeInsetsDirectional.fromSTEB(18, 6, 6, 6),
-                              child: Text(
-                                '4.6',
-                                style: TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                            RatingBar.builder(
-                              onRatingUpdate: (newValue) =>
-                                  setState(() => newValue),
-                              itemBuilder: (context, index) => Icon(
-                                Icons.star_rounded,
-                                color: Colors.pink,
-                              ),
-                              direction: Axis.horizontal,
-                              initialRating: 3,
-                              unratedColor: Colors.black,
-                              itemCount: 5,
-                              itemSize: 26,
-                              glowColor: Colors.blue,
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  10, 10, 10, 10),
-                              child: Text(
-                                '(1,876 reviews)',
-                                //style: FlutterFlowTheme.of(context).bodyMedium, //bodyMedium
-                              ),
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                          child: Row(
+                            ],
+                          ),
+                          Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
                                 padding:
                                 EdgeInsetsDirectional.fromSTEB(18, 0, 0, 0),
                                 child: Text(
-                                  'Description',
+                                  '[address]',
                                   style: TextStyle(
-                                    fontFamily: 'Outfit',
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w800,
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w200,
                                   ),
                                 ),
                               ),
                             ],
                           ),
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding:
-                              EdgeInsetsDirectional.fromSTEB(18, 0, 0, 0),
-                              child: Text(
-                                'Here is the description of the place.',
-                                //style: FlutterFlowTheme.of(context).bodyMedium,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                width: 390,
-                height: 334,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                          child: Row(
+                          Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
                                 padding:
-                                EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-                                child: Container(
-                                  width: 65,
-                                  height: 65,
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child:InkWell(
-                                    onTap:(){
-                                      Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(builder: (context) => const Business_MenuView()),
-                                      );
-                                    },
-                                    child:Image.network(
-                                      'https://picsum.photos/seed/314/600',
-                                      fit: BoxFit.cover,
-                                    ),
+                                EdgeInsetsDirectional.fromSTEB(18, 6, 6, 6),
+                                child: Text(
+                                  '4.6',
+                                  style: TextStyle(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
+                              RatingBar.builder(
+                                onRatingUpdate: (newValue) =>
+                                    setState(() => newValue),
+                                itemBuilder: (context, index) => Icon(
+                                  Icons.star_rounded,
+                                  color: Colors.pink,
+                                ),
+                                direction: Axis.horizontal,
+                                initialRating: 3,
+                                unratedColor: Colors.black,
+                                itemCount: 5,
+                                itemSize: 26,
+                                glowColor: Colors.blue,
+                              ),
                               Padding(
-                                padding:
-                                EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    10, 10, 10, 10),
                                 child: Text(
-                                  'MENU',
-                                  //style:FlutterFlowTheme.of(context).bodyMedium,
+                                  '(1,876 reviews)',
+                                  //style: FlutterFlowTheme.of(context).bodyMedium, //bodyMedium
                                 ),
                               ),
                             ],
                           ),
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding:
-                              EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
-                              child: Text(
-                                '                       TABLE VIEW',
-                                style: TextStyle(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 19,
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Container(
+                                  width: 130,
+                                  height: 25,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Colors.grey,
+                                      ),
+                                      borderRadius: BorderRadius.all(Radius.circular(18))
+                                  ),
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly ,
+                                      children: [
+                                        Icon(
+                                          Icons.info_outline,
+                                          size: 24.0,
+                                        ),
+                                        Text(
+                                          'Description',
+                                          style: TextStyle(
+                                            // decoration: TextDecoration.underline,
+                                            fontFamily: 'Outfit',
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w800,
+                                          ),
+                                        ),
+                                      ], ),
+                                  ),
                                 ),
-                              ),
+                              ],
                             ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Expanded(
-                              child: Container(
-                                width: double.infinity,
-                                height: 209,
-                                child: Stack(
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 7, 0, 30),
-                                      child: PageView(
-                                        controller:
-                                        PageController(initialPage: 0),
-                                        scrollDirection: Axis.horizontal,
-                                        children: [
-                                          InkWell(
-                                            onTap:(){
-                                              Navigator.pushReplacement(
-                                                context,
-                                                MaterialPageRoute(builder: (context) =>  Business_TableView()),
-                                              );
-                                            },
-                                            child: ClipRRect(
-                                              borderRadius:
-                                              BorderRadius.circular(8),
-                                              child: Image.network(
-                                                'https://picsum.photos/seed/337/600',
-                                                width: 300,
-                                                height: 200,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                          ),
-                                          InkWell(
-                                            onTap:(){
-                                              Navigator.pushReplacement(
-                                                context,
-                                                MaterialPageRoute(builder: (context) =>  Business_TableView()),
-                                              );
-                                            },
-                                            child: ClipRRect(
-                                              borderRadius:
-                                              BorderRadius.circular(8),
-                                              child: Image.network(
-                                                'https://picsum.photos/seed/900/600',
-                                                width: 300,
-                                                height: 232,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                          ),
-                                          InkWell(
-                                            onTap:(){
-                                              Navigator.pushReplacement(
-                                                context,
-                                                MaterialPageRoute(builder: (context) =>  Business_TableView()),
-                                              );
-                                            },
-                                            child: ClipRRect(
-                                              borderRadius:
-                                              BorderRadius.circular(8),
-                                              child: Image.network(
-                                                'https://picsum.photos/seed/916/600',
-                                                width: 300,
-                                                height: 200,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10.0),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding:
+                            EdgeInsetsDirectional.fromSTEB(18, 0, 0, 0),
+                            child: Text(
+                              'Here is the description of the place.',
+                              //style: FlutterFlowTheme.of(context).bodyMedium,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+
+                  width: 390,
+                  height: 850,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                            child:Row(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
+                                  child: Container(
+                                    width: 65,
+                                    height: 65,
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child:InkWell(
+                                      onTap:(){
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => const Business_MenuView()),
+                                        );
+                                      },
+                                      child:Image.network(
+                                        url,
+                                        fit: BoxFit.cover,
                                       ),
                                     ),
-                                  ],
+                                  ),
                                 ),
+                                Padding(
+                                  padding:
+                                  EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                  child: Text(
+                                    'MENU',
+                                    style: TextStyle(
+                                        fontFamily: 'OoohBaby',
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height:20.0),
+                          Center(
+                            child: Text(
+                              'TABLE VIEW',
+                              style: TextStyle(
+                                  fontFamily: 'OoohBaby',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold
                               ),
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
+                          ),
+                          Business_TableView(),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
+              ]),
         ),
       ),
+
+
       bottomNavigationBar: BottomAppBar(
         child: Container(
           color: Colors.white,
@@ -405,7 +279,7 @@ class _BusinessView extends State<BusinessView> {
                         onTap: () {
                           Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(builder: (context) => const Business_Reservations()),
+                            MaterialPageRoute(builder: (context) =>  Business_Reservations(text: text,url: url)),
                           );
                         }, // button pressed
                         child: Column(
@@ -429,7 +303,7 @@ class _BusinessView extends State<BusinessView> {
                         onTap: () {
                           Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(builder: (context) => const Business_Notifications()),
+                            MaterialPageRoute(builder: (context) =>  Business_Notifications(text: text,url: url)),
                           );
                         }, // button pressed
                         child: Column(
@@ -437,25 +311,6 @@ class _BusinessView extends State<BusinessView> {
                           children: <Widget>[
                             Icon(Icons.notifications_active),
                             Text('Notifications'),// icon// text
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox.fromSize(
-                  size: Size(70, 70), // button width and height
-                  child: ClipOval(
-                    child: Material(
-                      color: Colors.white, // button color
-                      child: InkWell(
-                        splashColor: Colors.pinkAccent, // splash color
-                        onTap: () {}, // button pressed
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Icon(Icons.upload),
-                            Text('Upload'),// icon// text
                           ],
                         ),
                       ),

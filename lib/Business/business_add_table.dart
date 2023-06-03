@@ -6,11 +6,15 @@ import 'package:my_app/Business/business_table_view.dart';
 
 
 class Business_AddTable extends StatefulWidget{
-  const Business_AddTable({super.key});
+  final String text;
+  final String url;
+  const Business_AddTable({ super.key, required this.text,required this.url});
   @override
-  _Business_AddTable createState() => _Business_AddTable();
+  _Business_AddTable createState() => _Business_AddTable(text: text,url: url);
 }
 class _Business_AddTable extends State<Business_AddTable>{
+  final String text;
+  final String url;
   final TextEditingController tableNumber = TextEditingController();
   final TextEditingController tableSeats = TextEditingController();
   bool? smokeArea = false;
@@ -20,7 +24,9 @@ class _Business_AddTable extends State<Business_AddTable>{
   bool? drink = false;
   String? table;
   String? seats;
-
+  List<String> categories = [];
+  List<Table_List> tableList = [];
+  _Business_AddTable({required this.text,required this.url});
 
 
   @override
@@ -30,20 +36,37 @@ class _Business_AddTable extends State<Business_AddTable>{
           centerTitle: true,
           leading: IconButton(
             onPressed: (){
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const Business_TableView()),
-              );
+
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) =>
+                      BusinessView.withList(tableList: tableList)),
+                );
+
+
             },
             icon: Icon(Icons.arrow_back),
           ),
           title: Row(
               children: <Widget>[
-                CircleAvatar(
-                  backgroundImage: AssetImage('assets/company.png'),
+                Container(
+                  width: 45,
+                  height: 45,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                  ),
+                  child:InkWell(
+                    onTap:(){
+                    },
+                    child:Image.network(
+                      url,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
                 SizedBox(width: 20.0,),
-                Text('Company name'),
+                Text(text),
               ]
           ),
         ),
@@ -115,6 +138,7 @@ class _Business_AddTable extends State<Business_AddTable>{
                         onChanged: (bool? value) {
                           setState(() {
                             this.smokeArea = value;
+                            categories.add('Smoke Area');
                           });
                         },
                       ),
@@ -135,6 +159,7 @@ class _Business_AddTable extends State<Business_AddTable>{
                         value: this.noSmokeArea,
                         onChanged: (bool? value) {
                           setState(() {
+                            categories.add('No Smoke Area');
                             this.noSmokeArea = value;
                           });
                         },
@@ -156,6 +181,7 @@ class _Business_AddTable extends State<Business_AddTable>{
                         value: this.specialNeeds,
                         onChanged: (bool? value) {
                           setState(() {
+                            categories.add('Special Needs');
                             this.specialNeeds = value;
                           });
                         },
@@ -177,6 +203,7 @@ class _Business_AddTable extends State<Business_AddTable>{
                         value: this.food,
                         onChanged: (bool? value) {
                           setState(() {
+                            categories.add('Food');
                             this.food = value;
                           });
                         },
@@ -198,6 +225,7 @@ class _Business_AddTable extends State<Business_AddTable>{
                         value: this.drink,
                         onChanged: (bool? value) {
                           setState(() {
+                            categories.add('Drink');
                             this.drink = value;
                           });
                         },
@@ -211,15 +239,19 @@ class _Business_AddTable extends State<Business_AddTable>{
                         setState(() {
                           table = tableNumber.text;
                           seats = tableSeats.text;
+                          Table_List newTable = Table_List(table:tableNumber.text,seats:tableSeats.text,categories:categories);
+                          tableList.add(newTable);
                           tableNumber.text = ' ';
                           tableSeats.text = ' ';
+                          table = '';
+                          seats = '';
                           smokeArea = false;
                           noSmokeArea = false;
                           specialNeeds = false;
                           food = false;
                           drink = false;
-                          print(tableNumber);
-                          print(tableSeats);
+                          categories = [];
+
                         });
                       },
                       style: ElevatedButton.styleFrom(

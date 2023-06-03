@@ -2,21 +2,25 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:my_app/Business/business_menu.dart';
-import 'package:my_app/Business/business_home_page.dart';
-import 'package:my_app/Business/business_notifications.dart';
+import 'package:my_app/Business/main.dart';
+import 'package:my_app/Business/Business_Notifications/business_notifications.dart';
 //import 'package:test_app/home_page.dart';
 
 
 class Business_Reservations extends StatefulWidget {
-  const Business_Reservations({super.key});
+  final String text;
+  final String url;
+  const Business_Reservations({ super.key, required this.text,required this.url});
 
   @override
-  _Business_Reservations  createState() => _Business_Reservations();
+  _Business_Reservations  createState() => _Business_Reservations(text: text,url: url);
   }
 
   class _Business_Reservations extends State<Business_Reservations> {
     DateTime? datetime = DateTime.now();
-
+    final String text;
+    final String url;
+    _Business_Reservations({required this.text,required this.url});
     // This widget is the root of your application.
     @override
     Widget build(BuildContext context) {
@@ -33,18 +37,33 @@ class Business_Reservations extends StatefulWidget {
               onPressed: (){
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => const BusinessView()),
+                  MaterialPageRoute(builder: (context) =>  BusinessView()),
                 );
               },
               icon: Icon(Icons.arrow_back),
             ),
             title: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+
                 children: <Widget>[
-                  CircleAvatar(
-                    backgroundImage: AssetImage('assets/company.png'),
+                  Container(
+                    width: 45,
+                    height: 45,
+                    clipBehavior: Clip.antiAlias,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                    ),
+                    child:InkWell(
+                      onTap:(){
+                      },
+                      child:Image.network(
+                        url,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
                   SizedBox(width: 20.0,),
-                  Text('Company name'),
+                  Text(text),
                 ]
             ),
           ),
@@ -87,10 +106,7 @@ class Business_Reservations extends StatefulWidget {
                             Text('Rserve Info'),
                             ElevatedButton.icon(
                               onPressed: () {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => const Business_Notifications()),
-                                );
+
                               },
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.greenAccent, // Background color
@@ -103,10 +119,6 @@ class Business_Reservations extends StatefulWidget {
                             ),
                             ElevatedButton.icon(
                               onPressed: () {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => const Business_Notifications()),
-                                );
                               },
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.redAccent, // Background color
