@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/Customer/listOfStores_customer.dart';
 import 'package:my_app/Customer/store_view_from_customer.dart';
+import 'package:my_app/backend/business.dart';
+import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class StoreImage extends StatefulWidget {
-  const StoreImage({super.key});
+  final String id;
+  const StoreImage({super.key, required this.id});
 
   @override
   State<StoreImage> createState() => _StoreImageState();
@@ -13,6 +16,8 @@ class StoreImage extends StatefulWidget {
 class _StoreImageState extends State<StoreImage> {
   @override
   Widget build(BuildContext context) {
+    final currentBusiness =
+        Provider.of<CurrentBusiness>(context, listen: false);
     return Container(
       width: 100,
       height: 100,
@@ -20,7 +25,8 @@ class _StoreImageState extends State<StoreImage> {
         color: Colors.white,
       ),
       child: InkWell(
-        onTap: () {
+        onTap: () async {
+          await currentBusiness.setBusiness(widget.id);
           Navigator.push(
             context,
             MaterialPageRoute(

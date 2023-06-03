@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/Customer/thank_you.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
 import 'package:flutter/material.dart';
@@ -376,7 +377,13 @@ class SeeStoreViewfromCustomerState extends State<SeeStoreViewfromCustomer> {
                                   color: Color.fromARGB(255, 255, 255, 255),
                                 ),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ThankYou()),
+                                );
+                              },
                             ),
                           ],
                         ),

@@ -5,6 +5,8 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class ListOfStoresCustomer extends StatefulWidget {
   @override
@@ -54,19 +56,41 @@ class ListOfStoresCustomerState extends State<ListOfStoresCustomer> {
                 ],
               ),
               Container(
-                //width: 400,
+                width: context.screenWidth,
                 height: 300,
                 decoration: BoxDecoration(
                   color: Colors.white12,
                 ),
-                child: ListView(
-                  padding: EdgeInsets.zero,
-                  scrollDirection: Axis.vertical,
-                  children: [
-                    StoreInList(),
-                    StoreInList(),
-                    StoreInList(),
-                  ],
+                child: StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance
+                      .collection('business')
+                      .snapshots(),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if (snapshot.hasError) {
+                      return Text('Something went wrong');
+                    }
+
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Text("Loading");
+                    }
+
+                    return ListView(
+                      padding: EdgeInsets.zero,
+                      scrollDirection: Axis.vertical,
+                      children:
+                          snapshot.data!.docs.map((DocumentSnapshot document) {
+                        Map<String, dynamic> data =
+                            document.data() as Map<String, dynamic>;
+                        return StoreInList(
+                          id: document.id,
+                          name: data['name'],
+                          address: data['address'],
+                          //add other fields you have
+                        );
+                      }).toList(),
+                    );
+                  },
                 ),
               ),
             ],
