@@ -10,7 +10,10 @@ import 'package:my_app/Business/Business_Notifications/business_notifications.da
 class Business_Reservations extends StatefulWidget {
   final String text;
   final String url;
-  const Business_Reservations({ super.key, required this.text,required this.url});
+  List<String> table = [];
+  List<String> seats = [];
+  List<String> categories = [];
+  Business_Reservations({ super.key, required this.text,required this.url,required this.table,required this.seats,required this.categories});
 
   @override
   _Business_Reservations  createState() => _Business_Reservations(text: text,url: url);
@@ -37,7 +40,7 @@ class Business_Reservations extends StatefulWidget {
               onPressed: (){
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) =>  BusinessView()),
+                  MaterialPageRoute(builder: (context) =>  BusinessView.withList(table: widget.table,seats: widget.seats,categories: widget.categories)),
                 );
               },
               icon: Icon(Icons.arrow_back),

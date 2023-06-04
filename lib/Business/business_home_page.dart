@@ -284,7 +284,7 @@ class _BusinessView extends State<BusinessView> {
                           onTap: () {
                             Navigator.pushReplacement(
                               context,
-                              MaterialPageRoute(builder: (context) =>  Business_Reservations(text: text,url: url)),
+                              MaterialPageRoute(builder: (context) =>  Business_Reservations(text: text,url: url,table: widget.table,seats: widget.seats,categories: widget.categories)),
                             );
                           }, // button pressed
                           child: Column(
@@ -308,7 +308,7 @@ class _BusinessView extends State<BusinessView> {
                           onTap: () {
                             Navigator.pushReplacement(
                               context,
-                              MaterialPageRoute(builder: (context) =>  Business_Notifications(text: text,url: url)),
+                              MaterialPageRoute(builder: (context) =>  Business_Notifications(text: text,url: url,table: widget.table,seats: widget.seats,categories: widget.categories)),
                             );
                           }, // button pressed
                           child: Column(

@@ -10,7 +10,10 @@ import 'package:my_app/Business/business_add_table.dart';
 class Business_Notifications extends StatelessWidget {
   final String text;
   final String url;
-  Business_Notifications({ super.key, required this.text,required this.url});
+  List<String> table = [];
+  List<String> seats = [];
+  List<String> categories = [];
+  Business_Notifications({ super.key, required this.text,required this.url,required this.table,required this.seats,required this.categories});
 
   // This widget is the root of your application.
   @override
@@ -28,7 +31,7 @@ class Business_Notifications extends StatelessWidget {
             onPressed: (){
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) =>  BusinessView()),
+                MaterialPageRoute(builder: (context) =>   BusinessView.withList(table: table,seats: seats,categories: categories)),
               );
             },
             icon: Icon(Icons.arrow_back),
