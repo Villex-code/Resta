@@ -36,9 +36,11 @@ class CustomerTableViewState extends State<CustomerTableView> {
                         clipBehavior: Clip.antiAlias,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
+                          border: Border.all(
+                              color: Color.fromARGB(255, 201, 201, 201)),
                         ),
                         child: Image.network(
-                          'https://picsum.photos/seed/314/600',
+                          'https://cdn-icons-png.flaticon.com/512/4677/4677389.png',
                           fit: BoxFit.cover,
                         ),
                       ),

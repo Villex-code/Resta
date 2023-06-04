@@ -25,7 +25,7 @@ class MainPicsOfStore_CustomerState extends State<MainPicsOfStore_Customer> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: Image.network(
-                      'https://picsum.photos/seed/202/600',
+                      'https://toohotel.com/wp-content/uploads/2022/09/TOO_restaurant_Panoramique_vue_Paris_Seine_Tour_Eiffel_2.jpg',
                       width: 300,
                       height: 0,
                       fit: BoxFit.cover,
