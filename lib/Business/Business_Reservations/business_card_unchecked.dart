@@ -1,17 +1,15 @@
-
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:my_app/Business/business_menu.dart';
-import 'package:my_app/Business/main.dart';
+
 import 'package:my_app/Business/Business_Notifications/business_notifications.dart';
 //import 'package:test_app/home_page.dart';
 
-
 class BusinessCardUnChecked extends StatefulWidget {
-  const BusinessCardUnChecked({ super.key});
+  const BusinessCardUnChecked({super.key});
 
   @override
-  _BusinessCardUnChecked  createState() => _BusinessCardUnChecked();
+  _BusinessCardUnChecked createState() => _BusinessCardUnChecked();
 }
 
 class _BusinessCardUnChecked extends State<BusinessCardUnChecked> {
@@ -29,9 +27,7 @@ class _BusinessCardUnChecked extends State<BusinessCardUnChecked> {
             ),
             Text('Rserve Info'),
             ElevatedButton.icon(
-              onPressed: () {
-
-              },
+              onPressed: () {},
               style: ElevatedButton.styleFrom(
                 primary: Colors.greenAccent, // Background color
               ),
@@ -42,8 +38,7 @@ class _BusinessCardUnChecked extends State<BusinessCardUnChecked> {
               label: Text("Validate"),
             ),
             ElevatedButton.icon(
-              onPressed: () {
-              },
+              onPressed: () {},
               style: ElevatedButton.styleFrom(
                 primary: Colors.redAccent, // Background color
               ),
@@ -57,7 +52,5 @@ class _BusinessCardUnChecked extends State<BusinessCardUnChecked> {
         ),
       ),
     );
-
   }
 }
-

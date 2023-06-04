@@ -57,13 +57,16 @@ class ListOfStoresCustomerState extends State<ListOfStoresCustomer> {
               ),
               Container(
                 width: context.screenWidth,
-                height: 300,
+                height: 600,
                 decoration: BoxDecoration(
                   color: Colors.white12,
                 ),
                 child: StreamBuilder<QuerySnapshot>(
                   stream: FirebaseFirestore.instance
                       .collection('business')
+                      .where('category',
+                          arrayContains: widget
+                              .category) // the where function will do the filtering
                       .snapshots(),
                   builder: (BuildContext context,
                       AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -82,10 +85,12 @@ class ListOfStoresCustomerState extends State<ListOfStoresCustomer> {
                           snapshot.data!.docs.map((DocumentSnapshot document) {
                         Map<String, dynamic> data =
                             document.data() as Map<String, dynamic>;
+
                         return StoreInList(
                           id: document.id,
                           name: data['name'],
                           address: data['address'],
+                          type: data['category'].toString(),
                           //add other fields you have
                         );
                       }).toList(),

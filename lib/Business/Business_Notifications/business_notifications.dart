@@ -1,9 +1,9 @@
-
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:my_app/Business/Business_Notifications/card_notification.dart';
+import 'package:my_app/Business/business_home_page.dart';
 import 'package:my_app/Business/business_menu.dart';
-import 'package:my_app/Business/main.dart';
+
 import 'package:my_app/Business/business_add_table.dart';
 //import 'package:test_app/home_page.dart';
 
@@ -13,7 +13,13 @@ class Business_Notifications extends StatelessWidget {
   List<String> table = [];
   List<String> seats = [];
   List<String> categories = [];
-  Business_Notifications({ super.key, required this.text,required this.url,required this.table,required this.seats,required this.categories});
+  Business_Notifications(
+      {super.key,
+      required this.text,
+      required this.url,
+      required this.table,
+      required this.seats,
+      required this.categories});
 
   // This widget is the root of your application.
   @override
@@ -21,17 +27,19 @@ class Business_Notifications extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('assets/rese_back.jpg'),fit: BoxFit.cover)),
+              image: AssetImage('assets/rese_back.jpg'), fit: BoxFit.cover)),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: Colors.black54,
           leading: IconButton(
-            onPressed: (){
+            onPressed: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) =>   BusinessView.withList(table: table,seats: seats,categories: categories)),
+                MaterialPageRoute(
+                    builder: (context) => BusinessView.withList(
+                        table: table, seats: seats, categories: categories)),
               );
             },
             icon: Icon(Icons.arrow_back),
@@ -46,33 +54,28 @@ class Business_Notifications extends StatelessWidget {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                   ),
-                  child:InkWell(
-                    onTap:(){
-                    },
-                    child:Image.network(
+                  child: InkWell(
+                    onTap: () {},
+                    child: Image.network(
                       url,
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
-                SizedBox(width: 20.0,),
-                Text(text),
-              ]
-          ),
-        ),
-        body: Stack(
-            children:<Widget> [
-              SingleChildScrollView(
-                child:Column(
-                    children: [
-                      CardNotification(),
-                    ]
+                SizedBox(
+                  width: 20.0,
                 ),
-              ),
+                Text(text),
+              ]),
+        ),
+        body: Stack(children: <Widget>[
+          SingleChildScrollView(
+            child: Column(children: [
+              CardNotification(),
             ]),
+          ),
+        ]),
       ),
     );
-
   }
 }
-

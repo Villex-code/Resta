@@ -46,7 +46,7 @@ class _PopularChoicesState extends State<PopularChoices> {
           ),
           Container(
             width: context.screenWidth,
-            height: 300,
+            height: 600,
             decoration: BoxDecoration(
               color: Colors.white12,
             ),
@@ -75,6 +75,7 @@ class _PopularChoicesState extends State<PopularChoices> {
                       id: document.id,
                       name: data['name'],
                       address: data['address'],
+                      type: data['category'].toString(),
                       //add other fields you have
                     );
                   }).toList(),

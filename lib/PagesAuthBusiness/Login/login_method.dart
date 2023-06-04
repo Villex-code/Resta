@@ -9,6 +9,7 @@ import 'package:my_app/MainPages/Homepage.dart';
 import 'package:my_app/PagesAuth/Login/login_email.dart';
 import 'package:my_app/PagesAuth/SignUp/signup_phone.dart';
 import 'package:my_app/PagesAuth/SignupComponents/signup_container.dart';
+import 'package:my_app/backend/business.dart';
 
 import 'package:my_app/main.dart';
 
@@ -32,7 +33,8 @@ class _BusinessLoginMethodState extends State<BusinessLoginMethod> {
 
   @override
   Widget build(BuildContext context) {
-    final currentUser = Provider.of<CurrentUser>(context, listen: false);
+    final currentBusiness =
+        Provider.of<CurrentBusiness>(context, listen: false);
 
     return Scaffold(
       body: SafeArea(
@@ -106,11 +108,7 @@ class _BusinessLoginMethodState extends State<BusinessLoginMethod> {
                       User? user = await _auth.signInWithGoogle();
 
                       if (user != null) {
-                        await currentUser.setUser(user);
-                        currentUser.setData({
-                          "name": user.displayName ?? "No name found",
-                          "id": user.uid,
-                        });
+                        await currentBusiness.setUser(user);
 
                         Navigator.pushReplacement(
                           context,
@@ -143,11 +141,7 @@ class _BusinessLoginMethodState extends State<BusinessLoginMethod> {
                       User? user = await _auth.signInAnonymously();
 
                       if (user != null) {
-                        currentUser.setUser(user);
-
-                        currentUser.setData({
-                          'name': "Anonymous",
-                        });
+                        currentBusiness.setUser(user);
 
                         Navigator.pushReplacement(
                           context,

@@ -37,6 +37,8 @@ class CurrentBusiness extends ChangeNotifier {
       // // Get the businessId field from the worker's document
       // String businessId = workerDoc.get('businessId');
       // role = workerDoc.get('role');
+      // setBusiness(_user!.uid); TODO : Uncomment this in the production
+      setBusiness("ZTw3ioV74QVveKEYHIQ1");
     } else {
       _userDoc = null;
     }

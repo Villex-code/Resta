@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/Business/business_add_table.dart';
 import 'package:my_app/Business/business_menu.dart';
-import 'package:my_app/Business/home_page.dart';
+
 import 'package:velocity_x/velocity_x.dart';
 
 class BusinessImage extends StatelessWidget {
@@ -36,16 +36,14 @@ class BusinessImage extends StatelessWidget {
                       child: Stack(
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0, 0, 0, 15),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 15),
                             child: PageView(
-                              controller:
-                              PageController(initialPage: 0),
+                              controller: PageController(initialPage: 0),
                               scrollDirection: Axis.horizontal,
                               children: [
                                 ClipRRect(
-                                  borderRadius:
-                                  BorderRadius.circular(8),
+                                  borderRadius: BorderRadius.circular(8),
                                   child: Image.network(
                                     'https://picsum.photos/seed/202/600',
                                     width: 300,
@@ -54,8 +52,7 @@ class BusinessImage extends StatelessWidget {
                                   ),
                                 ),
                                 ClipRRect(
-                                  borderRadius:
-                                  BorderRadius.circular(8),
+                                  borderRadius: BorderRadius.circular(8),
                                   child: Image.network(
                                     'https://picsum.photos/seed/126/600',
                                     width: 300,
@@ -64,8 +61,7 @@ class BusinessImage extends StatelessWidget {
                                   ),
                                 ),
                                 ClipRRect(
-                                  borderRadius:
-                                  BorderRadius.circular(8),
+                                  borderRadius: BorderRadius.circular(8),
                                   child: Image.network(
                                     'https://picsum.photos/seed/958/600',
                                     width: 300,

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/Business/main.dart';
-import 'package:my_app/Business/business_reservations.dart';
-
-
-
+import 'package:my_app/Business/Business_Reservations/business_reservations.dart';
+import 'package:my_app/Business/business_home_page.dart';
 
 class Business_MenuView extends StatelessWidget {
   const Business_MenuView({super.key});
@@ -24,7 +21,7 @@ class Business_MenuView extends StatelessWidget {
             onPressed: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const BusinessView()),
+                MaterialPageRoute(builder: (context) => BusinessView()),
               );
             },
             icon: Icon(Icons.arrow_back),
@@ -75,7 +72,13 @@ class Business_MenuView extends StatelessWidget {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const Business_Reservations()),
+                      builder: (context) => Business_Reservations(
+                            text: "https://www.onspot-app.com",
+                            url: "hello",
+                            table: [],
+                            seats: [],
+                            categories: [],
+                          )),
                 );
               },
               style: ElevatedButton.styleFrom(
@@ -96,7 +99,13 @@ class Business_MenuView extends StatelessWidget {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const Business_Reservations()),
+                      builder: (context) => Business_Reservations(
+                            text: "https://www.onspot-app.com",
+                            url: "hello",
+                            table: [],
+                            seats: [],
+                            categories: [],
+                          )),
                 );
               },
               style: ElevatedButton.styleFrom(

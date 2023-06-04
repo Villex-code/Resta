@@ -1,13 +1,12 @@
-
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:my_app/Business/business_menu.dart';
-import 'package:my_app/Business/main.dart';
+
 import 'package:my_app/Business/business_add_table.dart';
 //import 'package:test_app/home_page.dart';
 
 class CardNotification extends StatelessWidget {
-  CardNotification({ super.key});
+  CardNotification({super.key});
 
   // This widget is the root of your application.
   @override
@@ -24,8 +23,7 @@ class CardNotification extends StatelessWidget {
             ),
             Text('Rserve Info'),
             ElevatedButton.icon(
-              onPressed: () {
-              },
+              onPressed: () {},
               style: ElevatedButton.styleFrom(
                 primary: Colors.green, // Background color
               ),
@@ -36,8 +34,7 @@ class CardNotification extends StatelessWidget {
               label: Text("Accept"),
             ),
             ElevatedButton.icon(
-              onPressed: () {
-              },
+              onPressed: () {},
               style: ElevatedButton.styleFrom(
                 primary: Colors.redAccent, // Background color
               ),
@@ -51,8 +48,5 @@ class CardNotification extends StatelessWidget {
         ),
       ),
     );
-
-
   }
 }
-

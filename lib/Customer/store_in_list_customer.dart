@@ -6,9 +6,14 @@ class StoreInList extends StatefulWidget {
   final String id;
   final String? name;
   final String? address;
+  final String? type;
 
   const StoreInList(
-      {super.key, required this.id, required this.name, required this.address});
+      {super.key,
+      required this.id,
+      required this.name,
+      required this.address,
+      required this.type});
 
   @override
   State<StoreInList> createState() => _StoreInListState();
@@ -93,7 +98,7 @@ class _StoreInListState extends State<StoreInList> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Text(
-                                  'Bar,Restaurant',
+                                  widget.type!,
                                   // style:
                                   //     FlutterFlowTheme.of(context)
                                   //         .bodyMedium,

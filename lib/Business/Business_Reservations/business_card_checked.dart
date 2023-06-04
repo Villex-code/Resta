@@ -1,17 +1,15 @@
-
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:my_app/Business/business_menu.dart';
-import 'package:my_app/Business/main.dart';
+
 import 'package:my_app/Business/Business_Notifications/business_notifications.dart';
 //import 'package:test_app/home_page.dart';
 
-
 class BusinessCardChecked extends StatefulWidget {
-  BusinessCardChecked({ super.key});
+  BusinessCardChecked({super.key});
 
   @override
-  _BusinessCardChecked  createState() => _BusinessCardChecked();
+  _BusinessCardChecked createState() => _BusinessCardChecked();
 }
 
 class _BusinessCardChecked extends State<BusinessCardChecked> {
@@ -33,7 +31,5 @@ class _BusinessCardChecked extends State<BusinessCardChecked> {
         ),
       ),
     );
-
   }
 }
-

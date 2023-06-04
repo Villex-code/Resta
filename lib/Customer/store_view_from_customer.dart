@@ -11,12 +11,17 @@ class SeeStoreViewfromCustomer extends StatefulWidget {
       SeeStoreViewfromCustomerState();
 
   String name, address, ratings, reviews, description;
-  SeeStoreViewfromCustomer(
-      {required this.name,
-      required this.address,
-      required this.ratings,
-      required this.reviews,
-      required this.description}) {}
+  String? tableView;
+  List<String>? pictures;
+  SeeStoreViewfromCustomer({
+    required this.name,
+    required this.address,
+    required this.ratings,
+    required this.reviews,
+    required this.description,
+    this.pictures,
+    this.tableView,
+  }) {}
 }
 
 class SeeStoreViewfromCustomerState extends State<SeeStoreViewfromCustomer> {
