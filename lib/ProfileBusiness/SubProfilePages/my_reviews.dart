@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/backend/BusinessDocBuilder.dart';
 import 'package:my_app/backend/business.dart';
 
 import 'package:provider/provider.dart';
@@ -70,7 +71,7 @@ class ReviewsPage extends StatelessWidget {
                   .box
                   .p16
                   .make(),
-              UserDocBuilder(
+              BusinessDocBuilder(
                 collectionName: 'reviews',
                 builder: (BuildContext context, dynamic documents) {
                   // Cast documents to List<DocumentSnapshot> if necessary
