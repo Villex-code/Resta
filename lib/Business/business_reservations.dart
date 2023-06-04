@@ -1,20 +1,20 @@
 
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:test_app/menu.dart';
-import 'package:test_app/main.dart';
-import 'package:test_app/notifications.dart';
+import 'package:my_app/Business/business_menu.dart';
+import 'package:my_app/Business/business_home_page.dart';
+import 'package:my_app/Business/business_notifications.dart';
 //import 'package:test_app/home_page.dart';
 
 
-class Reservations extends StatefulWidget {
-  const Reservations({super.key});
+class Business_Reservations extends StatefulWidget {
+  const Business_Reservations({super.key});
 
   @override
-  _ReservationState  createState() => _ReservationState();
+  _Business_Reservations  createState() => _Business_Reservations();
   }
 
-  class _ReservationState extends State<Reservations> {
+  class _Business_Reservations extends State<Business_Reservations> {
     DateTime? datetime = DateTime.now();
 
     // This widget is the root of your application.
@@ -31,9 +31,9 @@ class Reservations extends StatefulWidget {
             backgroundColor: Colors.black54,
             leading: IconButton(
               onPressed: (){
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => const SeeStoreView()),
+                  MaterialPageRoute(builder: (context) => const BusinessView()),
                 );
               },
               icon: Icon(Icons.arrow_back),
@@ -87,9 +87,9 @@ class Reservations extends StatefulWidget {
                             Text('Rserve Info'),
                             ElevatedButton.icon(
                               onPressed: () {
-                                Navigator.push(
+                                Navigator.pushReplacement(
                                   context,
-                                  MaterialPageRoute(builder: (context) => const Notifications()),
+                                  MaterialPageRoute(builder: (context) => const Business_Notifications()),
                                 );
                               },
                               style: ElevatedButton.styleFrom(
@@ -103,9 +103,9 @@ class Reservations extends StatefulWidget {
                             ),
                             ElevatedButton.icon(
                               onPressed: () {
-                                Navigator.push(
+                                Navigator.pushReplacement(
                                   context,
-                                  MaterialPageRoute(builder: (context) => const Notifications()),
+                                  MaterialPageRoute(builder: (context) => const Business_Notifications()),
                                 );
                               },
                               style: ElevatedButton.styleFrom(

@@ -24,7 +24,8 @@ class _CustomerViewState extends State<SeeCustomer_View> {
   Widget build(BuildContext context) {
     //final currentUser = Provider.of<CurrentUser>(context, listen: false);
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 238, 233, 233),
+      // backgroundColor: Color.fromARGB(255, 240, 229, 229),
+      backgroundColor: Colors.white,
       body: SafeArea(
         top: true,
         child: SingleChildScrollView(
@@ -32,35 +33,38 @@ class _CustomerViewState extends State<SeeCustomer_View> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Container(
-                height: 420,
+                height: 390,
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(60, 144, 37, 37),
+                  //color: Color.fromARGB(255, 240, 229, 229),
+                  color: Color.fromARGB(255, 242, 245, 245),
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
-                  children: [FirstInfoCustomer()],
+                  children: [FirstInfoCustomer()], //1h klhsh allhs klashs
                 ),
               ),
               Container(
                 height: 144,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  // color: Color.fromARGB(255, 240, 229, 229),
+                  color: Color.fromARGB(255, 242, 245, 245),
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
-                  children: [Categories()],
+                  children: [Categories()], //2h klhsh allhs klashs
                 ),
               ),
               Container(
-                height: 900,
+                height: 600,
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(60, 144, 37, 37),
+                  // color: Color.fromARGB(255, 240, 229, 229),
+                  color: Color.fromARGB(255, 242, 245, 245),
                 ),
                 child: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
-                    children: [PopularChoices()],
+                    children: [PopularChoices()], //prwth klhsh allhs klashs
                   ),
                 ),
               ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/Customer/store_image_customer.dart';
+import 'package:my_app/Customer_Store_View/store_image_customer.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class StoreInList extends StatefulWidget {
@@ -13,11 +13,15 @@ class _StoreInListState extends State<StoreInList> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
+      padding: EdgeInsetsDirectional.fromSTEB(12, 4, 12, 4),
       child: Container(
-        width: 100,
-        height: 100,
-        decoration: BoxDecoration(color: Colors.white),
+        // width: 230,
+        // height: 100,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+        ),
+
         child: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
           child: Row(
@@ -27,7 +31,8 @@ class _StoreInListState extends State<StoreInList> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
                 child: Container(
-                  width: 273,
+                  //context.screenWidth
+                  width: context.screenWidth * 0.63,
                   height: 100,
                   decoration: BoxDecoration(
                     color: Colors.white,

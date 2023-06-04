@@ -6,12 +6,15 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class RestaurantListCustomer extends StatefulWidget {
+class ListOfStoresCustomer extends StatefulWidget {
   @override
-  _RestaurantListCustomerState createState() => _RestaurantListCustomerState();
+  ListOfStoresCustomerState createState() => ListOfStoresCustomerState();
+
+  String category;
+  ListOfStoresCustomer({required this.category}) {}
 }
 
-class _RestaurantListCustomerState extends State<RestaurantListCustomer> {
+class ListOfStoresCustomerState extends State<ListOfStoresCustomer> {
   @override
   void initState() {
     super.initState();
@@ -33,7 +36,7 @@ class _RestaurantListCustomerState extends State<RestaurantListCustomer> {
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 13),
                     child: Text(
-                      '[category]',
+                      widget.category,
                       style: TextStyle(
                         fontFamily: 'Outfit',
                         fontWeight: FontWeight.w200,

@@ -13,19 +13,19 @@ class _MapCustomerState extends State<MapCustomer> {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        width: 377,
-        height: 164,
+        // width: context.screenWidth,
+        height: 175,
         decoration: BoxDecoration(
             //color: Color.fromARGB(59, 188, 182, 182),
             ),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(20, 8, 20, 8),
+          padding: EdgeInsetsDirectional.fromSTEB(20, 14, 20, 0),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: Image.network(
-              'https://picsum.photos/seed/33/600',
-              width: 250,
-              height: 159,
+              'https://jobstoreblog.s3-accelerate.amazonaws.com/magazine/wp-content/uploads/2020/02/google-map-features-.jpg',
+              // width: 100,
+              // height: 50,
               fit: BoxFit.cover,
             ),
           ),

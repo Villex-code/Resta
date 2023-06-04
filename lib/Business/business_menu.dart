@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
+import 'business_home_page.dart';
+import 'business_reservations.dart';
 
-import 'package:test_app/main.dart';
-import 'package:test_app/reservations.dart';
 //import 'package:test_app/home_page.dart';
 
-import 'package:my_app/reservations.dart';
+class Business_MenuView extends StatelessWidget {
+  const Business_MenuView({super.key});
 
-
-class MenuView extends StatelessWidget {
-  const MenuView({super.key});
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -23,10 +21,10 @@ class MenuView extends StatelessWidget {
           backgroundColor: Colors.black54,
           leading: IconButton(
             onPressed: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => const SeeStoreView()),
-              // );
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const BusinessView()),
+              );
             },
             icon: Icon(Icons.arrow_back),
           ),
@@ -66,26 +64,51 @@ class MenuView extends StatelessWidget {
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: Container(
-          height: 50,
-          margin: const EdgeInsets.all(10),
-          child: ElevatedButton.icon(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const Reservations()),
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              primary: Colors.grey, // Background color
+        floatingActionButton:
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Container(
+            height: 50,
+            margin: const EdgeInsets.all(10),
+            child: ElevatedButton.icon(
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const Business_Reservations()),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                primary: Colors.grey, // Background color
+              ),
+              icon: Icon(
+                Icons.upload,
+                size: 24.0,
+              ),
+              label: Text('Upload Menu'),
             ),
-            icon: Icon(
-              Icons.upload,
-              size: 24.0,
-            ),
-            label: Text('Upload Menu'),
           ),
-        ),
+          Container(
+            height: 50,
+            margin: const EdgeInsets.all(10),
+            child: ElevatedButton.icon(
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const Business_Reservations()),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                primary: Colors.grey, // Background color
+              ),
+              icon: Icon(
+                Icons.remove_circle,
+                size: 24.0,
+              ),
+              label: Text('Remove Menu'),
+            ),
+          ),
+        ]),
       ),
     );
   }
