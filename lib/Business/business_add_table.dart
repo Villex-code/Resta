@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:my_app/Business/business_menu.dart';
 import 'package:my_app/Business/business_home_page.dart';
 import 'package:my_app/Business/business_table_view.dart';
+import 'package:my_app/Business/business_table_list.dart';
 
 
 class Business_AddTable extends StatefulWidget{
@@ -22,8 +23,10 @@ class _Business_AddTable extends State<Business_AddTable>{
   bool? specialNeeds = false;
   bool? food = false;
   bool? drink = false;
-  String? table;
-  String? seats;
+  String table = '';
+  String seats = '';
+  List<String> table_list = [];
+  List<String> seats_list = [];
   List<String> categories = [];
   List<Table_List> tableList = [];
   _Business_AddTable({required this.text,required this.url});
@@ -40,7 +43,7 @@ class _Business_AddTable extends State<Business_AddTable>{
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) =>
-                      BusinessView.withList(tableList: tableList)),
+                      BusinessView.withList(table: table_list,seats: seats_list,categories: categories)),
                 );
 
 
@@ -239,6 +242,8 @@ class _Business_AddTable extends State<Business_AddTable>{
                         setState(() {
                           table = tableNumber.text;
                           seats = tableSeats.text;
+                          table_list.add(table);
+                          seats_list.add(seats);
                           Table_List newTable = Table_List(table:tableNumber.text,seats:tableSeats.text,categories:categories);
                           tableList.add(newTable);
                           tableNumber.text = ' ';
@@ -250,7 +255,6 @@ class _Business_AddTable extends State<Business_AddTable>{
                           specialNeeds = false;
                           food = false;
                           drink = false;
-                          categories = [];
 
                         });
                       },
