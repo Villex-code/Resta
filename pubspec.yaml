@@ -80,6 +80,21 @@ dependencies:
   url_launcher_ios: ^6.1.4
   url_launcher_platform_interface: ^2.1.2
   get: ^4.3.8
+  google_maps_flutter: ^2.2.8
+  geolocator: ^8.0.1
+  flutter_svg: ^1.1.0
+
+  cupertino_icons: ^1.0.2
+  custom_info_window: ^1.0.1
+  flutter_geocoder: ^0.2.2-nullsafety
+  geocoding: ^2.0.4
+  flutter_polyline_points: ^1.0.0
+
+  modal_bottom_sheet: ^2.0.1
+
+  uuid: ^3.0.5
+
+  
 
 dev_dependencies:
   flutter_test:
