@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class SearchBarCustomer extends StatefulWidget {
   const SearchBarCustomer({super.key});
@@ -11,12 +12,13 @@ class _SearchBarCustomerState extends State<SearchBarCustomer> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(12, 8, 12, 8),
+      padding: EdgeInsetsDirectional.fromSTEB(20, 18, 20, 8),
       child: Container(
-        width: double.infinity,
-        height: 51,
+        //width: double.infinity,
+        width: context.screenWidth,
+        height: 46,
         decoration: BoxDecoration(
-          color: Color(0x79649FD7),
+          color: Color.fromARGB(255, 184, 209, 232),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Padding(
@@ -28,7 +30,7 @@ class _SearchBarCustomerState extends State<SearchBarCustomer> {
                 padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
                 child: Icon(
                   Icons.search_rounded,
-                  color: Color(0xFFACB9C4),
+                  color: Color.fromARGB(226, 246, 248, 249),
                   size: 24,
                 ),
               ),

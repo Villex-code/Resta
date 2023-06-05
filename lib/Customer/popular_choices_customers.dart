@@ -25,13 +25,13 @@ class _PopularChoicesState extends State<PopularChoices> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                padding: EdgeInsetsDirectional.fromSTEB(16, 8, 8, 8),
                 child: Text(
                   'Popular Choices',
                   style: TextStyle(
-                    fontFamily: 'Outfit',
-                    fontWeight: FontWeight.w200,
-                  ),
+                      fontFamily: 'Outfit',
+                      fontWeight: FontWeight.w600,
+                      fontSize: 19),
                 ),
               ),
               Flexible(
@@ -48,7 +48,8 @@ class _PopularChoicesState extends State<PopularChoices> {
             width: context.screenWidth,
             height: 600,
             decoration: BoxDecoration(
-              color: Colors.white12,
+              color: Color.fromARGB(31, 250, 250, 250),
+              borderRadius: BorderRadius.circular(20), //EDWWWWWWWWWWWWW
             ),
             child: StreamBuilder<QuerySnapshot>(
               stream:

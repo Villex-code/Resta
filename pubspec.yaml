@@ -79,7 +79,10 @@ dependencies:
   url_launcher_android: ^6.0.27
   url_launcher_ios: ^6.1.4
   url_launcher_platform_interface: ^2.1.2
+
   lottie: ^2.3.2
+
+  get: ^4.3.8
 
 dev_dependencies:
   flutter_test:
@@ -134,3 +137,13 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+  # fonts:
+  #   - family: Montserrat
+  #     fonts:
+  #       - asset: fonts/Montserrat-Regular.ttf
+  #       - asset: fonts/Montserrat-Light.ttf
+  #       - asset: fonts/Montserrat-Italic.ttf
+  #         style: italic
+  #       - asset: fonts/Montserrat-Bold.ttf
+  #         weight: 700

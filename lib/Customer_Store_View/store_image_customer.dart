@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/Customer/listOfStores_customer.dart';
-import 'package:my_app/Customer/store_view_from_customer.dart';
+
 import 'package:my_app/backend/business.dart';
 import 'package:provider/provider.dart';
+
+import 'package:my_app/Customer_Store_View/store_view_from_customer.dart';
+
 import 'package:velocity_x/velocity_x.dart';
 
 class StoreImage extends StatefulWidget {
@@ -41,7 +44,7 @@ class _StoreImageState extends State<StoreImage> {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(8),
           child: Image.network(
-            'https://picsum.photos/seed/16/600',
+            'https://toohotel.com/wp-content/uploads/2022/09/TOO_restaurant_Panoramique_vue_Paris_Seine_Tour_Eiffel_2.jpg',
             width: 300,
             height: 200,
             fit: BoxFit.cover,

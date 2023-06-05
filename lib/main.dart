@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+
+import 'package:my_app/Customer_Store_View/store_view_from_customer.dart';
+import 'package:my_app/Customer/customer_homepage.dart';
+
 import 'package:my_app/MainPages/TeamConnected.dart';
 import 'package:my_app/PagesAuth/Login/login_method.dart';
 import 'package:my_app/backend/business.dart';
