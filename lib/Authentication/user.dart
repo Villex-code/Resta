@@ -66,25 +66,29 @@ class CurrentUser extends ChangeNotifier {
   }
 
   Future<dynamic> readData(String key) async {
-    if (_userDoc != null) {
-      try {
-        DocumentSnapshot userSnapshot = await _userDoc!.get();
+    try {
+      if (_userDoc != null) {
+        try {
+          DocumentSnapshot userSnapshot = await _userDoc!.get();
 
-        Map<String, dynamic>? data =
-            userSnapshot.data() as Map<String, dynamic>?;
+          Map<String, dynamic>? data =
+              userSnapshot.data() as Map<String, dynamic>?;
 
-        if (data != null && data.containsKey(key)) {
-          return data[key];
-        } else {
-          print("Key not found in data: $key");
+          if (data != null && data.containsKey(key)) {
+            return data[key];
+          } else {
+            print("Key not found in data: $key");
+            return null;
+          }
+        } catch (e) {
+          print("Error reading user data: $e");
           return null;
         }
-      } catch (e) {
-        print("Error reading user data: $e");
-        return null;
+      } else {
+        throw Exception('No user to read data for');
       }
-    } else {
-      throw Exception('No user to read data for');
+    } catch (e) {
+      print(e);
     }
   }
 
