@@ -79,7 +79,7 @@ class _ThankYouState extends State<ThankYou> {
               ),
               SizedBox(height: 0.02 * screenWidth), // 2% of screen width
               Text(
-                'We hope you enjoyed',
+                'Enjoy your reservation !',
                 style: TextStyle(
                   fontSize: 0.04 * screenWidth, // 4% of screen width
                   color: Colors.grey[700],

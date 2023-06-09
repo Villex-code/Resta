@@ -5,6 +5,7 @@ import 'package:my_app/backend/business.dart';
 import 'package:provider/provider.dart';
 
 import 'package:my_app/Customer_Store_View/store_view_from_customer.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:velocity_x/velocity_x.dart';
 
@@ -30,16 +31,45 @@ class _StoreImageState extends State<StoreImage> {
       child: InkWell(
         onTap: () async {
           await currentBusiness.setBusiness(widget.id);
-          Navigator.push(
-            context,
-            MaterialPageRoute(
+          DocumentSnapshot docSnap = await FirebaseFirestore.instance
+              .collection('business')
+              .doc(widget.id)
+              .get();
+
+          if (docSnap.exists) {
+            Map<String, dynamic> data = docSnap.data() as Map<String, dynamic>;
+
+            String? name = data.containsKey('name') ? data['name'] : 'Unknown';
+            String? address =
+                data.containsKey('address') ? data['address'] : 'Unknown';
+            String? ratings = data.containsKey('rating')
+                ? data['rating'].toString()
+                : 'Unknown';
+            String? reviews = data.containsKey('number_of_reviews')
+                ? data['number_of_reviews'].toString()
+                : 'Unknown';
+            String? description = data.containsKey('description')
+                ? data['description']
+                : 'Store Description';
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(
                 builder: (context) => SeeStoreViewfromCustomer(
-                    name: 'dimos11',
-                    address: 'Ipokratous 20',
-                    ratings: '4.6',
-                    reviews: '1800',
-                    description: 'here is the description')),
-          );
+                    id: widget.id,
+                    name: name ?? 'No name found',
+                    address: address ?? 'No address found',
+                    ratings: ratings ?? '-',
+                    reviews: reviews ?? '-',
+                    description: description ??
+                        "This store hasn't included a description"),
+              ),
+            );
+          } else {
+            // Handle when document does not exist.
+            // You can show a toast or a dialog.
+            print("No such document!");
+          }
         },
         child: ClipRRect(
           borderRadius: BorderRadius.circular(8),
