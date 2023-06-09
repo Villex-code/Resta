@@ -25,9 +25,8 @@ class Business_Notifications extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage('assets/rese_back.jpg'), fit: BoxFit.cover)),
+      decoration:  BoxDecoration(
+        color: Colors.white,),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(

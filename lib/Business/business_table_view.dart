@@ -20,23 +20,8 @@ class Business_TableView extends StatefulWidget {
 }
 
 class _Business_TableViewState extends State<Business_TableView> {
-  int selectedIndex = -1;
-
-  List<Color> buttonColors = List<Color>.generate(6, (index) => Colors.blue);
-
-  List<String> buttonNames = [
-    'Table 1',
-    'Table 2',
-    'Table 3',
-    'Table 4',
-    'Table 5',
-    'Table 6',
-  ];
-
-  List<int> reservedIndices = [];
 
   final String text = 'Store';
-
   final String url = 'https://picsum.photos/seed/314/600';
 
   // This widget is the root of your application.
@@ -133,19 +118,21 @@ class _Business_TableViewState extends State<Business_TableView> {
                     ),
                   ),
                 ]),
+
             Column(
               children: [
-                 Expanded(
+                Expanded(
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(50, 300, 50, 0),
+                    //padding:EdgeInsetsDirectional.fromSTEB(start, top, end, bottom),
+                    padding: EdgeInsetsDirectional.fromSTEB(60, 270, 60, 0),
                     child: ListView.builder(
                     itemCount: widget.table.length,
                       shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
+                     // physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) {
                      return Container(
                       height: 50,
-                      margin: EdgeInsets.symmetric(vertical: 8.0),
+                      margin: EdgeInsets.symmetric(vertical: 5.0),
                       child:Column(
                           children: [
                             Row(
@@ -155,29 +142,15 @@ class _Business_TableViewState extends State<Business_TableView> {
                                     setState(() {
                                     });
                                   },
-                                  style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                                    (Set<MaterialState> states) {
-                                      return buttonColors[index];
-                                    },
-                                  ),
+                                child: Text("Table:" + ' ' +widget.table[index]),
                                 ),
-                                child: Text("Table:" + '' +widget.table[index]),
-                                ),
-                                  Spacer(),
+                                 Spacer(),
                                   ElevatedButton(
                                     onPressed: () {
                                       setState(() {
                                       });
                                     },
-                                    style: ButtonStyle(
-                                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                                            (Set<MaterialState> states) {
-                                          return buttonColors[index];
-                                        },
-                                      ),
-                                    ),
-                                    child: Text("Seats:" + '' + widget.seats[index]),
+                                    child: Text("Seats:" + ' ' + widget.seats[index]),
                                   ),
                               ]),
                          ]),
