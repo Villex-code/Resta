@@ -1,25 +1,126 @@
-
-import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:my_app/Business/business_menu.dart';
+import 'package:my_app/Business/business_add_table.dart';
 import 'package:my_app/Business/business_home_page.dart';
-import 'package:my_app/Business/business_table_view.dart';
-import 'package:my_app/Business/business_table_list.dart';
-class Table_List {
-  final String table,seats;
+
+class Business_TableList extends StatefulWidget {
+  @override
+  _Business_TableListState createState() => _Business_TableListState();
+}
+
+class _Business_TableListState extends State<Business_TableList> {
+  List<String> table = [];
+  List<String> seats = [];
   List<String> categories = [];
+  final String text = 'Store';
+  final String url = 'https://picsum.photos/seed/314/600';
+  int selectedIndex = -1;
+  List<Color> buttonColors = List<Color>.generate(6, (index) => Colors.blue);
+  List<String> buttonNames = [
+    'Table 1',
+    'Table 2',
+    'Table 3',
+    'Table 4',
+    'Table 5',
+    'Table 6',
+  ];
+  List<int> reservedIndices = [];
 
-  Table_List({required this.table, required this.seats,required this.categories});
-  String getTable(){
-    return table;
-  }
-
-  String getSeats(){
-    return seats;
-  }
-
-  List<String> getCategories(){
-    return categories;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Expanded(
+          child: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(8, 2, 8, 3),
+            child: ListView.builder(
+              itemCount: 6,
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  height: 50,
+                  margin: EdgeInsets.symmetric(vertical: 8.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        if (selectedIndex != -1) {
+                          reservedIndices.add(selectedIndex);
+                        }
+                        selectedIndex = index;
+                        buttonColors = List<Color>.generate(6, (i) {
+                          if (i == index) {
+                            return Color.fromARGB(255, 161, 186, 187);
+                          }
+                          return Color.fromARGB(255, 124, 162, 195);
+                        });
+                      });
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                            (Set<MaterialState> states) {
+                          return buttonColors[index];
+                        },
+                      ),
+                    ),
+                    child: Text(buttonNames[index]),
+                  ),
+                );
+              },
+            ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(8, 30, 8, 0),
+          child: SizedBox(
+            height: 48.0,
+            width: 200,
+            child: Row(children: [
+              ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Business_AddTable(
+                            text: text, url: url)),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.grey, // Background color
+                ),
+                icon: Icon(
+                  Icons.upload_sharp,
+                  size: 15.0,
+                ),
+                label: Text("Upload Table View"),
+              ),
+              Spacer(),
+              ElevatedButton.icon(
+                onPressed: () {
+                  table = [];
+                  seats = [];
+                  categories = [];
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            BusinessView.withList(
+                                table: table,
+                                seats: seats,
+                                categories: categories)),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.grey, // Background color
+                ),
+                icon: Icon(
+                  Icons.remove_circle_outline,
+                  size: 15.0,
+                ),
+                label: Text("Remove Table View"),
+              ),
+            ]),
+          ),
+        ),
+      ],
+    );
   }
 }
 
@@ -27,66 +128,3 @@ class Table_List {
 
 
 
-
-//===============gia na ginontai click polla================//
-
-// import 'package:flutter/material.dart';
-
-// class ButtonList extends StatefulWidget {
-//   @override
-//   _ButtonListState createState() => _ButtonListState();
-// }
-
-// class _ButtonListState extends State<ButtonList> {
-//   List<bool> isSelected = [false, false, false];
-//   List<String> buttonNames = ['Apple', 'Banana', 'Mango'];
-//   List<int> reservedIndices = [];
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       children: [
-//         Expanded(
-//           child: ListView.builder(
-//             itemCount: 3,
-//             itemBuilder: (BuildContext context, int index) {
-//               return Container(
-//                 margin: EdgeInsets.symmetric(vertical: 8.0),
-//                 child: ElevatedButton(
-//                   onPressed: () {
-//                     setState(() {
-//                       isSelected[index] = !isSelected[index];
-//                     });
-//                   },
-//                   style: ButtonStyle(
-//                     backgroundColor: MaterialStateProperty.resolveWith<Color>(
-//                       (Set<MaterialState> states) {
-//                         if (isSelected[index]) {
-//                           return Colors.green;
-//                         }
-//                         return Colors.blue;
-//                       },
-//                     ),
-//                   ),
-//                   child: Text(buttonNames[index]),
-//                 ),
-//               );
-//             },
-//           ),
-//         ),
-//         ElevatedButton(
-//           onPressed: () {
-//             reservedIndices.clear();
-//             for (int i = 0; i < isSelected.length; i++) {
-//               if (isSelected[i]) {
-//                 reservedIndices.add(i);
-//               }
-//             }
-//             print('Reserved Buttons: $reservedIndices');
-//           },
-//           child: Text('Reserve'),
-//         ),
-//       ],
-//     );
-//   }
-// }

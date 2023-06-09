@@ -19,7 +19,6 @@ import 'package:my_app/Business/business_table.dart';
 class BusinessView extends StatefulWidget {
   // Default or unnamed constructor
   BusinessView({super.key});
-  List<Table_List> tableList = [];
   List<String> table = [];
   List<String> seats = [];
   List<String> categories = [];
@@ -67,6 +66,19 @@ class _BusinessView extends State<BusinessView> {
                                 fontFamily: 'Readex Pro',
                                 fontSize: 32,
                                 fontWeight: FontWeight.w300,
+                              ),
+                            ),
+                          ),
+                          Spacer(),
+                          Padding(
+                            padding:
+                            EdgeInsetsDirectional.fromSTEB(0, 0, 14, 0),
+                            child: InkWell(
+                              onTap: () {
+                                // upload new photos
+                              },
+                              child: Icon(
+                                Icons.add_a_photo_outlined,
                               ),
                             ),
                           ),
