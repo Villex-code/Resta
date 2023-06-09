@@ -15,9 +15,10 @@ class PopularChoices extends StatefulWidget {
 class _PopularChoicesState extends State<PopularChoices> {
   @override
   Widget build(BuildContext context) {
-    final currentBusiness =
-        Provider.of<CurrentBusiness>(context, listen: false);
+    final currentBusiness = Provider.of<CurrentBusiness>(context, listen: false);
     return Expanded(
+
+    child: SingleChildScrollView(
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
@@ -46,7 +47,7 @@ class _PopularChoicesState extends State<PopularChoices> {
           ),
           Container(
             width: context.screenWidth,
-            height: 600,
+            height: 500,
             decoration: BoxDecoration(
               color: Color.fromARGB(31, 250, 250, 250),
               borderRadius: BorderRadius.circular(20), //EDWWWWWWWWWWWWW
@@ -86,6 +87,8 @@ class _PopularChoicesState extends State<PopularChoices> {
           ),
         ],
       ),
+    ),
+
     );
   }
 }
