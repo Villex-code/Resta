@@ -55,7 +55,7 @@ class _CustomerViewState extends State<SeeCustomer_View> {
                 ),
               ),
               Container(
-                height: 600,
+                height: 500,
                 decoration: BoxDecoration(
                   // color: Color.fromARGB(255, 240, 229, 229),
                   color: Color.fromARGB(255, 242, 245, 245),

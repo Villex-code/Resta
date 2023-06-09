@@ -28,7 +28,6 @@ class _Business_AddTable extends State<Business_AddTable>{
   List<String> table_list = [];
   List<String> seats_list = [];
   List<String> categories = [];
-  List<Table_List> tableList = [];
   _Business_AddTable({required this.text,required this.url});
 
 
@@ -118,123 +117,7 @@ class _Business_AddTable extends State<Business_AddTable>{
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Choose for each table,several categories',
-                    style: TextStyle(
-                        color: Colors.black38,
-                        fontSize: 20), //TextStyle
-                  ), //Text
-                  SizedBox(height: 10),
-                  Row(
-                    children: <Widget>[
-                      SizedBox(
-                        width: 10,
-                      ), //SizedBox
-                      Text(
-                        'Smoke area: ',
-                        style: TextStyle(fontSize: 17.0),
-                      ), //Text
-                      SizedBox(width: 10), //SizedBox
-                      /** Checkbox Widget **/
-                      Checkbox(
-                        value: this.smokeArea,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            this.smokeArea = value;
-                            categories.add('Smoke Area');
-                          });
-                        },
-                      ),
-                    ], //<Widget>[]
-                  ),
-                  Row(
-                    children: <Widget>[
-                      SizedBox(
-                        width: 10,
-                      ), //SizedBox
-                      Text(
-                        'No smoke area: ',
-                        style: TextStyle(fontSize: 17.0),
-                      ), //Text
-                      SizedBox(width: 10), //SizedBox
-                      /** Checkbox Widget **/
-                      Checkbox(
-                        value: this.noSmokeArea,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            categories.add('No Smoke Area');
-                            this.noSmokeArea = value;
-                          });
-                        },
-                      ),
-                    ], //<Widget>[]
-                  ),
-                  Row(
-                    children: <Widget>[
-                      SizedBox(
-                        width: 10,
-                      ), //SizedBox
-                      Text(
-                        'Special needs: ',
-                        style: TextStyle(fontSize: 17.0),
-                      ), //Text
-                      SizedBox(width: 10), //SizedBox
-                      /** Checkbox Widget **/
-                      Checkbox(
-                        value: this.specialNeeds,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            categories.add('Special Needs');
-                            this.specialNeeds = value;
-                          });
-                        },
-                      ),
-                    ], //<Widget>[]
-                  ),
-                  Row(
-                    children: <Widget>[
-                      SizedBox(
-                        width: 10,
-                      ), //SizedBox
-                      Text(
-                        'For food: ',
-                        style: TextStyle(fontSize: 17.0,),
-                      ), //Text
-                      SizedBox(width: 10), //SizedBox
-                      /** Checkbox Widget **/
-                      Checkbox(
-                        value: this.food,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            categories.add('Food');
-                            this.food = value;
-                          });
-                        },
-                      ),
-                    ], //<Widget>[]
-                  ),
-                  Row(
-                    children: <Widget>[
-                      SizedBox(
-                        width: 10,
-                      ), //SizedBox
-                      Text(
-                        'For drink: ',
-                        style: TextStyle(fontSize: 17.0),
-                      ), //Text
-                      SizedBox(width: 10), //SizedBox
-                      /** Checkbox Widget **/
-                      Checkbox(
-                        value: this.drink,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            categories.add('Drink');
-                            this.drink = value;
-                          });
-                        },
-                      ),
-                    ], //<Widget>[]
-                  ),
+
                   Padding(
                     padding: const EdgeInsets.fromLTRB(120.0,40.0,0,0),
                     child:ElevatedButton.icon(
@@ -244,8 +127,6 @@ class _Business_AddTable extends State<Business_AddTable>{
                           seats = tableSeats.text;
                           table_list.add(table);
                           seats_list.add(seats);
-                          Table_List newTable = Table_List(table:tableNumber.text,seats:tableSeats.text,categories:categories);
-                          tableList.add(newTable);
                           tableNumber.text = ' ';
                           tableSeats.text = ' ';
                           table = '';
