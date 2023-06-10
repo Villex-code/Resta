@@ -134,18 +134,77 @@ class ReviewsPage extends StatelessWidget {
                                 String myurl =
                                     snapshot.data ?? "No image found";
 
-                                return ListTile(
-                                  title: Column(
+                                return Card(
+                                  color: Colors.white,
+                                  margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
+                                  elevation: 50,
+                                  shape: RoundedRectangleBorder(
+                                    side: BorderSide(
+                                      color: Colors.black,
+                                    ),
+                                    borderRadius: const BorderRadius.all(Radius.circular(12)),
+                                  ),
+                                  child: Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                        CrossAxisAlignment.center,
                                     children: [
-                                      Text(displayId),
-                                      Text(displayName),
-                                      Text(displayId),
-                                      Text(displayAddress),
-                                      Text(messageDisplay),
-                                      Text(ratingDisplay),
-                                      Text(myurl),
+                                      Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        CircleAvatar(
+                                          backgroundImage: NetworkImage('myurl'),
+                                          backgroundColor: Colors.black,
+                                          radius: 18,
+                                        ),
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              children:[
+                                                Text(displayName,
+                                                  style: TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight: FontWeight.bold),
+                                                ),
+                                                Text("("),
+                                                Text(displayId,
+                                                  style: TextStyle(
+                                                    fontSize: 14,
+                                                  ),
+                                                ),
+                                                Text(")"),
+                                              ]
+                                            ),
+                                           /* Row(
+                                                children:[
+                                                  Text(displayId,
+                                                    style: TextStyle(
+                                                      fontSize: 14,
+                                                    ),
+                                                  ),
+                                                ]
+                                            ),*/
+                                            Row(
+                                                children:[
+                                                  Icon(Icons.location_on_outlined),
+                                                  Text(displayAddress,
+                                                    style: TextStyle(
+                                                      fontSize: 14,
+                                                    ),
+                                                  ),
+                                                ]
+                                            ),
+                                          ]
+                                        ),
+                                        //Text(displayAddress),
+                                       // Text(messageDisplay),
+                                        Spacer(),
+                                        Text(ratingDisplay),
+                                      ]
+                                      ),
+                                      Center(
+                                        child:Text(messageDisplay),
+                                      ),
                                     ],
                                   ),
                                 );
@@ -165,3 +224,20 @@ class ReviewsPage extends StatelessWidget {
     );
   }
 }
+
+/*Container(
+width: 150,
+height: 50,
+decoration: BoxDecoration(
+color: Colors.white,
+borderRadius:  BorderRadius.all(Radius.circular(15)),
+boxShadow: [
+BoxShadow(
+color: Colors.grey.withOpacity(0.5),
+spreadRadius: 3,
+blurRadius: 10,
+offset: Offset(0,3),
+),
+]
+),
+);*/
