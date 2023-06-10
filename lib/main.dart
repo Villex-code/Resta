@@ -7,6 +7,7 @@ import 'package:my_app/Customer/customer_homepage.dart';
 import 'package:my_app/MainPages/TeamConnected.dart';
 import 'package:my_app/PagesAuth/Login/login_method.dart';
 import 'package:my_app/backend/business.dart';
+import 'MainPages/WelcomePage.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 import 'package:my_app/Authentication/user.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: TeamConnected(),
+        home: WelcomePage(),
       ),
     );
   }
