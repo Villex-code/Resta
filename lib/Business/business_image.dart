@@ -42,31 +42,175 @@ class BusinessImage extends StatelessWidget {
                               controller: PageController(initialPage: 0),
                               scrollDirection: Axis.horizontal,
                               children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(8),
-                                  child: Image.network(
-                                    'https://picsum.photos/seed/202/600',
-                                    width: 300,
-                                    height: 0,
-                                    fit: BoxFit.cover,
+                                InkWell(
+                                  onTap: (){
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return Dialog(
+                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                                          //elevation: 16,
+                                          child: Container(
+                                            color: Colors.white10,
+                                            height: 70,
+                                            child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: <Widget>[
+                                                Text('Are you sure you want to remove the photo?'),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    TextButton(
+                                                      onPressed: () {
+
+                                                      },
+                                                      style: ElevatedButton.styleFrom(
+                                                        primary: Colors.cyanAccent, // Background color
+                                                      ),
+                                                      child: Text('Yes',
+                                                      style: TextStyle(color: Colors.black,),),
+                                                    ),
+                                                    SizedBox(width: 10.0,),
+                                                    TextButton(
+                                                        onPressed: () => Navigator.pop(context),
+                                                      style: ElevatedButton.styleFrom(
+                                                        primary: Colors.cyanAccent, // Background color
+                                                      ),
+                                                      child: Text('No',
+                                                        style: TextStyle(color: Colors.black,),),
+                                                    ),
+                                                  ],
+                                                )
+
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                      child: Image.network(
+                                        'https://picsum.photos/seed/202/600',
+                                        width: 300,
+                                        height: 0,
+                                        fit: BoxFit.cover,
+                                      ),
                                   ),
                                 ),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(8),
-                                  child: Image.network(
-                                    'https://picsum.photos/seed/126/600',
-                                    width: 300,
-                                    height: 200,
-                                    fit: BoxFit.cover,
+                                InkWell(
+                                  onTap: (){
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return Dialog(
+                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                                          //elevation: 16,
+                                          child: Container(
+                                            color: Colors.white10,
+                                            height: 70,
+                                            child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: <Widget>[
+                                                Text('Are you sure you want to remove the photo?'),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    TextButton(
+                                                      onPressed: () {
+
+                                                      },
+                                                      style: ElevatedButton.styleFrom(
+                                                        primary: Colors.cyanAccent, // Background color
+                                                      ),
+                                                      child: Text('Yes',
+                                                        style: TextStyle(color: Colors.black,),),
+                                                    ),
+                                                    SizedBox(width: 10.0,),
+                                                    TextButton(
+                                                      onPressed: () => Navigator.pop(context),
+                                                      style: ElevatedButton.styleFrom(
+                                                        primary: Colors.cyanAccent, // Background color
+                                                      ),
+                                                      child: Text('No',
+                                                        style: TextStyle(color: Colors.black,),),
+                                                    ),
+                                                  ],
+                                                )
+
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: Image.network(
+                                      'https://picsum.photos/seed/202/600',
+                                      width: 300,
+                                      height: 0,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(8),
-                                  child: Image.network(
-                                    'https://picsum.photos/seed/958/600',
-                                    width: 300,
-                                    height: 200,
-                                    fit: BoxFit.cover,
+                                InkWell(
+                                  onTap: (){
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return Dialog(
+                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                                          //elevation: 16,
+                                          child: Container(
+                                            color: Colors.white10,
+                                            height: 70,
+                                            child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: <Widget>[
+                                                Text('Are you sure you want to remove the photo?'),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    TextButton(
+                                                      onPressed: () {
+
+                                                      },
+                                                      style: ElevatedButton.styleFrom(
+                                                        primary: Colors.cyanAccent, // Background color
+                                                      ),
+                                                      child: Text('Yes',
+                                                        style: TextStyle(color: Colors.black,),),
+                                                    ),
+                                                    SizedBox(width: 10.0,),
+                                                    TextButton(
+                                                      onPressed: () => Navigator.pop(context),
+                                                      style: ElevatedButton.styleFrom(
+                                                        primary: Colors.cyanAccent, // Background color
+                                                      ),
+                                                      child: Text('No',
+                                                        style: TextStyle(color: Colors.black,),),
+                                                    ),
+                                                  ],
+                                                )
+
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: Image.network(
+                                      'https://picsum.photos/seed/202/600',
+                                      width: 300,
+                                      height: 0,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
                               ],
