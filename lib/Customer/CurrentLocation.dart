@@ -19,6 +19,8 @@ class _NewCurrentLocationScreenState extends State<NewCurrentLocationScreen> {
   CustomInfoWindowController infoWindowController =
   CustomInfoWindowController();
   Set<Marker> markers = {};
+
+
   //BitmapDescriptor markerBitMap = BitmapDescriptor.fromAssetImage(const ImageConfiguration(size: Size(94,94), " "));
 
   /* static const CameraPosition initialCameraPosition = CameraPosition(
@@ -34,79 +36,92 @@ class _NewCurrentLocationScreenState extends State<NewCurrentLocationScreen> {
   }
 
   loadData() async{
+    final double curlatitude =  await getCurrentLatitude();
+    final double curlongitude =  await getCurrentLongitude();
+    print("Latitude = $curlatitude");
+    print("Longitudee = $curlongitude");
+
     //Position position = await _determinePosition();
     for (int i = 0; i < _lastlang.length; i++) {
-      markers.add(Marker(markerId: MarkerId(i.toString()),
-          icon: BitmapDescriptor.defaultMarker,
-          position: _lastlang[i],
-          onTap: (){
-            infoWindowController.addInfoWindow!(
-                Container(
-                  height: 300,
-                  width: 100,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 100,
-                        width: 100,
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: NetworkImage('https://picsum.photos/seed/202/600'),
-                              fit: BoxFit.fitWidth,
-                              filterQuality: FilterQuality.high),
-                          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+      if (isLocationWithin1km(curlatitude, curlongitude, _lastlang[i].latitude, _lastlang[i].longitude) ) {
+        markers.add(Marker(markerId: MarkerId(i.toString()),
+            icon: BitmapDescriptor.defaultMarker,
+            position: _lastlang[i],
+            onTap: () {
+              infoWindowController.addInfoWindow!(
+                  Container(
+                    height: 300,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 100,
+                          width: 100,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: NetworkImage(
+                                    'https://picsum.photos/seed/202/600'),
+                                fit: BoxFit.fitWidth,
+                                filterQuality: FilterQuality.high),
+                            borderRadius: const BorderRadius.all(
+                                Radius.circular(10.0)),
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top:10, left: 10,right: 10),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: 100,
-                              child: Text(
-                                'Beef Tacos',
-                                maxLines: 1,
-                                overflow: TextOverflow.fade,
-                                softWrap: false,
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 10, left: 10, right: 10),
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 100,
+                                child: Text(
+                                  'Beef Tacos',
+                                  maxLines: 1,
+                                  overflow: TextOverflow.fade,
+                                  softWrap: false,
+                                ),
                               ),
-                            ),
-                            const Spacer(),
-                            RatingBar.builder(
-                              onRatingUpdate: (newValue) => setState(() => newValue),
-                              itemBuilder: (context, index) => Icon(
-                                Icons.star_rounded,
-                                color: Colors.pink,
+                              const Spacer(),
+                              RatingBar.builder(
+                                onRatingUpdate: (newValue) =>
+                                    setState(() => newValue),
+                                itemBuilder: (context, index) =>
+                                    Icon(
+                                      Icons.star_rounded,
+                                      color: Colors.pink,
+                                    ),
+                                direction: Axis.horizontal,
+                                initialRating: 3,
+                                unratedColor: Colors.black,
+                                itemCount: 5,
+                                itemSize: 26,
+                                glowColor: Colors.blue,
                               ),
-                              direction: Axis.horizontal,
-                              initialRating: 3,
-                              unratedColor: Colors.black,
-                              itemCount: 5,
-                              itemSize: 26,
-                              glowColor: Colors.blue,
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                      Padding(
-                          padding: const EdgeInsets.only(top:10, left: 10,right: 10),
-                          child: Text(
-                            'Description',
-                            maxLines: 2,
-                          )
-                      ),
-                    ],
+                        Padding(
+                            padding: const EdgeInsets.only(
+                                top: 10, left: 10, right: 10),
+                            child: Text(
+                              'Description',
+                              maxLines: 2,
+                            )
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                _lastlang[i]
-            );
-          }));
+                  _lastlang[i]
+              );
+            }));
+      }
     }
 
   }
@@ -168,22 +183,22 @@ class _NewCurrentLocationScreenState extends State<NewCurrentLocationScreen> {
 
 
           // Generate and add additional markers with custom info windows
-          for (int i = 1; i <= 5; i++) {
-            double lat = position.latitude + (0.001 * i);
-            double lng = position.longitude + (0.001 * i);
-
-            markers.add(
-              Marker(
-                  markerId: MarkerId('marker$i'),
-                  position: LatLng(lat, lng),
-                  onTap: () {
-                    infoWindowController.addInfoWindow!(
-                      Text('ok'),
-                      LatLng(lat, lng),
-                    );
-                  }
-              ),);
-          }
+          // for (int i = 1; i <= 5; i++) {
+          //   double lat = position.latitude + (0.001 * i);
+          //   double lng = position.longitude + (0.001 * i);
+          //
+          //   markers.add(
+          //     Marker(
+          //         markerId: MarkerId('marker$i'),
+          //         position: LatLng(lat, lng),
+          //         onTap: () {
+          //           infoWindowController.addInfoWindow!(
+          //             Text('ok'),
+          //             LatLng(lat, lng),
+          //           );
+          //         }
+          //     ),);
+          // }
 
           setState(() {});
         },
@@ -234,11 +249,44 @@ class _NewCurrentLocationScreenState extends State<NewCurrentLocationScreen> {
     final double c = 2 * atan2(sqrt(a), sqrt(1 - a));
     final double distance = earthRadius * c;
 
-    return distance < 1.0; // Check if the distance is less than 1km
+    return distance < 1.5; // Check if the distance is less than 1km
   }
 
   double degreesToRadians(double degrees) {
     return degrees * pi / 180;
   }
+
+  // void getCurrentLocation() async {
+  //
+  //   final position = await Geolocator.getCurrentPosition(
+  //     desiredAccuracy: LocationAccuracy.high,
+  //   );
+  //
+  //   final double latitude = position.latitude;
+  //   final double longitude = position.longitude;
+  //
+  //
+  //   print('Latitude: $latitude');
+  //   print('Longitude: $longitude');
+  // }
+
+  Future<double> getCurrentLatitude() async {
+    final position = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
+    final double latitude = position.latitude;
+    return latitude;
+  }
+
+  Future<double> getCurrentLongitude() async {
+    final position = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
+    final double longitude = position.longitude;
+    return longitude;
+  }
+
+
+
 
 }
