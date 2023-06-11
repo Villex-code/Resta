@@ -1,31 +1,114 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:custom_info_window/custom_info_window.dart';
+import 'dart:math';
 
-class CurrentLocationScreen extends StatefulWidget {
-  const CurrentLocationScreen({Key? key}) : super(key: key);
-
+class NewCurrentLocationScreen extends StatefulWidget {
+  NewCurrentLocationScreen({Key? key}) : super(key: key);
   @override
-  _CurrentLocationScreenState createState() => _CurrentLocationScreenState();
+  _NewCurrentLocationScreenState createState() => _NewCurrentLocationScreenState();
 }
 
-class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
+class _NewCurrentLocationScreenState extends State<NewCurrentLocationScreen> {
   late GoogleMapController googleMapController;
+  List<String> storesNames = ['juicy','mac','goodys','mac','goodys'];
+  List<String> storesDescriptions = ['good food','bad food','good drink','bad food','good drink'];
+  final List<LatLng> _lastlang = [LatLng(37.985169, 23.762654),LatLng(37.989366, 23.766973),LatLng(37.988593, 23.757367)];
   CustomInfoWindowController infoWindowController =
-      CustomInfoWindowController();
+  CustomInfoWindowController();
   Set<Marker> markers = {};
   //BitmapDescriptor markerBitMap = BitmapDescriptor.fromAssetImage(const ImageConfiguration(size: Size(94,94), " "));
 
-  static const CameraPosition initialCameraPosition = CameraPosition(
+  /* static const CameraPosition initialCameraPosition = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
     zoom: 14,
-  );
+  );*/
 
   @override
   void initState() {
     super.initState();
-    infoWindowController = CustomInfoWindowController();
+    // infoWindowController = CustomInfoWindowController();
+    loadData();
+  }
+
+  loadData() async{
+    //Position position = await _determinePosition();
+    for (int i = 0; i < _lastlang.length; i++) {
+      markers.add(Marker(markerId: MarkerId(i.toString()),
+          icon: BitmapDescriptor.defaultMarker,
+          position: _lastlang[i],
+          onTap: (){
+            infoWindowController.addInfoWindow!(
+                Container(
+                  height: 300,
+                  width: 100,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: 100,
+                        width: 100,
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage('https://picsum.photos/seed/202/600'),
+                              fit: BoxFit.fitWidth,
+                              filterQuality: FilterQuality.high),
+                          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top:10, left: 10,right: 10),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 100,
+                              child: Text(
+                                'Beef Tacos',
+                                maxLines: 1,
+                                overflow: TextOverflow.fade,
+                                softWrap: false,
+                              ),
+                            ),
+                            const Spacer(),
+                            RatingBar.builder(
+                              onRatingUpdate: (newValue) => setState(() => newValue),
+                              itemBuilder: (context, index) => Icon(
+                                Icons.star_rounded,
+                                color: Colors.pink,
+                              ),
+                              direction: Axis.horizontal,
+                              initialRating: 3,
+                              unratedColor: Colors.black,
+                              itemCount: 5,
+                              itemSize: 26,
+                              glowColor: Colors.blue,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                          padding: const EdgeInsets.only(top:10, left: 10,right: 10),
+                          child: Text(
+                            'Description',
+                            maxLines: 2,
+                          )
+                      ),
+                    ],
+                  ),
+                ),
+                _lastlang[i]
+            );
+          }));
+    }
+
   }
 
   @override
@@ -41,17 +124,31 @@ class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
         title: const Text("User current location"),
         centerTitle: true,
       ),
-      body: GoogleMap(
-        initialCameraPosition: initialCameraPosition,
-        markers: markers,
-        zoomControlsEnabled: false,
-        mapType: MapType.normal,
-        onMapCreated: (GoogleMapController controller) {
-          googleMapController = controller;
-        },
-        onTap: (LatLng latLng) {
-          infoWindowController.hideInfoWindow!();
-        },
+      body: Stack(
+          children: [
+            GoogleMap(
+              initialCameraPosition: CameraPosition(
+                  target: LatLng(37.986497, 23.758879),
+                  zoom: 15
+              ),
+              markers: markers,
+              zoomControlsEnabled: false,
+              mapType: MapType.normal,
+              onMapCreated: (GoogleMapController controller) {
+                infoWindowController.googleMapController = controller;
+              },
+              onCameraMove: (position){
+                infoWindowController.onCameraMove!();
+              },
+              onTap: (position) {
+                infoWindowController.hideInfoWindow!();
+              },
+            ),
+            CustomInfoWindow(controller: infoWindowController,
+              height: 200,
+              width: 300,
+              offset: 35,),
+          ]
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () async {
@@ -68,33 +165,7 @@ class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
 
           markers.clear();
 
-          markers.add(
-            Marker(
-              markerId: const MarkerId('currentLocation'),
-              position: LatLng(position.latitude, position.longitude),
-              infoWindow: const InfoWindow(
-                title: "This is the title",
-                snippet: "This is the description",
-              ),
-              // onTap: () {
-              //   infoWindowController.addInfoWindow!(
-              //     Container(
-              //       height: 50,
-              //     width: 70,
-              //     child:SizedBox(
-              //     child: Column(
-              //       children: [
-              //         Text("Custom Info Window"),
-              //         Text("Additional details"),
-              //       ],
-              //     ),
-              //   )
-              //     ),
-              //     LatLng(position.latitude, position.longitude),
-              //   );
-              // }
-            ),
-          );
+
 
           // Generate and add additional markers with custom info windows
           for (int i = 1; i <= 5; i++) {
@@ -103,25 +174,15 @@ class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
 
             markers.add(
               Marker(
-                markerId: MarkerId('marker$i'),
-                position: LatLng(lat, lng),
-                infoWindow: const InfoWindow(
-                  title: "This is the title",
-                  snippet: "This is the description",
-                ),
-                // onTap: () {
-                //   infoWindowController.addInfoWindow!(
-                //     Column(
-                //       children: [
-                //         Text("Marker $i"),
-                //         Text("Additional details"),
-                //       ],
-                //     ),
-                //     LatLng(lat, lng),
-                //   );
-                // },
-              ),
-            );
+                  markerId: MarkerId('marker$i'),
+                  position: LatLng(lat, lng),
+                  onTap: () {
+                    infoWindowController.addInfoWindow!(
+                      Text('ok'),
+                      LatLng(lat, lng),
+                    );
+                  }
+              ),);
           }
 
           setState(() {});
@@ -163,41 +224,21 @@ class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
 
     return position;
   }
-}
 
-// class CustomInfoWindow extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       width: 200.0,
-//       height: 150.0,
-//       decoration: BoxDecoration(
-//         color: Colors.white,
-//         borderRadius: BorderRadius.circular(8.0),
-//       ),
-//       child: Column(
-//         children: [
-//           // Replace this with your image widget
-//           Image.asset(
-//             'https://media.istockphoto.com/id/1209654046/vector/user-avatar-profile-icon-black-vector-illustration.jpg?s=612x612&w=0&k=20&c=EOYXACjtZmZQ5IsZ0UUp1iNmZ9q2xl1BD1VvN6tZ2UI=',
-//             width: 120.0,
-//             height: 80.0,
-//           ),
-//           SizedBox(height: 8.0),
-//           Text(
-//             'Custom Info Window',
-//             style: TextStyle(
-//               fontSize: 16.0,
-//               fontWeight: FontWeight.bold,
-//             ),
-//           ),
-//           SizedBox(height: 4.0),
-//           Text(
-//             'This is a custom info window.',
-//             style: TextStyle(fontSize: 12.0),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
+  bool isLocationWithin1km(double currentLatitude, double currentLongitude, double spotLatitude, double spotLongitude) {
+    const double earthRadius = 6371; // Radius of the Earth in kilometers
+    final double latDistance = degreesToRadians(spotLatitude - currentLatitude);
+    final double lonDistance = degreesToRadians(spotLongitude - currentLongitude);
+    final double a = sin(latDistance / 2) * sin(latDistance / 2) +
+        cos(degreesToRadians(currentLatitude)) * cos(degreesToRadians(spotLatitude)) * sin(lonDistance / 2) * sin(lonDistance / 2);
+    final double c = 2 * atan2(sqrt(a), sqrt(1 - a));
+    final double distance = earthRadius * c;
+
+    return distance < 1.0; // Check if the distance is less than 1km
+  }
+
+  double degreesToRadians(double degrees) {
+    return degrees * pi / 180;
+  }
+
+}

@@ -65,22 +65,22 @@ class TeamConnectedState extends State<TeamConnected> {
                 },
               ),
             ),
-            Container(
-              margin: EdgeInsets.all(25),
-              child: TextButton(
-                child: Text(
-                  'Map',
-                  style: TextStyle(fontSize: 20.0),
-                ),
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) {
-                      return const CurrentLocationScreen();
-                    },
-                  ));
-                },
-              ),
-            ),
+            // Container(
+            //   margin: EdgeInsets.all(25),
+            //   child: TextButton(
+            //     child: Text(
+            //       'Map',
+            //       style: TextStyle(fontSize: 20.0),
+            //     ),
+            //     onPressed: () {
+            //       Navigator.push(context, MaterialPageRoute(
+            //         builder: (context) {
+            //           return NewCurrentLocationScreen();
+            //         },
+            //       ));
+            //     },
+            //   ),
+            // ),
           ]))),
     );
   }
