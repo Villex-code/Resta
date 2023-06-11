@@ -36,31 +36,48 @@ class Business_MenuView extends StatelessWidget {
             Text('Company name'),
           ]),
         ),
-        body: Container(
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage('assets/menuback.jpg'), fit: BoxFit.cover)),
-          child: SingleChildScrollView(
-            child: Column(children: [
-              Container(
-                height: 100,
-                child: Center(
-                    child: Text("Menu",
-                        style: TextStyle(
-                            fontFamily: 'OoohBaby',
-                            fontSize: 50,
-                            color: Colors.white))),
+        body:Column(
+            children: [
+        Expanded(
+        child: Padding(
+        padding: EdgeInsetsDirectional.fromSTEB(8, 2, 8, 3),
+        child: ListView.builder(
+          itemCount: 6,
+          itemBuilder: (BuildContext context, int index) {
+            return Container(
+              height: 50,
+              margin: EdgeInsets.symmetric(vertical: 8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/menuback.jpg'), fit: BoxFit.cover)),
+                child: SingleChildScrollView(
+                  child: Column(children: [
+                    Container(
+                      height: 100,
+                      child: Center(
+                          child: Text("Menu",
+                              style: TextStyle(
+                                  fontFamily: 'OoohBaby',
+                                  fontSize: 50,
+                                  color: Colors.white))),
+                    ),
+                    SizedBox(
+                      height: 30.0,
+                    ),
+                    Image.asset(
+                      'assets/menu.jpg',
+                      fit: BoxFit.fill,
+                    ),
+                  ]),
+                ),
               ),
-              SizedBox(
-                height: 30.0,
-              ),
-              Image.asset(
-                'assets/menu.jpg',
-                fit: BoxFit.fill,
-              ),
-            ]),
-          ),
+            );
+          },
         ),
+      ),
+    ),
+    ]),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton:
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -69,7 +86,7 @@ class Business_MenuView extends StatelessWidget {
             margin: const EdgeInsets.all(10),
             child: ElevatedButton.icon(
               onPressed: () {
-                Navigator.pushReplacement(
+               /* Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                       builder: (context) => Business_Reservations(
@@ -79,7 +96,7 @@ class Business_MenuView extends StatelessWidget {
                             seats: [],
                             categories: [],
                           )),
-                );
+                );*/
               },
               style: ElevatedButton.styleFrom(
                 primary: Colors.grey, // Background color
@@ -96,7 +113,7 @@ class Business_MenuView extends StatelessWidget {
             margin: const EdgeInsets.all(10),
             child: ElevatedButton.icon(
               onPressed: () {
-                Navigator.pushReplacement(
+               /* Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                       builder: (context) => Business_Reservations(
@@ -106,7 +123,7 @@ class Business_MenuView extends StatelessWidget {
                             seats: [],
                             categories: [],
                           )),
-                );
+                );*/
               },
               style: ElevatedButton.styleFrom(
                 primary: Colors.grey, // Background color
