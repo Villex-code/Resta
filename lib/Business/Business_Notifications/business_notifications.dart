@@ -15,11 +15,11 @@ class Business_Notifications extends StatelessWidget {
   List<String> categories = [];
   Business_Notifications(
       {super.key,
-      required this.text,
-      required this.url,
-      required this.table,
-      required this.seats,
-      required this.categories});
+        required this.text,
+        required this.url,
+        required this.table,
+        required this.seats,
+        required this.categories});
 
   // This widget is the root of your application.
   @override

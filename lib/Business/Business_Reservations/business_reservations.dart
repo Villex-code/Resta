@@ -14,11 +14,11 @@ class Business_Reservations extends StatefulWidget {
   List<String> categories = [];
   Business_Reservations(
       {super.key,
-      required this.text,
-      required this.url,
-      required this.table,
-      required this.seats,
-      required this.categories});
+        required this.text,
+        required this.url,
+        required this.table,
+        required this.seats,
+        required this.categories});
 
   @override
   _Business_Reservations createState() =>
@@ -84,10 +84,10 @@ class _Business_Reservations extends State<Business_Reservations> {
               ElevatedButton.icon(
                 onPressed: () {
                   showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime(2000),
-                          lastDate: DateTime(2030))
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(2000),
+                      lastDate: DateTime(2030))
                       .then((date) {
                     setState(() {
                       datetime = date;
