@@ -7,13 +7,19 @@ class StoreInList extends StatefulWidget {
   final String? name;
   final String? address;
   final String? type;
+  final String? rating;
+  final String? number_of_reviews;
+  final String? capacity;
 
   const StoreInList(
       {super.key,
       required this.id,
       required this.name,
       required this.address,
-      required this.type});
+      required this.type,
+      required this.rating,
+      required this.number_of_reviews,
+      required this.capacity});
 
   @override
   State<StoreInList> createState() => _StoreInListState();
@@ -67,6 +73,17 @@ class _StoreInListState extends State<StoreInList> {
                           Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
+                              Text(
+                                widget.address ?? "No address set",
+                                // style:
+                                //     FlutterFlowTheme.of(context)
+                                //         .bodyMedium,
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
                               Icon(
                                 Icons.star_rate,
                                 color: Colors.white,
@@ -76,7 +93,7 @@ class _StoreInListState extends State<StoreInList> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(3, 0, 0, 0),
                                 child: Text(
-                                  '3,7',
+                                  widget.rating ?? '-',
                                   style: TextStyle(
                                     fontFamily: 'Readex Pro',
                                     fontSize: 15,
@@ -87,7 +104,7 @@ class _StoreInListState extends State<StoreInList> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(2, 0, 0, 0),
                                 child: Text(
-                                  '(500)',
+                                  '(${widget.number_of_reviews ?? "-"})',
                                   // style:
                                   //     FlutterFlowTheme.of(context)
                                   //         .bodyMedium,
@@ -114,7 +131,7 @@ class _StoreInListState extends State<StoreInList> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Text(
-                                'Capacity: 30',
+                                'Capacity: ${widget.capacity}',
                                 // style:
                                 //     FlutterFlowTheme.of(context)
                                 //         .bodyMedium,

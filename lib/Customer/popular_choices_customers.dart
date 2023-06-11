@@ -74,12 +74,16 @@ class _PopularChoicesState extends State<PopularChoices> {
                         document.data() as Map<String, dynamic>;
 
                     return StoreInList(
-                      id: document.id,
-                      name: data['name'],
-                      address: data['address'],
-                      type: data['category'].toString(),
-                      //add other fields you have
-                    );
+                        id: document.id,
+                        name: data['name'],
+                        address: data['address'],
+                        type: data['category'].toString(),
+                        rating: data['rating'].toString() ?? '-',
+                        number_of_reviews:
+                            data['number_of_reviews'].toString() ?? '-',
+                        capacity: data['capacity'].toString() ?? '-'
+                        //add other fields you have
+                        );
                   }).toList(),
                 );
               },

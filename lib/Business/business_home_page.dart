@@ -72,7 +72,7 @@ class _BusinessView extends State<BusinessView> {
                           Spacer(),
                           Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(0, 0, 14, 0),
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 14, 0),
                             child: InkWell(
                               onTap: () {
                                 // upload new photos
@@ -264,10 +264,13 @@ class _BusinessView extends State<BusinessView> {
                               fontWeight: FontWeight.bold),
                         ),
                       ),
-                      Business_TableView(
-                          table: widget.table,
-                          seats: widget.seats,
-                          categories: widget.categories),
+                      LimitedBox(
+                        maxHeight: 500,
+                        child: Business_TableView(
+                            table: widget.table,
+                            seats: widget.seats,
+                            categories: widget.categories),
+                      )
                     ],
                   ),
                 ],

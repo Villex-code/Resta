@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_app/Authentication/user.dart';
 import 'package:my_app/Profile/ProfileItem.dart';
 import 'package:my_app/ProfileBusiness/SubProfilePages/Account.dart';
-import 'package:my_app/ProfileBusiness/SubProfilePages/about.dart';
+import 'package:my_app/ProfileBusiness/SubProfilePages/about_business.dart';
 import 'package:my_app/ProfileBusiness/SubProfilePages/favorites.dart';
 import 'package:my_app/ProfileBusiness/SubProfilePages/invite_friends.dart';
 import 'package:my_app/ProfileBusiness/SubProfilePages/my_reviews.dart';

@@ -17,7 +17,7 @@ class About extends StatelessWidget {
       },
       {
         'heading': 'How It Works',
-        'description': 'For Businesses \n1. Create your account, filling all the fields needed.\n\n'
+        'description': '1. Create your account, filling all the fields needed.\n\n'
             '2. Build your profile adding info, such as profile pic etc.\n\n'
             '3. In the "Notifications" field, you will receive requests for booking.\n\n'
             '4. If you have a request, select "Accept" or "Decline".\n\n'
@@ -26,13 +26,17 @@ class About extends StatelessWidget {
       },
       {
         'heading': 'Features',
-        'description': '\n- Quick and easy booking process\n'
+        'description': '- Quick and easy booking process\n'
             '- Availability to accept or decline a request.\n'
+            '- You can upload a table plan for the customers and change it.\n'
+            '- Upload the menu and your business images.\n'
       },
       {
         'heading': 'Benefits',
         'description':
-            '- Avoidance of queue management.\n'
+        '- Avoidance of queue management.\n'
+            '- Higher possibility of reserving tables.\n'
+            '- Higher income.\n'
 
       },
       {

@@ -91,6 +91,10 @@ class ListOfStoresCustomerState extends State<ListOfStoresCustomer> {
                           name: data['name'],
                           address: data['address'],
                           type: data['category'].toString(),
+                          rating: data['rating'].toString() ?? '-',
+                          number_of_reviews:
+                              data['number_of_reviews'].toString() ?? '-',
+                          capacity: data['capacity'].toString() ?? '-',
                           //add other fields you have
                         );
                       }).toList(),
