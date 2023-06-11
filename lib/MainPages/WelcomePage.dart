@@ -66,7 +66,7 @@ class WelcomePageState extends State<WelcomePage> {
                                       shape: BoxShape.circle,
                                     ),
                                     child: Image.network(
-                                      'https://picsum.photos/seed/979/600',
+                                      'https://media.istockphoto.com/id/1081422898/photo/pan-fried-duck.jpg?s=612x612&w=0&k=20&c=kzlrX7KJivvufQx9mLd-gMiMHR6lC2cgX009k9XO6VA=',
                                       fit: BoxFit.fill,
                                     ),
                                   ),
@@ -162,20 +162,7 @@ class WelcomePageState extends State<WelcomePage> {
                                     child: TextButton(
 
                                       style: ButtonStyle(
-
-                                        backgroundColor: MaterialStateProperty.all<Color>(Colors.teal),
                                         foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                                        side: MaterialStateProperty.all<BorderSide>(
-                                          BorderSide(
-                                            color: Colors.black,
-                                            width: 1.0,
-                                          ),
-                                        ),
-                                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                          RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(10.0),
-                                          ),
-                                        ),
                                       ),
                                       onPressed: () {
                                         Navigator.push(context, MaterialPageRoute(
@@ -184,14 +171,33 @@ class WelcomePageState extends State<WelcomePage> {
                                           },
                                         ));
                                       },
-                                      child: Text(
-                                        'Business',
-                                        style: TextStyle(
-                                          fontFamily: 'Readex Pro',
-                                          fontSize: 25,
-                                          fontWeight: FontWeight.w400,
+                                      child: Container(
+                                        width: 170,
+                                        height: 50,
+                                        decoration: BoxDecoration(
+                                          gradient: LinearGradient(
+                                            colors: [
+                                              Colors.teal, // Start color
+                                              Color.fromARGB(255, 200, 215, 215),
+                                              Colors.teal, // Start color
+                                            ],
+                                            begin: Alignment.topCenter, // Gradient start position
+                                            end: Alignment.bottomCenter, // Gradient end position
+                                          ),
+                                          borderRadius: BorderRadius.circular(10.0),
+                                        ),
+                                        alignment: Alignment.center, // Aligns the text to the center
+                                        padding: EdgeInsets.all(10.0), // Adjust padding as needed
+                                        child: Text(
+                                          'Business',
+                                          style: TextStyle(
+                                            fontFamily: 'Readex Pro',
+                                            fontSize: 25,
+                                            fontWeight: FontWeight.w400,
+                                          ),
                                         ),
                                       ),
+
                                     ),
                                   ),
                                 ),
@@ -210,36 +216,42 @@ class WelcomePageState extends State<WelcomePage> {
                                     child: TextButton(
 
                                       style: ButtonStyle(
-
-                                        backgroundColor: MaterialStateProperty.all<Color>(Colors.teal),
                                         foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                                        side: MaterialStateProperty.all<BorderSide>(
-                                          BorderSide(
-                                            color: Colors.black,
-                                            width: 1.0,
-                                          ),
-                                        ),
-                                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                          RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(10.0),
-                                          ),
-                                        ),
                                       ),
                                       onPressed: () {
                                         Navigator.push(context, MaterialPageRoute(
                                           builder: (context) {
-                                            return const LoginMethod();
+                                            return const BusinessLoginMethod();
                                           },
                                         ));
                                       },
-                                      child: Text(
-                                        'Customer',
-                                        style: TextStyle(
-                                          fontFamily: 'Readex Pro',
-                                          fontSize: 25,
-                                          fontWeight: FontWeight.w400,
+                                      child: Container(
+                                        width: 170,
+                                        height: 50,
+                                        decoration: BoxDecoration(
+                                          gradient: LinearGradient(
+                                            colors: [
+                                              Colors.teal, // Start color
+                                              Color.fromARGB(255, 200, 215, 215),
+                                              Colors.teal, // Start color
+                                            ],
+                                            begin: Alignment.topCenter, // Gradient start position
+                                            end: Alignment.bottomCenter, // Gradient end position
+                                          ),
+                                          borderRadius: BorderRadius.circular(10.0),
+                                        ),
+                                        alignment: Alignment.center, // Aligns the text to the center
+                                        padding: EdgeInsets.all(10.0), // Adjust padding as needed
+                                        child: Text(
+                                          'Customer',
+                                          style: TextStyle(
+                                            fontFamily: 'Readex Pro',
+                                            fontSize: 25,
+                                            fontWeight: FontWeight.w400,
+                                          ),
                                         ),
                                       ),
+
                                     ),
 
                                   ),
