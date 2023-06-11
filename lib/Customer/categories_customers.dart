@@ -72,10 +72,9 @@ class _CategoriesState extends State<Categories> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) =>
-                                        //ListOfStoresCustomer(category: 'Restaurants')
-                                        ListOfStoresCustomer(category: 'Bars'),
-                                  ),
+                                      builder: (context) =>
+                                          ListOfStoresCustomer(
+                                              category: 'Restaurant')),
                                 );
                               },
                               child: ClipRRect(
@@ -113,7 +112,7 @@ class _CategoriesState extends State<Categories> {
                                   MaterialPageRoute(
                                       builder: (context) =>
                                           ListOfStoresCustomer(
-                                              category: 'Bars')),
+                                              category: 'Bar')),
                                 );
                               },
                               child: ClipRRect(

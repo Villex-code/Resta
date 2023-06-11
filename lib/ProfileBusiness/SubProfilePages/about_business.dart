@@ -13,31 +13,30 @@ class About extends StatelessWidget {
       {
         'heading': 'Our Company',
         'description':
-            'You can choose a business through the app and then see the table plan in order to book a specific table for your needs.',
+        'Through our app you can have your own business profile where you can receive requests for table reservation and accept/decline them.',
       },
       {
         'heading': 'How It Works',
-        'description': ''
-            '1. Create your account, filling all the fields needed.\n\n'
-            '2. Select a business from the lists or the map plan.\n\n'
-            '3. After checking the table plan, choose a specific table to book.\n\n'
-            '4. Select "Book" an fill the fields asked.\n\n'
-            '5. Select "Confirm" and your request is made.\n\n'
-            '6. In your "Notifications" field, you can see if it is accepted.\n\n'
+        'description': '1. Create your account, filling all the fields needed.\n\n'
+            '2. Build your profile adding info, such as profile pic etc.\n\n'
+            '3. In the "Notifications" field, you will receive requests for booking.\n\n'
+            '4. If you have a request, select "Accept" or "Decline".\n\n'
+            '5. If you press Accept, the booking is made.\n\n'
             'Enjoy a hassle-free experience with our app!',
       },
       {
         'heading': 'Features',
-        'description': '- Quick and easy booking process.\n'
-            '- Customized Profile.\n'
-            '- Map view of businesses.\n'
-            '- List of past bookings.\n',
+        'description': '- Quick and easy booking process\n'
+            '- Availability to accept or decline a request.\n'
+            '- You can upload a table plan for the customers and change it.\n'
+            '- Upload the menu and your business images.\n'
       },
       {
         'heading': 'Benefits',
-        'description': '- Save time and skip the queue\n'
-            '- Check the position of your table.\n'
-            '- You can explore new choices nearby,through the map.\n'
+        'description':
+        '- Avoidance of queue management.\n'
+            '- Higher possibility of reserving tables.\n'
+            '- Higher income.\n'
 
       },
       {
@@ -45,15 +44,15 @@ class About extends StatelessWidget {
         'description': 'Here are some reviews from our satisfied customers:\n\n'
             '"This app is a game-changer! I love how easy it is to order and pay right from my phone." - John D.\n\n'
             '"The convenience and speed of this app are unparalleled. Highly recommended!" - Sarah T.\n\n'
-            '"Using this app has made dining out a breeze. No more waiting at the queue!" - Alex M.',
+            '"Using this app has made dining out a breeze. No more waiting for the waiter!" - Alex M.',
       },
       {
         'heading': 'Contact Us',
         'description':
-            'If you have any questions or need assistance, please reach out to our support team:\n\n'
-                '- Email: support@company.com\n'
-                '- Phone: +1-123-456-7890\n'
-                '- Visit our website: www.company.com',
+        'If you have any questions or need assistance, please reach out to our support team:\n\n'
+            '- Email: support@company.com\n'
+            '- Phone: +1-123-456-7890\n'
+            '- Visit our website: www.company.com',
       },
     ];
 
@@ -119,11 +118,11 @@ Widget buildAboutSection(
     ),
   )
       .margin(
-        EdgeInsets.only(
-            left: context.screenWidth * 0.04,
-            right: context.screenWidth * 0.04,
-            bottom: context.screenHeight * 0.04),
-      )
+    EdgeInsets.only(
+        left: context.screenWidth * 0.04,
+        right: context.screenWidth * 0.04,
+        bottom: context.screenHeight * 0.04),
+  )
       .width(context.screenWidth)
       .make();
 }
@@ -141,19 +140,19 @@ class _ReviewsState extends State<Reviews> {
     final List<Map<String, String>> reviewData = [
       {
         'title':
-            '"This app is a game-changer! I love how easy it is to order and pay right from my phone." - John D.\n\n'
+        '"This app is a game-changer! I love how easy it is to order and pay right from my phone." - John D.\n\n'
       },
       {
         'title':
-            '"The convenience and speed of this app are unparalleled. Highly recommended!" - Sarah T.\n\n'
+        '"The convenience and speed of this app are unparalleled. Highly recommended!" - Sarah T.\n\n'
       },
       {
         'title':
-            '"Using this app has made dining out a breeze. No more waiting for the waiter!" - Alex M.',
+        '"Using this app has made dining out a breeze. No more waiting for the waiter!" - Alex M.',
       },
       {
         'title':
-            '"I cant imagine dining without this app now. Its made everything so much more efficient." - Emma S.\n\n'
+        '"I cant imagine dining without this app now. Its made everything so much more efficient." - Emma S.\n\n'
       }
     ];
     return VxSwiper.builder(
@@ -202,7 +201,7 @@ class ResponsiveBackgroundWidget extends StatelessWidget {
                 ).text.center.make(),
               )
                   .margin(EdgeInsets.symmetric(
-                      horizontal: context.screenWidth * 0.04))
+                  horizontal: context.screenWidth * 0.04))
                   .make(),
               SizedBox(height: screenHeight * 0.02),
               const Row(
@@ -234,7 +233,7 @@ class ResponsiveBackgroundWidget extends StatelessWidget {
           ),
         )
             .margin(EdgeInsets.fromLTRB(
-                context.screenWidth * 0.03, 0, context.screenWidth * 0.03, 0))
+            context.screenWidth * 0.03, 0, context.screenWidth * 0.03, 0))
             .rounded
             .color(Colors.black12)
             .make();

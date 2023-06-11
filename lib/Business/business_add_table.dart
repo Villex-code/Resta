@@ -3,14 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:my_app/Business/business_menu.dart';
 import 'package:my_app/Business/business_home_page.dart';
 import 'package:my_app/Business/business_table_view.dart';
-//import 'package:test_app/home_page.dart';
+import 'package:my_app/Business/business_table_list.dart';
+
 
 class Business_AddTable extends StatefulWidget{
-  const Business_AddTable({super.key});
+  final String text;
+  final String url;
+  const Business_AddTable({ super.key, required this.text,required this.url});
   @override
-  _Business_AddTable createState() => _Business_AddTable();
+  _Business_AddTable createState() => _Business_AddTable(text: text,url: url);
 }
 class _Business_AddTable extends State<Business_AddTable>{
+  final String text;
+  final String url;
   final TextEditingController tableNumber = TextEditingController();
   final TextEditingController tableSeats = TextEditingController();
   bool? smokeArea = false;
@@ -18,9 +23,12 @@ class _Business_AddTable extends State<Business_AddTable>{
   bool? specialNeeds = false;
   bool? food = false;
   bool? drink = false;
-  String? table;
-  String? seats;
-
+  String table = '';
+  String seats = '';
+  List<String> table_list = [];
+  List<String> seats_list = [];
+  List<String> categories = [];
+  _Business_AddTable({required this.text,required this.url});
 
 
   @override
@@ -30,20 +38,37 @@ class _Business_AddTable extends State<Business_AddTable>{
           centerTitle: true,
           leading: IconButton(
             onPressed: (){
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const Business_TableView()),
-              );
+
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) =>
+                      BusinessView.withList(table: table_list,seats: seats_list,categories: categories)),
+                );
+
+
             },
             icon: Icon(Icons.arrow_back),
           ),
           title: Row(
               children: <Widget>[
-                CircleAvatar(
-                  backgroundImage: AssetImage('assets/company.png'),
+                Container(
+                  width: 45,
+                  height: 45,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                  ),
+                  child:InkWell(
+                    onTap:(){
+                    },
+                    child:Image.network(
+                      url,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
                 SizedBox(width: 20.0,),
-                Text('Company name'),
+                Text(text),
               ]
           ),
         ),
@@ -92,118 +117,7 @@ class _Business_AddTable extends State<Business_AddTable>{
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Choose for each table,several categories',
-                    style: TextStyle(
-                        color: Colors.black38,
-                        fontSize: 20), //TextStyle
-                  ), //Text
-                  SizedBox(height: 10),
-                  Row(
-                    children: <Widget>[
-                      SizedBox(
-                        width: 10,
-                      ), //SizedBox
-                      Text(
-                        'Smoke area: ',
-                        style: TextStyle(fontSize: 17.0),
-                      ), //Text
-                      SizedBox(width: 10), //SizedBox
-                      /** Checkbox Widget **/
-                      Checkbox(
-                        value: this.smokeArea,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            this.smokeArea = value;
-                          });
-                        },
-                      ),
-                    ], //<Widget>[]
-                  ),
-                  Row(
-                    children: <Widget>[
-                      SizedBox(
-                        width: 10,
-                      ), //SizedBox
-                      Text(
-                        'No smoke area: ',
-                        style: TextStyle(fontSize: 17.0),
-                      ), //Text
-                      SizedBox(width: 10), //SizedBox
-                      /** Checkbox Widget **/
-                      Checkbox(
-                        value: this.noSmokeArea,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            this.noSmokeArea = value;
-                          });
-                        },
-                      ),
-                    ], //<Widget>[]
-                  ),
-                  Row(
-                    children: <Widget>[
-                      SizedBox(
-                        width: 10,
-                      ), //SizedBox
-                      Text(
-                        'Special needs: ',
-                        style: TextStyle(fontSize: 17.0),
-                      ), //Text
-                      SizedBox(width: 10), //SizedBox
-                      /** Checkbox Widget **/
-                      Checkbox(
-                        value: this.specialNeeds,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            this.specialNeeds = value;
-                          });
-                        },
-                      ),
-                    ], //<Widget>[]
-                  ),
-                  Row(
-                    children: <Widget>[
-                      SizedBox(
-                        width: 10,
-                      ), //SizedBox
-                      Text(
-                        'For food: ',
-                        style: TextStyle(fontSize: 17.0,),
-                      ), //Text
-                      SizedBox(width: 10), //SizedBox
-                      /** Checkbox Widget **/
-                      Checkbox(
-                        value: this.food,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            this.food = value;
-                          });
-                        },
-                      ),
-                    ], //<Widget>[]
-                  ),
-                  Row(
-                    children: <Widget>[
-                      SizedBox(
-                        width: 10,
-                      ), //SizedBox
-                      Text(
-                        'For drink: ',
-                        style: TextStyle(fontSize: 17.0),
-                      ), //Text
-                      SizedBox(width: 10), //SizedBox
-                      /** Checkbox Widget **/
-                      Checkbox(
-                        value: this.drink,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            this.drink = value;
-                          });
-                        },
-                      ),
-                    ], //<Widget>[]
-                  ),
+
                   Padding(
                     padding: const EdgeInsets.fromLTRB(120.0,40.0,0,0),
                     child:ElevatedButton.icon(
@@ -211,15 +125,18 @@ class _Business_AddTable extends State<Business_AddTable>{
                         setState(() {
                           table = tableNumber.text;
                           seats = tableSeats.text;
+                          table_list.add(table);
+                          seats_list.add(seats);
                           tableNumber.text = ' ';
                           tableSeats.text = ' ';
+                          table = '';
+                          seats = '';
                           smokeArea = false;
                           noSmokeArea = false;
                           specialNeeds = false;
                           food = false;
                           drink = false;
-                          print(tableNumber);
-                          print(tableSeats);
+
                         });
                       },
                       style: ElevatedButton.styleFrom(

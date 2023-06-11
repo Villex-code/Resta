@@ -15,13 +15,14 @@ class SeeStoreViewfromCustomer extends StatefulWidget {
   SeeStoreViewfromCustomerState createState() =>
       SeeStoreViewfromCustomerState();
 
-  String name, address, ratings, reviews, description;
+  String name, address, ratings, reviews, description, id;
   SeeStoreViewfromCustomer(
       {required this.name,
       required this.address,
       required this.ratings,
       required this.reviews,
-      required this.description}) {}
+      required this.description,
+      required this.id}) {}
 }
 
 class SeeStoreViewfromCustomerState extends State<SeeStoreViewfromCustomer> {
@@ -65,12 +66,13 @@ class SeeStoreViewfromCustomerState extends State<SeeStoreViewfromCustomer> {
                 ),
               ),
               MainInfoStore_customer(
+                  id: widget.id,
                   name: widget.name,
                   address: widget.address,
                   ratings: widget.ratings,
                   reviews: widget.reviews,
                   description: widget.description),
-              CustomerTableView(),
+              CustomerTableView(id: widget.id),
             ],
           ),
         ),

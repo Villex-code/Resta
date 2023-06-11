@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+
 import 'package:my_app/MainPages/TeamConnected.dart';
+
+
+import 'package:my_app/Customer_Store_View/store_view_from_customer.dart';
+import 'package:my_app/Customer/customer_homepage.dart';
+
+import 'package:my_app/MainPages/TeamConnected.dart';
+import 'package:my_app/PagesAuth/Login/login_method.dart';
+import 'package:my_app/backend/business.dart';
+import 'MainPages/WelcomePage.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 import 'package:my_app/Authentication/user.dart';
@@ -20,14 +30,21 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => CurrentUser(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => CurrentUser(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => CurrentBusiness(),
+        ),
+      ],
       child: MaterialApp(
         title: 'Resta',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: TeamConnected(),
+        home: WelcomePage(),
       ),
     );
   }

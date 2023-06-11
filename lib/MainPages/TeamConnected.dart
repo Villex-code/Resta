@@ -26,8 +26,60 @@ class TeamConnectedState extends State<TeamConnected> {
             title: Text('Choose Customer/Business'),
           ),
           body: Center(
-              child: Column(children: <Widget>[
-            Container(
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly ,
+                  children: <Widget>[
+                SizedBox.fromSize(
+                  size: Size(150, 70), // button width and height
+                  child: ClipOval(
+                    child: Material(
+                      color: Colors.white, // button color
+                      child: InkWell(
+                        splashColor: Colors.pinkAccent, // splash color
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              return const LoginMethod();
+                            },
+                          ));
+                        }, // button pressed
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Icon(Icons.login_sharp), // icon/ t
+                            Text('Continue as Customer'), // ext
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox.fromSize(
+                  size: Size(150, 70), // button width and height
+                  child: ClipOval(
+                    child: Material(
+                      color: Colors.white, // button color
+                      child: InkWell(
+                        splashColor: Colors.pinkAccent, // splash color
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              return const BusinessLoginMethod();
+                            },
+                          ));
+                        }, // button pressed
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Icon(Icons.login_sharp), // icon/ t
+                            Text('Continue as Business'), // ext
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+           /* Container(
               margin: EdgeInsets.all(25),
               child: TextButton(
                 child: Text(
@@ -64,6 +116,7 @@ class TeamConnectedState extends State<TeamConnected> {
                   ));
                 },
               ),
+
             ),
             // Container(
             //   margin: EdgeInsets.all(25),
@@ -81,6 +134,10 @@ class TeamConnectedState extends State<TeamConnected> {
             //     },
             //   ),
             // ),
+
+            ),*/
+
+                    
           ]))),
     );
   }

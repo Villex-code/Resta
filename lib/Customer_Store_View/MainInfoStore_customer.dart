@@ -6,9 +6,10 @@ class MainInfoStore_customer extends StatefulWidget {
   @override
   State<MainInfoStore_customer> createState() => MainInfoStore_customerState();
 
-  String name, address, ratings, reviews, description;
+  String name, address, ratings, reviews, description, id;
   MainInfoStore_customer(
-      {required this.name,
+      {required this.id,
+      required this.name,
       required this.address,
       required this.ratings,
       required this.reviews,
@@ -83,7 +84,7 @@ class MainInfoStore_customerState extends State<MainInfoStore_customer> {
                       color: Colors.pink,
                     ),
                     direction: Axis.horizontal,
-                    initialRating: 3,
+                    initialRating: double.parse(widget.ratings).roundToDouble(),
                     unratedColor: Colors.black,
                     itemCount: 5,
                     itemSize: 26,

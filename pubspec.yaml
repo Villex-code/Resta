@@ -79,6 +79,10 @@ dependencies:
   url_launcher_android: ^6.0.27
   url_launcher_ios: ^6.1.4
   url_launcher_platform_interface: ^2.1.2
+  carousel_slider: ^4.0.0
+
+  lottie: ^2.3.2
+
   get: ^4.3.8
   google_maps_flutter: ^2.2.8
   geolocator: ^8.0.1
