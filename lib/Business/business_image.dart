@@ -66,6 +66,7 @@ class _BusinessImageState extends State<BusinessImage> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
+
               Expanded(
                 child: Container(
                   width: double.infinity,
@@ -107,6 +108,7 @@ class _BusinessImageState extends State<BusinessImage> {
                                       removePicture(currentBusiness.businessId!,
                                           tableView);
                                     },
+
                                   ),
                                 ),
                               ],

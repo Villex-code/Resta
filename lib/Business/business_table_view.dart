@@ -23,6 +23,7 @@ class Business_TableView extends StatefulWidget {
 }
 
 class _Business_TableViewState extends State<Business_TableView> {
+
   final _formKey = GlobalKey<FormState>();
   final _tableNameController = TextEditingController();
   final _tableCapacityController = TextEditingController();
@@ -68,8 +69,10 @@ class _Business_TableViewState extends State<Business_TableView> {
     super.dispose();
   }
 
+
   @override
   Widget build(BuildContext context) {
+
     final currentBusiness =
         Provider.of<CurrentBusiness>(context, listen: false);
 
@@ -132,6 +135,7 @@ class _Business_TableViewState extends State<Business_TableView> {
                               controller: _tableNameController,
                               decoration: const InputDecoration(
                                 labelText: 'Table Name',
+
                               ),
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
@@ -140,10 +144,12 @@ class _Business_TableViewState extends State<Business_TableView> {
                                 return null;
                               },
                             ),
+
                             TextFormField(
                               controller: _tableCapacityController,
                               decoration: const InputDecoration(
                                 labelText: 'Table Capacity',
+
                               ),
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
@@ -155,8 +161,10 @@ class _Business_TableViewState extends State<Business_TableView> {
                           ],
                         ),
                       ),
+
                       actions: [
                         ElevatedButton(
+
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               addTable(

@@ -34,9 +34,8 @@ class _Business_Reservations extends State<Business_Reservations> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage('assets/rese_back.jpg'), fit: BoxFit.cover)),
+      decoration:  BoxDecoration(
+        color: Colors.grey,),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(

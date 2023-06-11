@@ -12,7 +12,15 @@ class CardNotification extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Colors.white10,
       margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
+      elevation: 50,
+      shape: RoundedRectangleBorder(
+        side: BorderSide(
+          color: Colors.black,
+        ),
+        borderRadius: const BorderRadius.all(Radius.circular(12)),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Row(

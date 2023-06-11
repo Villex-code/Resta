@@ -17,6 +17,13 @@ class _BusinessCardUnChecked extends State<BusinessCardUnChecked> {
   Widget build(BuildContext context) {
     return Card(
       margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
+      elevation: 50,
+      shape: RoundedRectangleBorder(
+        side: BorderSide(
+          color: Colors.black,
+        ),
+        borderRadius: const BorderRadius.all(Radius.circular(12)),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Row(
