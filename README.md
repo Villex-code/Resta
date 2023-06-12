@@ -1,4 +1,4 @@
-# my_app
+# Resta Reservation App
 
 A new Flutter project.
 
