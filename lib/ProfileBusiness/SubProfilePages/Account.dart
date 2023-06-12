@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/Authentication/UserDocBuilder.dart';
 import 'package:my_app/Authentication/user.dart';
+import 'package:my_app/MainPages/WelcomePage.dart';
 import 'package:my_app/PagesAuth/Login/login_method.dart';
 import 'package:my_app/Profile/SubProfilePages/IndividualInfo.dart';
 import 'package:my_app/backend/BusinessDocBuilder.dart';
@@ -139,11 +140,9 @@ class _Profile_AccountState extends State<Profile_Account> {
                   ),
                 ],
               ),
-
               (context.screenHeight * 0.03).heightBox,
               "Basic Info".text.bold.size(context.screenWidth * 0.06).make(),
               (context.screenHeight * 0.02).heightBox,
-
               BusinessDocBuilder(
                 collectionName: 'main',
                 builder: (BuildContext context, dynamic userData) {
@@ -152,8 +151,8 @@ class _Profile_AccountState extends State<Profile_Account> {
                   }
 
                   final Map<String, dynamic>? userDataMap =
-                  (userData as DocumentSnapshot).data()
-                  as Map<String, dynamic>?;
+                      (userData as DocumentSnapshot).data()
+                          as Map<String, dynamic>?;
 
                   if (userDataMap == null) {
                     return Text("No user data");
@@ -163,8 +162,10 @@ class _Profile_AccountState extends State<Profile_Account> {
                   String? email = userDataMap['email'] as String?;
                   String? phoneNumber = userDataMap['phoneNumber'] as String?;
                   String? address = userDataMap['address'] as String?;
-                  String? coordinateX = userDataMap['coordinateX'] as String?;
-                  String? coordinateY = userDataMap['coordinateY'] as String?;
+                  String? coordinateX =
+                      userDataMap['coordinateX'].toString() as String?;
+                  String? coordinateY =
+                      userDataMap['coordinateY'].toString() as String?;
 
                   return Column(
                     children: [
@@ -181,7 +182,7 @@ class _Profile_AccountState extends State<Profile_Account> {
                         title: 'Email',
                         fieldKey: 'email',
                         placeholder: email ?? 'Not set yet',
-                        verified: true,
+                        verified: false,
                         onTapOutside: () {
                           _handleScreenTap();
                         },
@@ -226,21 +227,13 @@ class _Profile_AccountState extends State<Profile_Account> {
                   );
                 },
               ),
-
-              // THIS IS THE BOTTOM
-              // YOU DONT HAVE TO CHANGE IT FOR NOW
-
-              // ... other widgets here
-
-              // Add this line
               (context.screenHeight * 0.05).heightBox,
               OutlinedButton(
                 onPressed: () {
-                  currentUser.unsetUser(); // Set user to null
                   Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (context) => LoginMethod()),
-                        (route) =>
-                    false, // removes all previous routes in the stack
+                    MaterialPageRoute(builder: (context) => WelcomePage()),
+                    (route) =>
+                        false, // removes all previous routes in the stack
                   );
                   print('Signed out');
                 },

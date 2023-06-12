@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/Authentication/UserDocBuilder.dart';
 import 'package:my_app/Authentication/user.dart';
+import 'package:my_app/MainPages/WelcomePage.dart';
 import 'package:my_app/PagesAuth/Login/login_method.dart';
 import 'package:my_app/Profile/SubProfilePages/IndividualInfo.dart';
 
@@ -193,7 +194,7 @@ class _Profile_AccountState extends State<Profile_Account> {
                 onPressed: () {
                   currentUser.unsetUser(); // Set user to null
                   Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (context) => LoginMethod()),
+                    MaterialPageRoute(builder: (context) => WelcomePage()),
                     (route) =>
                         false, // removes all previous routes in the stack
                   );
