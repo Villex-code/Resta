@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'dart:io' if (dart.library.html) 'dart:html';
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
 class CurrentBusiness extends ChangeNotifier {
   User? _user;
@@ -384,18 +385,114 @@ class CurrentBusiness extends ChangeNotifier {
       try {
         // Create a reference to the location you want to upload to in Firebase Storage
         Reference storageReference =
-            FirebaseStorage.instance.ref().child('users/${_user?.uid}');
-
+            FirebaseStorage.instance.ref().child('business/${_user?.uid}');
+        print("I got the file");
         // Upload the file to Firebase Storage
         await storageReference.putFile(image);
 
-        // After the upload is complete, call setState to rebuild the widget.
+        // Once the file upload is complete, get the download URL
+        String downloadURL = await storageReference.getDownloadURL();
+        print("The download url is $downloadURL");
+
+        // Now you can use this URL to update your Firestore document
+        await FirebaseFirestore.instance
+            .collection('business')
+            .doc(businessId)
+            .update({
+          'picture_main':
+              downloadURL, // the field 'profile_main' will now hold the URL to the image
+        });
+
+        // After the upload and update are complete, call setState to rebuild the widget.
         // This will cause the FutureBuilder to be run again, and hence
         // the new image to be displayed.
       } catch (e) {
         // e.g, e.code == 'canceled'
         ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text('Failed to upload image: $e')));
+      }
+    }
+  }
+
+  Future<void> uploadMenu(BuildContext context) async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      File image = File(pickedFile.path);
+      try {
+        // Create a reference to the location you want to upload to in Firebase Storage
+        Reference storageReference =
+            FirebaseStorage.instance.ref().child('users/menu/${_user?.uid}');
+        print("I got the file");
+        // Upload the file to Firebase Storage
+        await storageReference.putFile(image);
+
+        // Once the file upload is complete, get the download URL
+        String downloadURL = await storageReference.getDownloadURL();
+        print("The download url is $downloadURL");
+
+        // Now you can use this URL to update your Firestore document
+        await FirebaseFirestore.instance
+            .collection('business')
+            .doc(businessId)
+            .update({
+          'menu':
+              downloadURL, // the field 'profile_main' will now hold the URL to the image
+        });
+
+        // After the upload and update are complete, call setState to rebuild the widget.
+        // This will cause the FutureBuilder to be run again, and hence
+        // the new image to be displayed.
+      } catch (e) {
+        // e.g, e.code == 'canceled'
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Failed to upload image: $e')));
+      }
+    }
+  }
+
+  Future<void> uploadAdditionalPicture() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      File image = File(pickedFile.path);
+      try {
+        // Generate a v1 (time-based) id
+        var uuid = Uuid();
+        String imageName = uuid.v1();
+
+        // Create a reference to the location you want to upload to in Firebase Storage
+        Reference storageReference = FirebaseStorage.instance
+            .ref()
+            .child('users/${_user?.uid}/additional/$imageName');
+
+        print("I got the file");
+
+        // Upload the file to Firebase Storage
+        await storageReference.putFile(image);
+
+        // Once the file upload is complete, get the download URL
+        String downloadURL = await storageReference.getDownloadURL();
+        print("The download url is $downloadURL");
+
+        // Now you can use this URL to update your Firestore document
+        await FirebaseFirestore.instance
+            .collection('business')
+            .doc(businessId)
+            .update({
+          'pictures': FieldValue.arrayUnion([
+            downloadURL
+          ]), // the field 'pictures' will now hold an array of URLs to the images
+        });
+
+        // Since this function isn't in a Widget, there's no need to call setState()
+        // However, you'll want to update any UI that's displaying the images,
+        // perhaps by calling a callback function that you pass in to this function.
+      } catch (e) {
+        // e.g, e.code == 'canceled'
+        print('Failed to upload image: $e');
       }
     }
   }

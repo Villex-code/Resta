@@ -1,4 +1,5 @@
 import 'package:my_app/Authentication/user.dart';
+import 'package:my_app/Business/business_home_page.dart';
 import 'package:my_app/MainPages/Homepage.dart';
 
 import 'package:my_app/theme/app_theme.dart';
@@ -153,7 +154,8 @@ class _BusinessPhoneVerificationState extends State<BusinessPhoneVerification> {
                         });
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => Homepage()),
+                          MaterialPageRoute(
+                              builder: (context) => BusinessView()),
                         );
                       } else {
                         print("The user is null");

@@ -9,6 +9,7 @@ import 'package:my_app/MainPages/Homepage.dart';
 import 'package:my_app/PagesAuth/Login/login_email.dart';
 import 'package:my_app/PagesAuth/SignUp/signup_phone.dart';
 import 'package:my_app/PagesAuth/SignupComponents/signup_container.dart';
+import 'package:my_app/PagesAuthBusiness/Signup/signup_method.dart';
 import 'package:my_app/backend/business.dart';
 
 import 'package:my_app/main.dart';
@@ -64,7 +65,7 @@ class _BusinessLoginMethodState extends State<BusinessLoginMethod> {
                 Image.asset('assets/qrcode_logo_small.png',
                     height: MediaQuery.of(context).size.width * 0.22),
                 Text(
-                  'my_app',
+                  'Resta',
                   style: TextStyle(
                       color: AppTheme.colors.black,
                       fontSize: 40,
@@ -131,39 +132,6 @@ class _BusinessLoginMethodState extends State<BusinessLoginMethod> {
                   ),
                 ),
                 SizedBox(height: 15),
-                const SignupMethodBlock(
-                    image: ('assets/apple_logo_small.png'),
-                    text: 'Continue With Apple'),
-                SizedBox(height: 25),
-                InkWell(
-                  onTap: () async {
-                    try {
-                      User? user = await _auth.signInAnonymously();
-
-                      if (user != null) {
-                        currentBusiness.setUser(user);
-
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  BusinessView()), //auto thelei allagi sto homepage tou business
-                        );
-                      } else {
-                        print("User not found or sign in was cancelled");
-                      }
-                    } catch (e) {
-                      print(
-                          "There was an exception while registering with google");
-                      print(e);
-                    }
-                  },
-                  child: "Or Continue Anonymously"
-                      .text
-                      .color(Colors.black54)
-                      .semiBold
-                      .make(),
-                ),
                 SizedBox(height: 15),
                 Text(
                   'By continuing, you agree to our Terms of Service and acknoledge that you have read our Privacy Policy & Coockie Policy to learn how we manage your data and maintain your privacy.',
@@ -178,7 +146,11 @@ class _BusinessLoginMethodState extends State<BusinessLoginMethod> {
                   onPressed: () {},
                   child: RawMaterialButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.pushReplacement(context, MaterialPageRoute(
+                        builder: (context) {
+                          return BusinessSignupMethod();
+                        },
+                      ));
                     },
                     child: Text(
                       "Don't have an account?",

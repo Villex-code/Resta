@@ -1,79 +1,64 @@
-import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:my_app/Business/Business_Notifications/card_notification.dart';
 import 'package:my_app/Business/business_home_page.dart';
-import 'package:my_app/Business/business_menu.dart';
-
-import 'package:my_app/Business/business_add_table.dart';
-//import 'package:test_app/home_page.dart';
+import 'package:my_app/backend/business.dart';
+import 'package:provider/provider.dart';
 
 class Business_Notifications extends StatelessWidget {
-  final String text;
-  final String url;
-  List<String> table = [];
-  List<String> seats = [];
-  List<String> categories = [];
-  Business_Notifications(
-      {super.key,
-        required this.text,
-        required this.url,
-        required this.table,
-        required this.seats,
-        required this.categories});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration:  BoxDecoration(
-        color: Colors.white,),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: Colors.black54,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => BusinessView.withList(
-                        table: table, seats: seats, categories: categories)),
-              );
-            },
-            icon: Icon(Icons.arrow_back),
-          ),
-          title: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  width: 45,
-                  height: 45,
-                  clipBehavior: Clip.antiAlias,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                  ),
-                  child: InkWell(
-                    onTap: () {},
-                    child: Image.network(
-                      url,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 20.0,
-                ),
-                Text(text),
-              ]),
+    final currentBusiness =
+        Provider.of<CurrentBusiness>(context, listen: false);
+
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => BusinessView()));
+          },
         ),
-        body: Stack(children: <Widget>[
-          SingleChildScrollView(
-            child: Column(children: [
-              CardNotification(),
-            ]),
-          ),
-        ]),
+        title: Text("Reservations"),
+      ),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance
+            .collection('business')
+            .doc(currentBusiness.businessId)
+            .collection('reservations')
+            .snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          }
+
+          if (snapshot.hasError) {
+            return Text('Something went wrong');
+          }
+
+          if (snapshot.data?.docs.isEmpty ?? true) {
+            return Text('No reservations found');
+          }
+
+          return ListView(
+            children: snapshot.data!.docs.map((DocumentSnapshot document) {
+              Map<String, dynamic> data =
+                  document.data() as Map<String, dynamic>;
+
+              return Card(
+                elevation: 5, // Add shadow to the card
+                child: ListTile(
+                  trailing: Icon(Icons.notifications),
+                  title: Text("You have a new reservation!"),
+                  subtitle: Text(
+                      "Table Name: ${data['table_name']}\nTable Capacity: ${data['table_capacity']}\nTime: ${data['time'].toDate().toString()}"),
+                ),
+              );
+            }).toList(),
+          );
+        },
       ),
     );
   }

@@ -40,12 +40,25 @@ class _Profile_AccountState extends State<Profile_Account> {
     FirebaseStorage storage = FirebaseStorage.instance;
     Reference ref = storage.ref().child('users/${currentUser.user?.uid}');
 
-    // Add this function in your class
-    Future<String?> _getImageURL(Reference ref) async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+    Future<String?> _getImageURL(String businessId) async {
       try {
-        return await ref.getDownloadURL();
+        DocumentSnapshot docSnap =
+            await firestore.collection('business').doc(businessId).get();
+
+        if (docSnap.exists) {
+          Map<String, dynamic> data = docSnap.data() as Map<String, dynamic>;
+          String? pictureURL =
+              data.containsKey('picture_main') ? data['picture_main'] : null;
+          return pictureURL;
+        } else {
+          print('No such document!');
+          return null;
+        }
       } catch (e) {
-        // This will catch errors when the file does not exist
+        // This will catch errors related to Firestore
+        print(e);
         return null;
       }
     }
@@ -86,7 +99,7 @@ class _Profile_AccountState extends State<Profile_Account> {
                 alignment: Alignment.bottomRight,
                 children: <Widget>[
                   FutureBuilder(
-                    future: _getImageURL(ref),
+                    future: _getImageURL(currentUser.businessId!),
                     builder: (BuildContext context,
                         AsyncSnapshot<String?> snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {

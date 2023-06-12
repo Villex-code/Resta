@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/Customer/customer_homepage.dart';
 import 'package:my_app/MainPages/Homepage.dart';
 
 import 'package:my_app/theme/app_theme.dart';
@@ -172,7 +173,7 @@ class _SignupEmailPageState extends State<SignupEmailPage> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Homepage()),
+                                    builder: (context) => SeeCustomer_View()),
                               );
                             } else {
                               print("The user is null");

@@ -39,7 +39,7 @@ class BusinessSignupMethod extends StatelessWidget {
                 Image.asset('assets/qrcode_logo_small.png',
                     height: MediaQuery.of(context).size.width * 0.22),
                 Text(
-                  'OnSpot Business',
+                  'Resta',
                   style: TextStyle(
                       color: AppTheme.colors.black,
                       fontSize: 40,
@@ -102,42 +102,6 @@ class BusinessSignupMethod extends StatelessWidget {
                   child: const SignupMethodBlock(
                       image: ('assets/google_logo_small.png'),
                       text: 'Sign Up With Google'),
-                ),
-                SizedBox(height: 15),
-                const SignupMethodBlock(
-                    image: ('assets/apple_logo_small.png'),
-                    text: 'Sign Up With Apple'),
-                SizedBox(height: 25),
-                InkWell(
-                  onTap: () async {
-                    try {
-                      User? user = await _auth.signInAnonymously();
-
-                      if (user != null) {
-                        currentUser.setUser(user);
-
-                        currentUser.setData({
-                          'name': "Anonymous",
-                        });
-
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (context) => Homepage()),
-                        );
-                      } else {
-                        print("User not found or sign in was cancelled");
-                      }
-                    } catch (e) {
-                      print(
-                          "There was an exception while registering with google");
-                      print(e);
-                    }
-                  },
-                  child: "Or Continue Anonymously"
-                      .text
-                      .color(Colors.black54)
-                      .semiBold
-                      .make(),
                 ),
                 (15).heightBox,
                 Text(

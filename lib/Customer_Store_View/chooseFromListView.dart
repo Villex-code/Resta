@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:my_app/Customer/thank_you.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class ButtonList extends StatefulWidget {
   final String id;
@@ -59,6 +60,9 @@ class _ButtonListState extends State<ButtonList> {
                         tables[index].data() as Map<String, dynamic>;
                     final isAvailable = tableData['available'] as bool;
                     final tableName = tableData['table_name'] as String;
+                    final tableCapacity =
+                        tableData['table_capacity'].toString() as String;
+
                     return Container(
                       height: 50,
                       margin: EdgeInsets.symmetric(vertical: 8.0),
@@ -78,7 +82,11 @@ class _ButtonListState extends State<ButtonList> {
                             },
                           ),
                         ),
-                        child: Text(tableName),
+                        child: Column(children: [
+                          (10).heightBox,
+                          Text(tableName),
+                          Text("Capacity $tableCapacity")
+                        ]),
                       ),
                     );
                   },
@@ -96,9 +104,29 @@ class _ButtonListState extends State<ButtonList> {
               onPressed: selectedIndex != -1
                   ? () async {
                       await reserveTable(tables[selectedIndex]);
+
+                      // Get the table data
+                      final tableData =
+                          tables[selectedIndex].data() as Map<String, dynamic>;
+
+                      // Get the current time
+                      DateTime now = DateTime.now();
+
+                      // Create a new reservation document
+                      await FirebaseFirestore.instance
+                          .collection('business')
+                          .doc(widget.id)
+                          .collection('reservations')
+                          .add({
+                        'table_name': tableData['table_name'],
+                        'table_capacity': tableData['table_capacity'],
+                        'time': now, // Firestore Timestamp
+                      });
+
                       setState(() {
                         selectedIndex = -1;
                       });
+
                       Navigator.push(
                         context,
                         MaterialPageRoute(
