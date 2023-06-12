@@ -5,6 +5,7 @@ import 'package:my_app/backend/business.dart';
 import 'package:provider/provider.dart';
 
 class Business_Notifications extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     final currentBusiness =

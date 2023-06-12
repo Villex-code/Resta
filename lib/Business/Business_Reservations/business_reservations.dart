@@ -18,11 +18,11 @@ class Business_Reservations extends StatefulWidget {
   List<String> categories = [];
   Business_Reservations(
       {super.key,
-      required this.text,
-      required this.url,
-      required this.table,
-      required this.seats,
-      required this.categories});
+        required this.text,
+        required this.url,
+        required this.table,
+        required this.seats,
+        required this.categories});
 
   @override
   _Business_Reservations createState() =>
@@ -73,6 +73,7 @@ class _Business_Reservations extends State<Business_Reservations> {
             ),
             //... Rest of your AppBar code
           ),
+
           body: ListView(
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
               Map<String, dynamic> data =
@@ -81,6 +82,7 @@ class _Business_Reservations extends State<Business_Reservations> {
                 color: data['available']
                     ? Colors.green[100]
                     : Colors.red[100], // Green when available, Red otherwise
+
                 margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),

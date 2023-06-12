@@ -63,9 +63,8 @@ class WelcomePageState extends State<WelcomePage> {
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                     ),
-                                    child: Image.network(
-                                      'https://media.istockphoto.com/id/1081422898/photo/pan-fried-duck.jpg?s=612x612&w=0&k=20&c=kzlrX7KJivvufQx9mLd-gMiMHR6lC2cgX009k9XO6VA=',
-                                      fit: BoxFit.fill,
+                                    child: Image.asset(
+                                      'assets/profile/RestaLogo.png', // Replace with the path to your image file
                                     ),
                                   ),
                                 ),
@@ -179,10 +178,11 @@ class WelcomePageState extends State<WelcomePage> {
                                         decoration: BoxDecoration(
                                           gradient: LinearGradient(
                                             colors: [
-                                              Colors.teal, // Start color
-                                              Color.fromARGB(
-                                                  255, 200, 215, 215),
-                                              Colors.teal, // Start color
+
+                                              Color(0xFF4F9B98),
+                                              Color.fromARGB(255, 200, 215, 215),
+                                              Color(0xFF4F9B98), // Start color
+
                                             ],
                                             begin: Alignment
                                                 .topCenter, // Gradient start position
@@ -231,7 +231,9 @@ class WelcomePageState extends State<WelcomePage> {
                                         Navigator.push(context,
                                             MaterialPageRoute(
                                           builder: (context) {
+
                                             return LoginMethod();
+
                                           },
                                         ));
                                       },
@@ -241,10 +243,11 @@ class WelcomePageState extends State<WelcomePage> {
                                         decoration: BoxDecoration(
                                           gradient: LinearGradient(
                                             colors: [
-                                              Colors.teal, // Start color
-                                              Color.fromARGB(
-                                                  255, 200, 215, 215),
-                                              Colors.teal, // Start color
+
+                                              Color(0xFF4F9B98),
+                                              Color.fromARGB(255, 200, 215, 215),
+                                              Color(0xFF4F9B98), // Start color
+
                                             ],
                                             begin: Alignment
                                                 .topCenter, // Gradient start position
