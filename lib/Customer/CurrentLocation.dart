@@ -5,13 +5,13 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:custom_info_window/custom_info_window.dart';
 import 'dart:math';
 
-class NewCurrentLocationScreen extends StatefulWidget {
-  NewCurrentLocationScreen({Key? key}) : super(key: key);
+class CurrentMap extends StatefulWidget {
+  CurrentMap({Key? key}) : super(key: key);
   @override
-  _NewCurrentLocationScreenState createState() => _NewCurrentLocationScreenState();
+  CurrentMapState createState() => CurrentMapState();
 }
 
-class _NewCurrentLocationScreenState extends State<NewCurrentLocationScreen> {
+class CurrentMapState extends State<CurrentMap> {
   late GoogleMapController googleMapController;
   List<String> storesNames = ['juicy','mac','goodys','mac','goodys'];
   List<String> storesDescriptions = ['good food','bad food','good drink','bad food','good drink'];
@@ -49,9 +49,17 @@ class _NewCurrentLocationScreenState extends State<NewCurrentLocationScreen> {
             position: _lastlang[i],
             onTap: () {
               infoWindowController.addInfoWindow!(
-                  Container(
-                    height: 300,
-                    width: 100,
+                  Align(
+                      alignment: Alignment.topLeft,
+                      widthFactor: 1.0, // Adjust the width factor as needed
+                      heightFactor: 1.0, // Adjust the height factor as needed
+                      child: GestureDetector(
+                        onTap: () {
+                          print('hi'); // Print "hi" when the info window is tapped
+                        },
+                  child: Container(
+                    height: 200,
+                    width: 400,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       border: Border.all(color: Colors.grey),
@@ -62,8 +70,8 @@ class _NewCurrentLocationScreenState extends State<NewCurrentLocationScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          height: 100,
-                          width: 100,
+                          height: 110,
+                          width: double.infinity,
                           decoration: const BoxDecoration(
                             image: DecorationImage(
                                 image: NetworkImage(
@@ -76,13 +84,13 @@ class _NewCurrentLocationScreenState extends State<NewCurrentLocationScreen> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(
-                              top: 10, left: 10, right: 10),
+                              top: 3, left: 10, right: 10),
                           child: Row(
                             children: [
                               SizedBox(
                                 width: 100,
                                 child: Text(
-                                  'Beef Tacos',
+                                  'Name',
                                   maxLines: 1,
                                   overflow: TextOverflow.fade,
                                   softWrap: false,
@@ -107,16 +115,34 @@ class _NewCurrentLocationScreenState extends State<NewCurrentLocationScreen> {
                             ],
                           ),
                         ),
+                        // Padding(
+                        //     padding: const EdgeInsets.only(
+                        //         top: 10, left: 10, right: 10),
+                        //     child: Text(
+                        //       'Description',
+                        //       maxLines: 2,
+                        //     )
+                        // ),
+                        Padding(
+                            padding: const EdgeInsets.only(
+                                top: 3, left: 10, right: 10),
+                            child: Text(
+                              'Capacity: ',
+                              maxLines: 1,
+                            )
+                        ),
                         Padding(
                             padding: const EdgeInsets.only(
                                 top: 10, left: 10, right: 10),
                             child: Text(
-                              'Description',
-                              maxLines: 2,
+                              'Availability: ',
+                              maxLines: 1,
                             )
                         ),
                       ],
                     ),
+                  ),
+                      ),
                   ),
                   _lastlang[i]
               );

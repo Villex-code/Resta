@@ -19,7 +19,7 @@ class _MapCustomerState extends State<MapCustomer> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => NewCurrentLocationScreen(),
+              builder: (context) => CurrentMap(),
             ),
           );
         },

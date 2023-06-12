@@ -139,8 +139,8 @@ class _Profile_AccountState extends State<Profile_Account> {
                   }
 
                   final Map<String, dynamic>? userDataMap =
-                      (userData as DocumentSnapshot).data()
-                          as Map<String, dynamic>?;
+                  (userData as DocumentSnapshot).data()
+                  as Map<String, dynamic>?;
 
                   if (userDataMap == null) {
                     return Text("No user data");
@@ -149,6 +149,9 @@ class _Profile_AccountState extends State<Profile_Account> {
                   String? name = userDataMap['name'] as String?;
                   String? email = userDataMap['email'] as String?;
                   String? phoneNumber = userDataMap['phoneNumber'] as String?;
+                  String? address = userDataMap['address'] as String?;
+                  String? coordinateX = userDataMap['coordinateX'] as String?;
+                  String? coordinateY = userDataMap['coordinateY'] as String?;
 
                   return Column(
                     children: [
@@ -179,6 +182,33 @@ class _Profile_AccountState extends State<Profile_Account> {
                           _handleScreenTap();
                         },
                       ),
+                      ProfileEditField(
+                        title: 'Address',
+                        fieldKey: 'address',
+                        placeholder: address ?? 'Not set yet',
+                        verified: true,
+                        onTapOutside: () {
+                          _handleScreenTap();
+                        },
+                      ),
+                      ProfileEditField(
+                        title: 'CoordinateX',
+                        fieldKey: 'coordinateX',
+                        placeholder: coordinateX ?? 'Not set yet',
+                        verified: true,
+                        onTapOutside: () {
+                          _handleScreenTap();
+                        },
+                      ),
+                      ProfileEditField(
+                        title: 'CoordinateY',
+                        fieldKey: 'coordinateY',
+                        placeholder: coordinateY ?? 'Not set yet',
+                        verified: true,
+                        onTapOutside: () {
+                          _handleScreenTap();
+                        },
+                      ),
                     ],
                   );
                 },
@@ -196,8 +226,8 @@ class _Profile_AccountState extends State<Profile_Account> {
                   currentUser.unsetUser(); // Set user to null
                   Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(builder: (context) => LoginMethod()),
-                    (route) =>
-                        false, // removes all previous routes in the stack
+                        (route) =>
+                    false, // removes all previous routes in the stack
                   );
                   print('Signed out');
                 },
