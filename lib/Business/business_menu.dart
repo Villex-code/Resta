@@ -44,7 +44,6 @@ class _Business_MenuViewState extends State<Business_MenuView> {
             ],
           ),
         ),
-
         body: Container(
           child: SingleChildScrollView(
             child: Column(
@@ -110,13 +109,8 @@ class _Business_MenuViewState extends State<Business_MenuView> {
               ],
             ),
           ),
-
         ),
-      ),
-    ),
-    ]),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-
         floatingActionButton: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -137,13 +131,10 @@ class _Business_MenuViewState extends State<Business_MenuView> {
                   size: 24.0,
                 ),
                 label: Text('Upload Menu'),
-
               ),
             ),
-
           ],
         ),
-
       ),
     );
   }

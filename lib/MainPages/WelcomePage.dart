@@ -21,16 +21,6 @@ class WelcomePageState extends State<WelcomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color.fromARGB(255, 242, 245, 245),
-              Color.fromARGB(255, 200, 215, 215),
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
         child: SafeArea(
           top: true,
           child: SingleChildScrollView(
@@ -38,8 +28,6 @@ class WelcomePageState extends State<WelcomePage> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Container(
-                  width: 411,
-                  height: 296,
                   decoration: BoxDecoration(
                       //color: FlutterFlowTheme.of(context).secondaryBackground,
                       ),
@@ -64,7 +52,7 @@ class WelcomePageState extends State<WelcomePage> {
                                       shape: BoxShape.circle,
                                     ),
                                     child: Image.asset(
-                                      'assets/profile/RestaLogo.png', // Replace with the path to your image file
+                                      'assets/qrcode_logo_small.png', // Replace with the path to your image file
                                     ),
                                   ),
                                 ),
@@ -99,7 +87,7 @@ class WelcomePageState extends State<WelcomePage> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       30, 15, 30, 0),
                                   child: Text(
-                                    'Thanks for joining! Access or create your account below, and get started on your journey!',
+                                    'Thanks for joining! Access or create your account below, and get started!',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontFamily: 'Readex Pro',
@@ -117,8 +105,6 @@ class WelcomePageState extends State<WelcomePage> {
                   ),
                 ),
                 Container(
-                  width: 435,
-                  height: 400,
                   decoration: BoxDecoration(
                       //color: FlutterFlowTheme.of(context).secondaryBackground,
                       ),
@@ -173,16 +159,13 @@ class WelcomePageState extends State<WelcomePage> {
                                         ));
                                       },
                                       child: Container(
-                                        width: 170,
-                                        height: 50,
                                         decoration: BoxDecoration(
                                           gradient: LinearGradient(
                                             colors: [
-
                                               Color(0xFF4F9B98),
-                                              Color.fromARGB(255, 200, 215, 215),
+                                              Color.fromARGB(
+                                                  255, 200, 215, 215),
                                               Color(0xFF4F9B98), // Start color
-
                                             ],
                                             begin: Alignment
                                                 .topCenter, // Gradient start position
@@ -231,9 +214,7 @@ class WelcomePageState extends State<WelcomePage> {
                                         Navigator.push(context,
                                             MaterialPageRoute(
                                           builder: (context) {
-
                                             return LoginMethod();
-
                                           },
                                         ));
                                       },
@@ -243,11 +224,10 @@ class WelcomePageState extends State<WelcomePage> {
                                         decoration: BoxDecoration(
                                           gradient: LinearGradient(
                                             colors: [
-
                                               Color(0xFF4F9B98),
-                                              Color.fromARGB(255, 200, 215, 215),
+                                              Color.fromARGB(
+                                                  255, 200, 215, 215),
                                               Color(0xFF4F9B98), // Start color
-
                                             ],
                                             begin: Alignment
                                                 .topCenter, // Gradient start position
@@ -276,18 +256,6 @@ class WelcomePageState extends State<WelcomePage> {
                               ],
                             ),
                           ),
-
-                          // Row(
-                          //   mainAxisSize: MainAxisSize.max,
-                          //   mainAxisAlignment: MainAxisAlignment.end,
-                          //   crossAxisAlignment: CrossAxisAlignment.end,
-                          //   children: [
-                          //     Text(
-                          //       'RESTA App',
-                          //       //style: FlutterFlowTheme.of(context).bodyMedium,
-                          //     ),
-                          //   ],
-                          // ),
                         ],
                       ),
                     ],

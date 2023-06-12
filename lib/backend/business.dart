@@ -151,6 +151,29 @@ class CurrentBusiness extends ChangeNotifier {
       throw Exception('No user to read data for');
     }
   }
+
+  Future<String> getTableViewPicture(String key) async {
+    if (_userDoc != null) {
+      try {
+        DocumentSnapshot userSnapshot = await _userDoc!.get();
+
+        Map<String, dynamic>? data =
+            userSnapshot.data() as Map<String, dynamic>?;
+
+        if (data != null && data.containsKey(key)) {
+          return data[key];
+        } else {
+          print("Key not found in data: $key");
+          return 'not found';
+        }
+      } catch (e) {
+        print("Error reading user data: $e");
+        return 'not found';
+      }
+    } else {
+      throw Exception('No user to read data for');
+    }
+  }
   //  -------------- ANALYTICS OPERATIONS -----------
   //  -------------- ANALYTICS OPERATIONS -----------
   //  -------------- ANALYTICS OPERATIONS -----------
@@ -400,6 +423,45 @@ class CurrentBusiness extends ChangeNotifier {
             .doc(businessId)
             .update({
           'picture_main':
+              downloadURL, // the field 'profile_main' will now hold the URL to the image
+        });
+
+        // After the upload and update are complete, call setState to rebuild the widget.
+        // This will cause the FutureBuilder to be run again, and hence
+        // the new image to be displayed.
+      } catch (e) {
+        // e.g, e.code == 'canceled'
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Failed to upload image: $e')));
+      }
+    }
+  }
+
+  Future<void> uploadTableView(BuildContext context) async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      File image = File(pickedFile.path);
+      try {
+        // Create a reference to the location you want to upload to in Firebase Storage
+        Reference storageReference = FirebaseStorage.instance
+            .ref()
+            .child('users/tableview/${businessId}');
+
+        // Upload the file to Firebase Storage
+        await storageReference.putFile(image);
+
+        // Once the file upload is complete, get the download URL
+        String downloadURL = await storageReference.getDownloadURL();
+        print("The download url is $downloadURL");
+
+        // Now you can use this URL to update your Firestore document
+        await FirebaseFirestore.instance
+            .collection('business')
+            .doc(businessId)
+            .update({
+          'table_view':
               downloadURL, // the field 'profile_main' will now hold the URL to the image
         });
 
