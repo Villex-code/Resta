@@ -1,5 +1,8 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:my_app/Authentication/user.dart';
 import 'package:my_app/Customer/searchbar_customer.dart';
+import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../Profile/MainProfile.dart';
@@ -15,6 +18,21 @@ class FirstInfoCustomer extends StatefulWidget {
 class _FirstInfoCustomerState extends State<FirstInfoCustomer> {
   @override
   Widget build(BuildContext context) {
+    final currentUser = Provider.of<CurrentUser>(context, listen: false);
+
+    FirebaseStorage storage = FirebaseStorage.instance;
+    Reference ref = storage.ref().child('users/${currentUser.user?.uid}');
+
+    // Add this function in your class
+    Future<String?> _getImageURL(Reference ref) async {
+      try {
+        return await ref.getDownloadURL();
+      } catch (e) {
+        // This will catch errors when the file does not exist
+        return null;
+      }
+    }
+
     return Expanded(
       child: Column(
         mainAxisSize: MainAxisSize.max,
@@ -46,9 +64,31 @@ class _FirstInfoCustomerState extends State<FirstInfoCustomer> {
                               builder: (context) => const UberProfile()),
                         );
                       },
-                      child: Image.network(
-                        'https://media.istockphoto.com/id/1209654046/vector/user-avatar-profile-icon-black-vector-illustration.jpg?s=612x612&w=0&k=20&c=EOYXACjtZmZQ5IsZ0UUp1iNmZ9q2xl1BD1VvN6tZ2UI=',
-                        fit: BoxFit.cover,
+                      child: FutureBuilder(
+                        future: _getImageURL(ref),
+                        builder: (BuildContext context,
+                            AsyncSnapshot<String?> snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return CircularProgressIndicator();
+                          }
+                          if (snapshot.hasError || snapshot.data == null) {
+                            // Replace this with the path to your default image in your assets folder
+                            return ClipRRect(
+                              borderRadius: BorderRadius.circular(90),
+                              child: Image.asset(
+                                'assets/profile_image.webp',
+                                height:
+                                    MediaQuery.of(context).size.width * 0.24,
+                                width: MediaQuery.of(context).size.width * 0.24,
+                              ),
+                            );
+                          }
+                          return CircleAvatar(
+                            backgroundImage: NetworkImage(snapshot.data!),
+                            radius: MediaQuery.of(context).size.width * 0.18,
+                          );
+                        },
                       ),
                     ),
                   ),
