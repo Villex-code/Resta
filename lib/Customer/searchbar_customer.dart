@@ -13,6 +13,11 @@ class _SearchBarCustomerState extends State<SearchBarCustomer> {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(20, 18, 20, 8),
+    child: GestureDetector(
+    onTap: () {
+    // Handle onTap event here
+    print('Container tapped!');
+    },
       child: Container(
         //width: double.infinity,
         width: context.screenWidth,
@@ -95,6 +100,7 @@ class _SearchBarCustomerState extends State<SearchBarCustomer> {
           ),
         ),
       ),
+    ),
     );
   }
 }
