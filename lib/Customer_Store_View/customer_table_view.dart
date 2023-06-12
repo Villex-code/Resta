@@ -76,8 +76,6 @@ class _CustomerTableViewState extends State<CustomerTableView> {
                                       builder: (BuildContext context) {
                                         return Dialog(
                                           child: SizedBox(
-                                            width: 300,
-                                            height: 300,
                                             child: Image.network(
                                               menuURL!,
                                               fit: BoxFit.cover,
@@ -172,27 +170,50 @@ class _CustomerTableViewState extends State<CustomerTableView> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    InkWell(
-                                      onTap: () {
-                                        // Navigator.push(
-                                        //   context,
-                                        //   // MaterialPageRoute(
-                                        //   //   builder: (context) =>
-                                        //   //       //ListOfStoresCustomer(category: 'Restaurants')
-                                        //   //       ListOfStoresCustomer(
-                                        //   //           category: 'Restaurants'),
-                                        //   // ),
-                                        // );
+                                    FutureBuilder<String?>(
+                                      future: currentBusiness
+                                          .getTableViewPicture('table_view'),
+                                      builder: (BuildContext context,
+                                          AsyncSnapshot<String?> snapshot) {
+                                        if (snapshot.connectionState ==
+                                            ConnectionState.waiting) {
+                                          return CircularProgressIndicator();
+                                        }
+
+                                        if (snapshot.hasError) {
+                                          return Text(
+                                              'Error loading table view image');
+                                        }
+
+                                        final String? tableViewImageURL =
+                                            snapshot.data;
+
+                                        if (tableViewImageURL != null) {
+                                          return Image.network(
+                                            tableViewImageURL,
+                                            height: 250,
+                                            width: context.screenWidth,
+                                            fit: BoxFit.fill,
+                                            errorBuilder:
+                                                (context, error, stackTrace) {
+                                              // If an error occurred while loading the image, return the asset image
+                                              return Image.asset(
+                                                'assets/table_view.jpeg',
+                                                height: 250,
+                                                width: context.screenWidth,
+                                                fit: BoxFit.fill,
+                                              );
+                                            },
+                                          );
+                                        } else {
+                                          return Image.asset(
+                                            'assets/table_view.jpeg',
+                                            height: 250,
+                                            width: context.screenWidth,
+                                            fit: BoxFit.fill,
+                                          ); // Replace with your placeholder asset image
+                                        }
                                       },
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(8),
-                                        child: Image.network(
-                                          'https://media.istockphoto.com/id/1081422898/photo/pan-fried-duck.jpg?s=612x612&w=0&k=20&c=kzlrX7KJivvufQx9mLd-gMiMHR6lC2cgX009k9XO6VA=',
-                                          width: context.screenWidth,
-                                          height: 200,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(

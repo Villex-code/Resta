@@ -237,7 +237,7 @@ class _BusinessView extends State<BusinessView> {
             ),
             Container(
               width: 390,
-              height: 850,
+              height: 1250,
               decoration: BoxDecoration(
                 color: Colors.white,
               ),
@@ -292,14 +292,65 @@ class _BusinessView extends State<BusinessView> {
                         ),
                       ),
                       SizedBox(height: 20.0),
-                      Center(
-                        child: Text(
-                          'TABLE VIEW',
-                          style: TextStyle(
-                              fontFamily: 'OoohBaby',
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Center(
+                            child: Text(
+                              'TABLE VIEW',
+                              style: TextStyle(
+                                fontFamily: 'OoohBaby',
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () async {
+                              await currentBusiness.uploadTableView(context);
+                              setState(() {});
+                            },
+                            icon: Icon(Icons.add_a_photo_outlined),
+                          ),
+                        ],
+                      ),
+                      FutureBuilder<String?>(
+                        future:
+                            currentBusiness.getTableViewPicture('table_view'),
+                        builder: (BuildContext context,
+                            AsyncSnapshot<String?> snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return CircularProgressIndicator();
+                          }
+
+                          if (snapshot.hasError) {
+                            return Text('Error loading table view image');
+                          }
+
+                          final String? tableViewImageURL = snapshot.data;
+
+                          if (tableViewImageURL != null) {
+                            return Image.network(
+                              tableViewImageURL,
+                              width: context.screenWidth,
+                              height: 300,
+                              errorBuilder: (context, error, stackTrace) {
+                                // If an error occurred while loading the image, return the asset image
+                                return Image.asset(
+                                  'assets/table_view.jpeg',
+                                  width: context.screenWidth,
+                                  height: 300,
+                                );
+                              },
+                            );
+                          } else {
+                            return Image.asset(
+                                width: context.screenWidth,
+                                height: 300,
+                                'assets/table_view.jpeg'); // Replace with your placeholder asset image
+                          }
+                        },
                       ),
                       LimitedBox(
                         maxHeight: 500,
