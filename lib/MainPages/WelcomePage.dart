@@ -1,10 +1,8 @@
-
 import 'package:flutter/material.dart';
+import 'package:my_app/Customer/customer_homepage.dart';
 
 import '../PagesAuth/Login/login_method.dart';
 import '../PagesAuthBusiness/Login/login_method.dart';
-
-
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -43,8 +41,8 @@ class WelcomePageState extends State<WelcomePage> {
                   width: 411,
                   height: 296,
                   decoration: BoxDecoration(
-                    //color: FlutterFlowTheme.of(context).secondaryBackground,
-                  ),
+                      //color: FlutterFlowTheme.of(context).secondaryBackground,
+                      ),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -56,8 +54,8 @@ class WelcomePageState extends State<WelcomePage> {
                             children: [
                               Expanded(
                                 child: Padding(
-                                  padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 30, 0, 0),
                                   child: Container(
                                     width: 120,
                                     height: 120,
@@ -79,8 +77,8 @@ class WelcomePageState extends State<WelcomePage> {
                             children: [
                               Expanded(
                                 child: Padding(
-                                  padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 20, 0, 0),
                                   child: Text(
                                     'Welcome!',
                                     textAlign: TextAlign.center,
@@ -99,12 +97,12 @@ class WelcomePageState extends State<WelcomePage> {
                             children: [
                               Expanded(
                                 child: Padding(
-                                  padding:
-                                  EdgeInsetsDirectional.fromSTEB(30, 15, 30, 0),
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      30, 15, 30, 0),
                                   child: Text(
                                     'Thanks for joining! Access or create your account below, and get started on your journey!',
                                     textAlign: TextAlign.center,
-                                    style:TextStyle(
+                                    style: TextStyle(
                                       fontFamily: 'Readex Pro',
                                       fontSize: 17,
                                       fontWeight: FontWeight.w400,
@@ -123,8 +121,8 @@ class WelcomePageState extends State<WelcomePage> {
                   width: 435,
                   height: 400,
                   decoration: BoxDecoration(
-                    //color: FlutterFlowTheme.of(context).secondaryBackground,
-                  ),
+                      //color: FlutterFlowTheme.of(context).secondaryBackground,
+                      ),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -132,7 +130,8 @@ class WelcomePageState extends State<WelcomePage> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 70, 0, 0),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 70, 0, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -151,7 +150,8 @@ class WelcomePageState extends State<WelcomePage> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -160,12 +160,14 @@ class WelcomePageState extends State<WelcomePage> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         80, 12, 80, 0),
                                     child: TextButton(
-
                                       style: ButtonStyle(
-                                        foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                                        foregroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                                Colors.white),
                                       ),
                                       onPressed: () {
-                                        Navigator.push(context, MaterialPageRoute(
+                                        Navigator.push(context,
+                                            MaterialPageRoute(
                                           builder: (context) {
                                             return const BusinessLoginMethod();
                                           },
@@ -178,16 +180,22 @@ class WelcomePageState extends State<WelcomePage> {
                                           gradient: LinearGradient(
                                             colors: [
                                               Colors.teal, // Start color
-                                              Color.fromARGB(255, 200, 215, 215),
+                                              Color.fromARGB(
+                                                  255, 200, 215, 215),
                                               Colors.teal, // Start color
                                             ],
-                                            begin: Alignment.topCenter, // Gradient start position
-                                            end: Alignment.bottomCenter, // Gradient end position
+                                            begin: Alignment
+                                                .topCenter, // Gradient start position
+                                            end: Alignment
+                                                .bottomCenter, // Gradient end position
                                           ),
-                                          borderRadius: BorderRadius.circular(10.0),
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
                                         ),
-                                        alignment: Alignment.center, // Aligns the text to the center
-                                        padding: EdgeInsets.all(10.0), // Adjust padding as needed
+                                        alignment: Alignment
+                                            .center, // Aligns the text to the center
+                                        padding: EdgeInsets.all(
+                                            10.0), // Adjust padding as needed
                                         child: Text(
                                           'Business',
                                           style: TextStyle(
@@ -197,7 +205,6 @@ class WelcomePageState extends State<WelcomePage> {
                                           ),
                                         ),
                                       ),
-
                                     ),
                                   ),
                                 ),
@@ -205,7 +212,8 @@ class WelcomePageState extends State<WelcomePage> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -214,14 +222,16 @@ class WelcomePageState extends State<WelcomePage> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         80, 12, 80, 0),
                                     child: TextButton(
-
                                       style: ButtonStyle(
-                                        foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                                        foregroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                                Colors.white),
                                       ),
                                       onPressed: () {
-                                        Navigator.push(context, MaterialPageRoute(
+                                        Navigator.push(context,
+                                            MaterialPageRoute(
                                           builder: (context) {
-                                            return const BusinessLoginMethod();
+                                            return LoginMethod();
                                           },
                                         ));
                                       },
@@ -232,16 +242,22 @@ class WelcomePageState extends State<WelcomePage> {
                                           gradient: LinearGradient(
                                             colors: [
                                               Colors.teal, // Start color
-                                              Color.fromARGB(255, 200, 215, 215),
+                                              Color.fromARGB(
+                                                  255, 200, 215, 215),
                                               Colors.teal, // Start color
                                             ],
-                                            begin: Alignment.topCenter, // Gradient start position
-                                            end: Alignment.bottomCenter, // Gradient end position
+                                            begin: Alignment
+                                                .topCenter, // Gradient start position
+                                            end: Alignment
+                                                .bottomCenter, // Gradient end position
                                           ),
-                                          borderRadius: BorderRadius.circular(10.0),
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
                                         ),
-                                        alignment: Alignment.center, // Aligns the text to the center
-                                        padding: EdgeInsets.all(10.0), // Adjust padding as needed
+                                        alignment: Alignment
+                                            .center, // Aligns the text to the center
+                                        padding: EdgeInsets.all(
+                                            10.0), // Adjust padding as needed
                                         child: Text(
                                           'Customer',
                                           style: TextStyle(
@@ -251,9 +267,7 @@ class WelcomePageState extends State<WelcomePage> {
                                           ),
                                         ),
                                       ),
-
                                     ),
-
                                   ),
                                 ),
                               ],
@@ -282,6 +296,5 @@ class WelcomePageState extends State<WelcomePage> {
         ),
       ),
     );
-
   }
 }

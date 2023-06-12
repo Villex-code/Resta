@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:my_app/Authentication/user.dart';
 import 'package:my_app/Profile/ProfileItem.dart';
@@ -69,12 +70,25 @@ class _UberProfileState extends State<UberProfile> {
     FirebaseStorage storage = FirebaseStorage.instance;
     Reference ref = storage.ref().child('users/${currentUser.user?.uid}');
 
-    // Add this function in your class
-    Future<String?> _getImageURL(Reference ref) async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+    Future<String?> _getImageURL(String businessId) async {
       try {
-        return await ref.getDownloadURL();
+        DocumentSnapshot docSnap =
+            await firestore.collection('business').doc(businessId).get();
+
+        if (docSnap.exists) {
+          Map<String, dynamic> data = docSnap.data() as Map<String, dynamic>;
+          String? pictureURL =
+              data.containsKey('picture_main') ? data['picture_main'] : null;
+          return pictureURL;
+        } else {
+          print('No such document!');
+          return null;
+        }
       } catch (e) {
-        // This will catch errors when the file does not exist
+        // This will catch errors related to Firestore
+        print(e);
         return null;
       }
     }
@@ -167,7 +181,7 @@ class _UberProfileState extends State<UberProfile> {
                           setState(() {});
                         },
                         child: FutureBuilder(
-                          future: _getImageURL(ref),
+                          future: _getImageURL(currentUser.businessId!),
                           builder: (BuildContext context,
                               AsyncSnapshot<String?> snapshot) {
                             if (snapshot.connectionState ==
@@ -208,34 +222,7 @@ class _UberProfileState extends State<UberProfile> {
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Favorites()),
-                        );
-                      },
-                      child: VxBox(
-                              child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Image.asset(
-                            'assets/profile/hearticon.png',
-                            height: context.screenWidth * 0.12,
-                          ),
-                          "Favorites".text.semiBold.make(),
-                          (context.screenWidth * 0.01).heightBox
-                        ],
-                      ))
-                          .size(context.screenWidth * 0.23,
-                              context.screenWidth * 0.2)
-                          .color(Colors.black12)
-                          .roundedSM
-                          .make(),
-                    ),
-                  ],
+                  children: [],
                 ),
               ),
               (context.screenHeight * 0.02).heightBox,

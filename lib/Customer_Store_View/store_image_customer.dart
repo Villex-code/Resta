@@ -22,65 +22,81 @@ class _StoreImageState extends State<StoreImage> {
   Widget build(BuildContext context) {
     final currentBusiness =
         Provider.of<CurrentBusiness>(context, listen: false);
-    return Container(
-      width: 100,
-      height: 100,
-      decoration: BoxDecoration(
-        color: Colors.white,
-      ),
-      child: InkWell(
-        onTap: () async {
-          await currentBusiness.setBusiness(widget.id);
-          DocumentSnapshot docSnap = await FirebaseFirestore.instance
-              .collection('business')
-              .doc(widget.id)
-              .get();
+    return FutureBuilder<DocumentSnapshot>(
+      future: FirebaseFirestore.instance
+          .collection('business')
+          .doc(widget.id)
+          .get(),
+      builder:
+          (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator();
+        }
+        if (snapshot.hasError || !snapshot.hasData) {
+          return Text("Error loading data");
+        }
+        Map<String, dynamic> data =
+            snapshot.data!.data() as Map<String, dynamic>;
 
-          if (docSnap.exists) {
-            Map<String, dynamic> data = docSnap.data() as Map<String, dynamic>;
+        String? name = data.containsKey('name') ? data['name'] : 'Unknown';
+        String? picture =
+            data.containsKey('picture_main') ? data['picture_main'] : 'Unknown';
+        String? address =
+            data.containsKey('address') ? data['address'] : 'Unknown';
+        String? ratings =
+            data.containsKey('rating') ? data['rating'].toString() : 'Unknown';
+        String? reviews = data.containsKey('number_of_reviews')
+            ? data['number_of_reviews'].toString()
+            : 'Unknown';
+        String? description = data.containsKey('description')
+            ? data['description']
+            : 'Store Description';
 
-            String? name = data.containsKey('name') ? data['name'] : 'Unknown';
-            String? address =
-                data.containsKey('address') ? data['address'] : 'Unknown';
-            String? ratings = data.containsKey('rating')
-                ? data['rating'].toString()
-                : 'Unknown';
-            String? reviews = data.containsKey('number_of_reviews')
-                ? data['number_of_reviews'].toString()
-                : 'Unknown';
-            String? description = data.containsKey('description')
-                ? data['description']
-                : 'Store Description';
-
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => SeeStoreViewfromCustomer(
-                    id: widget.id,
-                    name: name ?? 'No name found',
-                    address: address ?? 'No address found',
-                    ratings: ratings ?? '-',
-                    reviews: reviews ?? '-',
-                    description: description ??
-                        "This store hasn't included a description"),
-              ),
-            );
-          } else {
-            // Handle when document does not exist.
-            // You can show a toast or a dialog.
-            print("No such document!");
-          }
-        },
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: Image.network(
-            'https://toohotel.com/wp-content/uploads/2022/09/TOO_restaurant_Panoramique_vue_Paris_Seine_Tour_Eiffel_2.jpg',
-            width: 300,
-            height: 200,
-            fit: BoxFit.cover,
+        return Container(
+          width: 100,
+          height: 100,
+          decoration: BoxDecoration(
+            color: Colors.white,
           ),
-        ),
-      ),
+          child: InkWell(
+            onTap: () async {
+              await currentBusiness.setBusiness(widget.id);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SeeStoreViewfromCustomer(
+                      id: widget.id,
+                      name: name ?? 'No name found',
+                      address: address ?? 'No address found',
+                      ratings: ratings ?? '-',
+                      reviews: reviews ?? '-',
+                      description: description ??
+                          "This store hasn't included a description"),
+                ),
+              );
+            },
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: FadeInImage.assetNetwork(
+                placeholder:
+                    'assets/placeholder.png', // local placeholder image
+                image: picture ?? '', // main image
+                fit: BoxFit.cover,
+                width: 300,
+                height: 200,
+                imageErrorBuilder: (context, error, stackTrace) {
+                  return Image.network(
+                    'https://toohotel.com/wp-content/uploads/2022/09/TOO_restaurant_Panoramique_vue_Paris_Seine_Tour_Eiffel_2.jpg',
+                    width: 300,
+                    height: 200,
+                    fit: BoxFit.cover,
+                  );
+                },
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

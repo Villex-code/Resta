@@ -29,7 +29,7 @@ class CardNotification extends StatelessWidget {
             CircleAvatar(
               backgroundImage: AssetImage('assets/company.png'),
             ),
-            Text('Rserve Info'),
+            Text(' Info'),
             ElevatedButton.icon(
               onPressed: () {},
               style: ElevatedButton.styleFrom(

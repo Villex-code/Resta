@@ -72,7 +72,7 @@ class _FirstInfoCustomerState extends State<FirstInfoCustomer> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Text(
-                                  'Hello Mr. Dimos!',
+                                  'Hello Mr. Vasilis!',
                                   style: TextStyle(
                                     fontFamily: 'Readex Pro',
                                     fontSize: 18,
@@ -101,7 +101,7 @@ class _FirstInfoCustomerState extends State<FirstInfoCustomer> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       3, 0, 0, 0),
                                   child: Text(
-                                    'We are in Ipokratous 27.',
+                                    'We are in Πατησίων 76.',
                                     textAlign: TextAlign.start,
                                     style: TextStyle(
                                       fontFamily: 'Readex Pro',

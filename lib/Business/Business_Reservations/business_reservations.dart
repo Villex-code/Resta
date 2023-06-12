@@ -1,9 +1,13 @@
 import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:my_app/Business/business_home_page.dart';
 import 'package:my_app/Business/business_menu.dart';
 
 import 'package:my_app/Business/Business_Notifications/business_notifications.dart';
+import 'package:my_app/backend/business.dart';
+import 'package:provider/provider.dart';
+import 'package:velocity_x/velocity_x.dart';
 //import 'package:test_app/home_page.dart';
 
 class Business_Reservations extends StatefulWidget {
@@ -30,135 +34,100 @@ class _Business_Reservations extends State<Business_Reservations> {
   final String text;
   final String url;
   _Business_Reservations({required this.text, required this.url});
-  // This widget is the root of your application.
+
+  Stream<QuerySnapshot> getTablesStream(String businessId) {
+    return FirebaseFirestore.instance
+        .collection('business')
+        .doc(businessId)
+        .collection('tables')
+        .snapshots();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration:  BoxDecoration(
-        color: Colors.grey,),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: Colors.black54,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => BusinessView.withList(
-                        table: widget.table,
-                        seats: widget.seats,
-                        categories: widget.categories)),
+    final currentBusiness = Provider.of<CurrentBusiness>(context, listen: true);
+
+    return StreamBuilder<QuerySnapshot>(
+      stream: getTablesStream(currentBusiness.businessId!),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return Text('Something went wrong');
+        }
+
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Text("Loading");
+        }
+
+        return Scaffold(
+          appBar: AppBar(
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          BusinessView()), // replace NextPage() with your destination page
+                );
+              },
+            ),
+            //... Rest of your AppBar code
+          ),
+          body: ListView(
+            children: snapshot.data!.docs.map((DocumentSnapshot document) {
+              Map<String, dynamic> data =
+                  document.data() as Map<String, dynamic>;
+              return Card(
+                color: data['available']
+                    ? Colors.green[100]
+                    : Colors.red[100], // Green when available, Red otherwise
+                margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Column(
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          CircleAvatar(
+                            backgroundImage: AssetImage('assets/company.png'),
+                          ),
+                          Text(data['table_name']),
+                          Text(
+                              'Capacity: ${data['table_capacity'].toString()}'),
+                          Text(data['available']
+                              ? 'Available'
+                              : 'Not Available'),
+                        ],
+                      ),
+                      (20).heightBox,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          ElevatedButton(
+                            onPressed: () async {
+                              // Handle table reservation
+                              document.reference.update({'available': false});
+                            },
+                            child: Text("Reserve"),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              // Handle table clear
+                              document.reference.update({'available': true});
+                            },
+                            child: Text("Clear Table"),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
               );
-            },
-            icon: Icon(Icons.arrow_back),
+            }).toList(),
           ),
-          title: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  width: 45,
-                  height: 45,
-                  clipBehavior: Clip.antiAlias,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                  ),
-                  child: InkWell(
-                    onTap: () {},
-                    child: Image.network(
-                      url,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 20.0,
-                ),
-                Text(text),
-              ]),
-        ),
-        body: Stack(children: <Widget>[
-          SingleChildScrollView(
-            child: Column(children: [
-              ElevatedButton.icon(
-                onPressed: () {
-                  showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime(2000),
-                          lastDate: DateTime(2030))
-                      .then((date) {
-                    setState(() {
-                      datetime = date;
-                    });
-                  });
-                },
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.blueGrey, // Background color
-                ),
-                icon: Icon(
-                  Icons.calendar_today,
-                  size: 25.0,
-                ),
-                label: Text("Choose Date"),
-              ),
-              Card(
-                margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      CircleAvatar(
-                        backgroundImage: AssetImage('assets/company.png'),
-                      ),
-                      Text('Rserve Info'),
-                      ElevatedButton.icon(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.greenAccent, // Background color
-                        ),
-                        icon: Icon(
-                          Icons.check,
-                          size: 24.0,
-                        ),
-                        label: Text("Validate"),
-                      ),
-                      ElevatedButton.icon(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.redAccent, // Background color
-                        ),
-                        icon: Icon(
-                          Icons.cancel,
-                          size: 24.0,
-                        ),
-                        label: Text("Cancel"),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Card(
-                margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      CircleAvatar(
-                        backgroundImage: AssetImage('assets/company.png'),
-                      ),
-                      Text('Rserve Info'),
-                    ],
-                  ),
-                ),
-              ),
-            ]),
-          ),
-        ]),
-      ),
+        );
+      },
     );
   }
 }

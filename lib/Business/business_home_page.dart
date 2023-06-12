@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:my_app/ProfileBusiness/MainProfile.dart';
+import 'package:my_app/backend/business.dart';
+import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
 import 'package:flutter/material.dart';
@@ -35,55 +38,185 @@ class _BusinessView extends State<BusinessView> {
 
   @override
   Widget build(BuildContext context) {
+    final currentBusiness = Provider.of<CurrentBusiness>(context, listen: true);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         top: true,
         child: SingleChildScrollView(
           child: Column(mainAxisSize: MainAxisSize.max, children: [
-            const BusinessImage(),
+            Container(
+              height: 300,
+              child: BusinessImage(),
+            ),
             Container(
               width: 431,
               height: 160,
               decoration: BoxDecoration(
                 color: Colors.white,
               ),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Column(
+              child: StreamBuilder<DocumentSnapshot>(
+                stream: FirebaseFirestore.instance
+                    .collection('business')
+                    .doc(currentBusiness.businessId)
+                    .snapshots(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<DocumentSnapshot> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator());
+                  }
+
+                  if (snapshot.hasError) {
+                    return Text('Something went wrong');
+                  }
+
+                  if (snapshot.data?.exists != true) {
+                    return Text('No business found');
+                  }
+
+                  Map<String, dynamic> data =
+                      snapshot.data!.data() as Map<String, dynamic>;
+
+                  return Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Row(
+                      Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(14, 0, 0, 0),
-                            child: Text(
-                              text,
-                              style: TextStyle(
-                                fontFamily: 'Readex Pro',
-                                fontSize: 32,
-                                fontWeight: FontWeight.w300,
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(14, 0, 0, 0),
+                                child: Text(
+                                  data['name'],
+                                  style: TextStyle(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: 32,
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                ),
                               ),
-                            ),
+                              Spacer(),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 14, 0),
+                                child: InkWell(
+                                  onTap: () async {
+                                    // upload new photos
+                                    await currentBusiness
+                                        .uploadAdditionalPicture();
+                                    setState(() {});
+                                  },
+                                  child: Icon(
+                                    Icons.add_a_photo_outlined,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                          Spacer(),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(18, 0, 0, 0),
+                                child: Text(
+                                  data['address'],
+                                  style: TextStyle(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w200,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(18, 6, 6, 6),
+                                child: Text(
+                                  data['rating'],
+                                  style: TextStyle(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                              RatingBar.builder(
+                                onRatingUpdate: (newValue) =>
+                                    setState(() => newValue),
+                                itemBuilder: (context, index) => Icon(
+                                  Icons.star_rounded,
+                                  color: Colors.pink,
+                                ),
+                                direction: Axis.horizontal,
+                                initialRating: double.parse(data['rating'])
+                                    .floorToDouble(),
+                                unratedColor: Colors.black,
+                                itemCount: 5,
+                                itemSize: 26,
+                                glowColor: Colors.blue,
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    10, 10, 10, 10),
+                                child: Text(
+                                  '(${data['number_of_reviews']} reviews)',
+                                  //style: FlutterFlowTheme.of(context).bodyMedium, //bodyMedium
+                                ),
+                              ),
+                            ],
+                          ),
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 14, 0),
-                            child: InkWell(
-                              onTap: () {
-                                // upload new photos
-                              },
-                              child: Icon(
-                                Icons.add_a_photo_outlined,
-                              ),
+                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Container(
+                                  width: 130,
+                                  height: 25,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: Colors.grey,
+                                    ),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(18)),
+                                  ),
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Icon(
+                                          Icons.info_outline,
+                                          size: 24.0,
+                                        ),
+                                        Text(
+                                          'Description',
+                                          style: TextStyle(
+                                            fontFamily: 'Outfit',
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w800,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
                       ),
+                      SizedBox(height: 10.0),
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -91,111 +224,15 @@ class _BusinessView extends State<BusinessView> {
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(18, 0, 0, 0),
                             child: Text(
-                              '[address]',
-                              style: TextStyle(
-                                fontFamily: 'Readex Pro',
-                                fontSize: 17,
-                                fontWeight: FontWeight.w200,
-                              ),
+                              data['description'] ?? "Description here",
+                              //style: FlutterFlowTheme.of(context).bodyMedium,
                             ),
                           ),
                         ],
                       ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(18, 6, 6, 6),
-                            child: Text(
-                              '4.6',
-                              style: TextStyle(
-                                fontFamily: 'Readex Pro',
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                          RatingBar.builder(
-                            onRatingUpdate: (newValue) =>
-                                setState(() => newValue),
-                            itemBuilder: (context, index) => Icon(
-                              Icons.star_rounded,
-                              color: Colors.pink,
-                            ),
-                            direction: Axis.horizontal,
-                            initialRating: 3,
-                            unratedColor: Colors.black,
-                            itemCount: 5,
-                            itemSize: 26,
-                            glowColor: Colors.blue,
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
-                            child: Text(
-                              '(1,876 reviews)',
-                              //style: FlutterFlowTheme.of(context).bodyMedium, //bodyMedium
-                            ),
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Container(
-                              width: 130,
-                              height: 25,
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Colors.grey,
-                                  ),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(18))),
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Icon(
-                                      Icons.info_outline,
-                                      size: 24.0,
-                                    ),
-                                    Text(
-                                      'Description',
-                                      style: TextStyle(
-                                        // decoration: TextDecoration.underline,
-                                        fontFamily: 'Outfit',
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w800,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
                     ],
-                  ),
-                  SizedBox(height: 10.0),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(18, 0, 0, 0),
-                        child: Text(
-                          'Here is the description of the place.',
-                          //style: FlutterFlowTheme.of(context).bodyMedium,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+                  );
+                },
               ),
             ),
             Container(
@@ -308,7 +345,7 @@ class _BusinessView extends State<BusinessView> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Icon(Icons.table_restaurant),
-                        Text('Reservations') // icontext
+                        Text('Tables') // icontext
                       ],
                     ),
                   ),
@@ -326,19 +363,14 @@ class _BusinessView extends State<BusinessView> {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Business_Notifications(
-                                text: text,
-                                url: url,
-                                table: widget.table,
-                                seats: widget.seats,
-                                categories: widget.categories)),
+                            builder: (context) => Business_Notifications()),
                       );
                     }, // button pressed
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Icon(Icons.notifications_active),
-                        Text('Notifications'), // icon// text
+                        Text('Reservations'), // icon// text
                       ],
                     ),
                   ),
